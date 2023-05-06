@@ -211,6 +211,12 @@ class _HomeState extends State<Home>
                   Navigator.popAndPushNamed(context, '/contactUs');
                 },
               ),
+              ListTile(
+                title: const Text('about us'),
+                onTap: () {
+                  Navigator.popAndPushNamed(context, '/about');
+                },
+              ),
             ],
           ),
         ),
