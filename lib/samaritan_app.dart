@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:project_samaritan/pages/alarm_page.dart';
+import 'package:project_samaritan/pages/med_news_page.dart';
 import 'package:project_samaritan/pages/saved.dart';
 import 'package:project_samaritan/pages/home.dart';
 import 'package:project_samaritan/pages/scan_page.dart';
@@ -19,7 +21,13 @@ class _SamaritanAppState extends State<SamaritanApp> {
   int _selectedIndex = 0;
 
   ////
-  static final List _widgetOptions = [Home(), CameraScan(), SavedPage()];
+  static final List _widgetOptions = [
+    Home(),
+    CameraScan(),
+    AlarmPage(),
+    NewsPage(),
+    SavedPage(),
+  ];
 
   @override
   void initState() {
@@ -61,16 +69,19 @@ class _SamaritanAppState extends State<SamaritanApp> {
               color: style.Style.medicineDescriptionColorSecondary,
               tabs: const [
                 GButton(
-                  icon: Icons.food_bank_rounded,
-                  text: 'Home',
+                  icon: Icons.home,
                 ),
                 GButton(
-                  icon: Icons.search,
-                  text: 'Search',
+                  icon: Icons.camera,
                 ),
                 GButton(
-                  icon: Icons.shopping_bag,
-                  text: 'Order',
+                  icon: Icons.alarm,
+                ),
+                GButton(
+                  icon: Icons.newspaper,
+                ),
+                GButton(
+                  icon: Icons.save_alt_rounded,
                 ),
               ],
               selectedIndex: _selectedIndex,
