@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:project_samaritan/pages/Reminder/reminder_home.dart';
 import 'package:project_samaritan/pages/alarm_page.dart';
 import 'package:project_samaritan/pages/med_news_page.dart';
 import 'package:project_samaritan/pages/saved.dart';
@@ -24,7 +25,7 @@ class _SamaritanAppState extends State<SamaritanApp> {
   static final List _widgetOptions = [
     Home(),
     CameraScan(),
-    AlarmPage(),
+    ReminderHome(),
     NewsPage(),
     SavedPage(),
   ];
