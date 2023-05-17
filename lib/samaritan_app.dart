@@ -62,12 +62,12 @@ class _SamaritanAppState extends State<SamaritanApp> {
               rippleColor: Colors.grey[300]!,
               hoverColor: Colors.grey[100]!,
               gap: 8,
-              activeColor: style.Style.medicineDescriptionColorMain,
+              activeColor: Color(0xFF59C1BD),
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: const Duration(milliseconds: 400),
               tabBackgroundColor: Colors.grey[100]!,
-              color: style.Style.medicineDescriptionColorSecondary,
+              color:Color(0xFF59C1BD),
               tabs: const [
                 GButton(
                   icon: Icons.home,

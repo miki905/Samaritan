@@ -75,7 +75,7 @@ class _HomeState extends State<Home>
           backgroundColor: Colors.transparent,
           elevation: 0,
           iconTheme: IconThemeData(
-              color: styleClass.Style.medicineDescriptionColorMain),
+              color: Color(0xFF59C1BD)),
 
           //title of the home page
           //this button will have some kind of animation
@@ -232,7 +232,7 @@ class _HomeState extends State<Home>
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    containerColor = Colors.deepPurple.shade200;
+                    containerColor = Color(0xFF59C1BD);
                   });
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
@@ -247,7 +247,7 @@ class _HomeState extends State<Home>
                     // onEnd: () {},
                     padding: const EdgeInsets.all(17),
                     decoration: BoxDecoration(
-                        color: style.Style.medicineDescriptionColorMain),
+                        color: Color(0xFF59C1BD)),
                     // color: containerColor,
                     // duration: const Duration(milliseconds: 100),
                     child: Row(

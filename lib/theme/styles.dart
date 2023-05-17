@@ -4,15 +4,15 @@ class Style {
   static Color medicineDescriptionColorPrimary = Color(0xFF59C1BD);
   static Color medicineDescriptionColorSecondary =
       Color.fromARGB(255, 84, 62, 131);
-  static Color medicineDescriptionColorMain = Color.fromARGB(255, 42, 11, 107);
+  static Color medicineDescriptionColorMain = Color(0xFF59C1BD);
   static Color flashLightColor = Colors.grey.shade400;
 
-  static Color homeScanButtonColor = Colors.deepPurple.shade500;
+  static Color homeScanButtonColor = Color(0xFF59C1BD);
 
   static var themeData = ThemeData(
       textTheme: const TextTheme(
           bodyText1: TextStyle(
-              color: Color.fromARGB(255, 42, 11, 107),
+              color: Color(0xFF59C1BD),
               fontWeight: FontWeight.bold),
           headline1: TextStyle(
               fontWeight: FontWeight.bold, fontSize: 30, color: Colors.black),
@@ -25,13 +25,13 @@ class Style {
           ),
           headlineLarge: TextStyle(
               fontWeight: FontWeight.bold, fontSize: 30, color: Colors.white)),
-      iconTheme: const IconThemeData(color: Color.fromRGBO(55, 32, 104, 1.0)),
+      iconTheme: const IconThemeData(color: Color(0xFF59C1BD)),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedIconTheme:
-              IconThemeData(color: Color.fromRGBO(55, 32, 104, 1.0))),
+              IconThemeData(color: Color(0xFF59C1BD))),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-              primary: Color.fromRGBO(55, 32, 104, 1.0))),
+              primary: Color(0xFF59C1BD))),
       timePickerTheme: TimePickerThemeData(
         backgroundColor: Colors.white,
 
