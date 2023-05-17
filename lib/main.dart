@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:project_samaritan/bloc/add_reminder_bloc.dart';
 import 'package:project_samaritan/samaritan_app.dart';
 import 'package:camera/camera.dart';
 import 'package:project_samaritan/models/transaction.dart';
@@ -19,13 +20,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 List<CameraDescription> cameras = [];
-
+NewReminderBloc? newReminderBloc;
 Future<void> main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
 
     cameras = await availableCameras();
   } on CameraException catch (e) {}
+
+  void initState() {
+    // TODO: implement initState
+    newReminderBloc = NewReminderBloc();}
 
   await Hive.initFlutter();
   Hive.registerAdapter(TransactionAdapter());

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Style {
-  static Color medicineDescriptionColorPrimary =
-      Color.fromARGB(255, 52, 18, 125);
+  static Color medicineDescriptionColorPrimary = Color(0xFF59C1BD);
   static Color medicineDescriptionColorSecondary =
       Color.fromARGB(255, 84, 62, 131);
   static Color medicineDescriptionColorMain = Color.fromARGB(255, 42, 11, 107);
@@ -32,5 +31,12 @@ class Style {
               IconThemeData(color: Color.fromRGBO(55, 32, 104, 1.0))),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-              primary: Color.fromRGBO(55, 32, 104, 1.0))));
+              primary: Color.fromRGBO(55, 32, 104, 1.0))),
+      timePickerTheme: TimePickerThemeData(
+        backgroundColor: Colors.white,
+
+      )
+
+
+  );
 }

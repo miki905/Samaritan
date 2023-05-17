@@ -101,11 +101,11 @@ class BottomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("No Med's",
+      child: Text("No Medications",
       textAlign: TextAlign.center,
       style: TextStyle(
         color: Colors.red,
-        fontSize: 54
+        fontSize: 44
       ),
 
       ),
