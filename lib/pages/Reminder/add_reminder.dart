@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_samaritan/bloc/add_reminder_bloc.dart';
+import 'package:project_samaritan/global_bloc.dart';
 import 'package:project_samaritan/models/medicine_types.dart';
 import 'package:project_samaritan/theme/styles.dart' as styles;
 import 'package:provider/provider.dart';
@@ -46,8 +47,9 @@ class _AddReminderState extends State<AddReminder> {
 
   @override
   Widget build(BuildContext context) {
-    return Provider<NewReminderBloc>.value(
-      value: newReminderBloc!,
+    final GlobalBloc globalBloc = Provider.of<GlobalBloc>(context);
+    return Provider<GlobalBloc>.value(
+      value: globalBloc!,
       child: Provider<NewReminderBloc>.value(
         value: _newReminderBloc,
         child: Scaffold(
@@ -166,7 +168,7 @@ class _AddReminderState extends State<AddReminder> {
                               backgroundColor: Color(0xFF59C1BD),
                               shape: StadiumBorder()),
                           onPressed: () {
-                            // add medice
+                            // add medice && validation
                           },
                           child: Center(
                             child: Text("Confirm",
@@ -184,7 +186,9 @@ class _AddReminderState extends State<AddReminder> {
                           style: TextButton.styleFrom(
                               backgroundColor: Colors.red,
                               shape: StadiumBorder()),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
                           child: Center(
                             child: Text("Cancel",
                                 style: TextStyle(

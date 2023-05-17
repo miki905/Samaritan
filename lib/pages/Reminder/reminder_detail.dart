@@ -52,6 +52,7 @@ class _ReminderDetailState extends State<ReminderDetail> {
                   ),
                   onPressed: () {
                     // open alert dialog
+                    openAlertBox(context);
                   },
                   child: Text(
                     "Delete",
@@ -62,6 +63,43 @@ class _ReminderDetailState extends State<ReminderDetail> {
           ],
         ),
       ),
+    );
+  }
+
+  openAlertBox(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            bottomRight: Radius.circular(20.0),
+          )),
+          title: Text(
+            "Delete This Reminder ?",
+            style: TextStyle(color: Color(0xFF59C1BD)),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(color: Colors.black45),
+                )),
+            TextButton(
+                onPressed: () {
+                  //delete the reminder
+                },
+                child: Text(
+                  'Ok',
+                  style: TextStyle(color: Colors.red),
+                ))
+          ],
+        );
+      },
     );
   }
 }
