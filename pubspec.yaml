@@ -59,6 +59,8 @@ dependencies:
   flutter_svg:
   rxdart:
   provider:
+  flare_flutter:
+  flutter_local_notifications:
 
 
 
@@ -128,6 +130,7 @@ flutter:
     - assets/icons/pill.svg
     - assets/icons/syringe.svg
     - assets/icons/tablet.svg
+    - assets/icons/submit-success.svg
 
 
 
