@@ -17,23 +17,18 @@ import 'package:project_samaritan/pages/search.dart';
 import 'package:project_samaritan/onboarding/start_page.dart';
 import 'package:project_samaritan/state/app_state.dart';
 import 'package:project_samaritan/theme/styles.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:sizer/sizer.dart';
 
 List<CameraDescription> cameras = [];
 NewReminderBloc? newReminderBloc;
-GlobalBloc? globalBloc;
-Future<void> main() async {
-  try {
-    WidgetsFlutterBinding.ensureInitialized();
 
-    cameras = await availableCameras();
-  } on CameraException catch (e) {}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  void initState() {
-    // TODO: implement initState
-    newReminderBloc = NewReminderBloc();
-    globalBloc = GlobalBloc();}
+  cameras = await availableCameras();
 
   await Hive.initFlutter();
   Hive.registerAdapter(TransactionAdapter());
@@ -41,29 +36,41 @@ Future<void> main() async {
 
   final prefs = await SharedPreferences.getInstance();
   final showHome = prefs.getBool('showHome') ?? false;
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then(
-    (value) => runApp(
 
-        ///this is the state widget on top of the widget tree
-        ///this makes it possible to access the state variable defined in there to be accessable from anywhere
-        AppStateContainer(
-      child: MaterialApp(
-        theme: Style.themeData,
-        debugShowCheckedModeBanner: false,
-        routes: {
-          '/scan': (context) => CameraScan(),
-          '/home': (context) => SamaritanApp(),
-          '/search': (context) => SearchPage(),
-          '/popularMedicine': ((context) => PopularMedicinePage()),
-          '/about': (context) => AboutPage(),
-          '/contactUs': (context) => ContactPage(),
-          '/privacyPolicy': (context) => PrivacyPolicyPgae(),
-          '/desclaimer': (context) => DesclaimerPage(),
-          '/userManual': (context) => UserManualPage()
-        },
-        home: showHome ? SamaritanApp() : StartPage(),
-      ),
-    )),
-  );
+  runApp(AppStateContainer(
+    child: MyApp(showHome: showHome),
+  ));
+}
+
+class MyApp extends StatelessWidget {
+  final bool showHome;
+
+  const MyApp({required this.showHome});
+
+  @override
+  Widget build(BuildContext context) {
+    GlobalBloc globalBloc = GlobalBloc();
+
+    return Provider<GlobalBloc>.value(
+      value: globalBloc,
+      child: Sizer(builder: (context, orientation, deviceType) {
+        return MaterialApp(
+          theme: Style.themeData,
+          debugShowCheckedModeBanner: false,
+          routes: {
+            '/scan': (context) => CameraScan(),
+            '/home': (context) => SamaritanApp(),
+            '/search': (context) => SearchPage(),
+            '/popularMedicine': (context) => PopularMedicinePage(),
+            '/about': (context) => AboutPage(),
+            '/contactUs': (context) => ContactPage(),
+            '/privacyPolicy': (context) => PrivacyPolicyPgae(),
+            '/desclaimer': (context) => DesclaimerPage(),
+            '/userManual': (context) => UserManualPage(),
+          },
+          home: showHome ? SamaritanApp() : StartPage(),
+        );
+      }),
+    );
+  }
 }

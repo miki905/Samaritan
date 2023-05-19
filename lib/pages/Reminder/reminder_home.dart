@@ -2,48 +2,68 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:project_samaritan/global_bloc.dart';
 import 'package:project_samaritan/pages/Reminder/reminder_detail.dart';
 import 'package:project_samaritan/theme/styles.dart';
 import 'package:project_samaritan/pages/Reminder/add_reminder.dart';
 
+
 import 'package:sizer/sizer.dart';
 
-class ReminderHome extends StatelessWidget {
+import '../../main.dart';
+
+class ReminderHome extends StatefulWidget {
   const ReminderHome({super.key});
 
   @override
+  State<ReminderHome> createState() => _ReminderHomeState();
+}
+
+class _ReminderHomeState extends State<ReminderHome> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    // newReminderBloc = NewReminderBloc();
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
+    // final GlobalBloc globalBloc = Provider.of<GlobalBloc>(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text("Reminder"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [TopCounter(), Flexible(child: BottomContainer())],
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text("Reminder"),
         ),
-      ),
-      floatingActionButton: InkResponse(
-        onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddReminder()));
-        },
-        child: SizedBox(
-          height: 60,
-          width: 60,
-          child: Card(
-            color: Color.fromRGBO(81, 208, 208, 100),
-            shape:
-                BeveledRectangleBorder(borderRadius: BorderRadius.circular(6)),
-            child: Icon(
-              Icons.add_outlined,
-              color: Colors.black,
-              size: 20,
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [TopCounter(), Flexible(child: BottomContainer())],
+          ),
+        ),
+        floatingActionButton: InkResponse(
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => AddReminder()));
+          },
+          child: SizedBox(
+            height: 60,
+            width: 60,
+            child: Card(
+              color: Color.fromRGBO(81, 208, 208, 100),
+              shape:
+                  BeveledRectangleBorder(borderRadius: BorderRadius.circular(6)),
+              child: Icon(
+                Icons.add_outlined,
+                color: Colors.black,
+                size: 20,
+              ),
             ),
           ),
         ),
-      ),
     );
   }
 }

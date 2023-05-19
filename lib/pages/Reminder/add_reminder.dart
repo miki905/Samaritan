@@ -1,13 +1,19 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_samaritan/bloc/add_reminder_bloc.dart';
 import 'package:project_samaritan/global_bloc.dart';
+import 'package:project_samaritan/models/errors.dart';
+import 'package:project_samaritan/models/medication.dart';
 import 'package:project_samaritan/models/medicine_types.dart';
 import 'package:project_samaritan/theme/styles.dart' as styles;
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:project_samaritan/pages/Reminder/reminder_home.dart';
+
 
 import '../../common/convert_time.dart';
 import '../../main.dart';
@@ -22,6 +28,7 @@ class AddReminder extends StatefulWidget {
 class _AddReminderState extends State<AddReminder> {
   late TextEditingController? nameController;
   late TextEditingController? dosageController;
+
   late NewReminderBloc _newReminderBloc;
   late GlobalKey<ScaffoldState> _scaffoldKey;
 
@@ -39,6 +46,7 @@ class _AddReminderState extends State<AddReminder> {
     // TODO: implement initState
     newReminderBloc = NewReminderBloc();
     super.initState();
+    // globalBloc = GlobalBloc();
     nameController = TextEditingController();
     dosageController = TextEditingController();
     _newReminderBloc = NewReminderBloc();
@@ -48,11 +56,7 @@ class _AddReminderState extends State<AddReminder> {
   @override
   Widget build(BuildContext context) {
     final GlobalBloc globalBloc = Provider.of<GlobalBloc>(context);
-    return Provider<GlobalBloc>.value(
-      value: globalBloc!,
-      child: Provider<NewReminderBloc>.value(
-        value: _newReminderBloc,
-        child: Scaffold(
+    return Scaffold(
           key: _scaffoldKey,
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
@@ -68,145 +72,232 @@ class _AddReminderState extends State<AddReminder> {
                 fontSize: 26),
             title: Text('Add Reminder'),
           ),
-          body: Padding(
-            padding: EdgeInsets.all(6),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                PanelTitle(
-                  title: 'Medicine Name',
-                  isRequired: true,
-                ),
-                TextFormField(
-                  maxLength: 8,
-                  controller: nameController,
-                  textCapitalization: TextCapitalization.words,
-                  decoration: InputDecoration(border: UnderlineInputBorder()),
-                  style: TextStyle(color: Color(0xFF59C1BD)),
-                ),
-                PanelTitle(
-                  title: 'Dosage in Mg',
-                  isRequired: true,
-                ),
-                TextFormField(
-                  maxLength: 8,
-                  controller: dosageController,
-                  textCapitalization: TextCapitalization.words,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(border: UnderlineInputBorder()),
-                  style: TextStyle(color: Color(0xFF59C1BD)),
-                ),
-                PanelTitle(
-                  title: 'Medicine Type',
-                  isRequired: false,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: StreamBuilder<MedicineTypes>(
-                      stream: _newReminderBloc.selectedMedicineTypes,
-                      builder: (context, snapshot) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            MedicineType(
-                              name: "bottle",
-                              iconValue: 'assets/icons/bottle.svg',
-                              isSelectted: snapshot.data == MedicineTypes.bottle
-                                  ? true
-                                  : false,
-                              medicineTypes: MedicineTypes.bottle,
-                            ),
-                            MedicineType(
-                              name: "Pill",
-                              iconValue: 'assets/icons/pill.svg',
-                              isSelectted: snapshot.data == MedicineTypes.pill
-                                  ? true
-                                  : false,
-                              medicineTypes: MedicineTypes.pill,
-                            ),
-                            MedicineType(
-                              name: "Syringe",
-                              iconValue: 'assets/icons/syringe.svg',
-                              isSelectted:
-                                  snapshot.data == MedicineTypes.syringe
-                                      ? true
-                                      : false,
-                              medicineTypes: MedicineTypes.syringe,
-                            ),
-                            MedicineType(
-                              name: "Tablet",
-                              iconValue: 'assets/icons/tablet.svg',
-                              isSelectted: snapshot.data == MedicineTypes.tablet
-                                  ? true
-                                  : false,
-                              medicineTypes: MedicineTypes.tablet,
-                            ),
-                          ],
-                        );
-                      }),
-                ),
-                PanelTitle(
-                  title: 'Interval Selection',
-                  isRequired: true,
-                ),
-                IntervalSelection(),
-                PanelTitle(
-                  title: 'Starting Time',
-                  isRequired: true,
-                ),
-                SelectTime(),
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                        width: 140,
-                        height: 50,
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                              backgroundColor: Color(0xFF59C1BD),
-                              shape: StadiumBorder()),
-                          onPressed: () {
-                            // add medice && validation
-                          },
-                          child: Center(
-                            child: Text("Confirm",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white)),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 140,
-                        height: 50,
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                              backgroundColor: Colors.red,
-                              shape: StadiumBorder()),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Center(
-                            child: Text("Cancel",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white)),
-                          ),
-                        ),
-                      )
-                    ],
+          body: Provider<NewReminderBloc>.value(
+            value: _newReminderBloc!,
+            child: Padding(
+              padding: EdgeInsets.all(6),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PanelTitle(
+                    title: 'Medicine Name',
+                    isRequired: true,
                   ),
-                )
-              ],
+                  TextFormField(
+                    maxLength: 8,
+                    controller: nameController,
+                    textCapitalization: TextCapitalization.words,
+                    decoration: InputDecoration(border: UnderlineInputBorder()),
+                    style: TextStyle(color: Color(0xFF59C1BD)),
+                  ),
+                  PanelTitle(
+                    title: 'Dosage in Mg',
+                    isRequired: true,
+                  ),
+                  TextFormField(
+                    maxLength: 8,
+                    controller: dosageController,
+                    textCapitalization: TextCapitalization.words,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(border: UnderlineInputBorder()),
+                    style: TextStyle(color: Color(0xFF59C1BD)),
+                  ),
+                  PanelTitle(
+                    title: 'Medicine Type',
+                    isRequired: false,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: StreamBuilder<MedicineTypes>(
+                        stream: _newReminderBloc.selectedMedicineTypes,
+                        builder: (context, snapshot) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              MedicineType(
+                                name: "bottle",
+                                iconValue: 'assets/icons/bottle.svg',
+                                isSelectted: snapshot.data == MedicineTypes.bottle
+                                    ? true
+                                    : false,
+                                medicineTypes: MedicineTypes.bottle,
+                              ),
+                              MedicineType(
+                                name: "Pill",
+                                iconValue: 'assets/icons/pill.svg',
+                                isSelectted: snapshot.data == MedicineTypes.pill
+                                    ? true
+                                    : false,
+                                medicineTypes: MedicineTypes.pill,
+                              ),
+                              MedicineType(
+                                name: "Syringe",
+                                iconValue: 'assets/icons/syringe.svg',
+                                isSelectted:
+                                    snapshot.data == MedicineTypes.syringe
+                                        ? true
+                                        : false,
+                                medicineTypes: MedicineTypes.syringe,
+                              ),
+                              MedicineType(
+                                name: "Tablet",
+                                iconValue: 'assets/icons/tablet.svg',
+                                isSelectted: snapshot.data == MedicineTypes.tablet
+                                    ? true
+                                    : false,
+                                medicineTypes: MedicineTypes.tablet,
+                              ),
+                            ],
+                          );
+                        }),
+                  ),
+                  PanelTitle(
+                    title: 'Interval Selection',
+                    isRequired: true,
+                  ),
+                  IntervalSelection(),
+                  PanelTitle(
+                    title: 'Starting Time',
+                    isRequired: true,
+                  ),
+                  SelectTime(),
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                          width: 140,
+                          height: 50,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                                backgroundColor: Color(0xFF59C1BD),
+                                shape: StadiumBorder()),
+                            onPressed: () {
+                              // validation================================================
+                              String? medicineName;
+                              int? dosage;
+
+                              if (nameController?.text == '') {
+                                _newReminderBloc.submitError(EntryError.nameNull);
+                                return;
+                              }
+                              if (nameController?.text != "") {
+                                medicineName = nameController!.text;
+                              }
+                              if (dosageController?.text == '') {
+                                dosage = 0;
+                              }
+                              if (dosageController?.text != "") {
+                                dosage = int.parse(nameController!.text);
+                              }
+                              for (var medicine
+                                  in globalBloc.medicationList$!.value) {
+                                if (medicineName == medicine.medicineName) {
+                                  _newReminderBloc
+                                      .submitError(EntryError.nameDuplicate);
+                                  return;
+                                }
+                              }
+                              if (_newReminderBloc.selectedInterval!.value == 0) {
+                                _newReminderBloc.submitError(EntryError.interval);
+                                return;
+                              }
+                              if (_newReminderBloc.selectedTimeOfDay$!.value ==
+                                  'None') {
+                                _newReminderBloc
+                                    .submitError(EntryError.startTime);
+                                return;
+                              }
+                              // add medicine===========================================================
+                              String medicineType = _newReminderBloc
+                                  .selectedMedicineTypes!.value
+                                  .toString()
+                                  .substring(13);
+                              int interval = _newReminderBloc.selectedInterval!.value;
+                              String startTime = _newReminderBloc.selectedTimeOfDay$!.value;
+                              List<int> intIDs = makeIDs( 24 / _newReminderBloc.selectedInterval!.value);
+                              List<String> notificationIDs = intIDs.map((i) => i.toString()).toList();
+
+                              Medication newEntryReminder = Medication(
+                                notificationIDs: notificationIDs,
+                                medicineName: medicineName,
+                                dosage: dosage,
+                                medicineType: medicineType,
+                                interval: interval,
+                                startTime: startTime,
+                              );
+                              //Update medication list thought GlobalBloc===================================================
+                                globalBloc.updateMedicineList(newEntryReminder);
+                              //schedule notification===================================================
+
+                              //go to success screen================================
+                            },
+                            child: Center(
+                              child: Text("Confirm",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 140,
+                          height: 50,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                shape: StadiumBorder()),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Center(
+                              child: Text("Cancel",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white)),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
+      );
+
+  }
+
+  void initializeErrorListen(){
+    _newReminderBloc.errorState$!.listen((EntryError error) {
+      switch(error){
+        case EntryError.nameNull:
+          //show snackBar
+          displayError("Please Enter medicine name");
+      }
+    });
+  }
+  void displayError(String error){
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            backgroundColor: Color(0xFF59C1BD),
+            content: Text(error),
+            duration: Duration(milliseconds: 2000),
         ),
-      ),
     );
+  }
+
+  List<int> makeIDs(double n){
+    var rng = Random();
+    List<int> ids =[];
+    for(int i = 0; i < n; i++){
+      ids.add(rng.nextInt(10000000000));
+    }
+    return ids;
   }
 }
 
