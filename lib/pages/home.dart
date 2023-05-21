@@ -6,6 +6,8 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:path/path.dart';
 import 'package:project_samaritan/pages/scan_page.dart';
+import 'package:project_samaritan/pages/speech/speech_screen.dart';
+import 'package:project_samaritan/services/language.dart';
 import 'package:project_samaritan/utils/catagories_grid.dart';
 import 'package:project_samaritan/utils/popular_medicine_grid.dart';
 import 'package:project_samaritan/utils/heading_row.dart';
@@ -71,350 +73,397 @@ class _HomeState extends State<Home>
   Widget build(BuildContext context) => OverlaySupport.global(
           child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          iconTheme: IconThemeData(
-              color: Color(0xFF59C1BD)),
-
-          //title of the home page
-          //this button will have some kind of animation
-          // leading: IconButton(
-          //   onPressed: () {
-          //     // Navigator.of(context).push(PageTransition(
-          //     //     child: AppDrawer(), type: PageTransitionType.leftToRight));
-          //   },
-          //   icon: Icon(er
-          //     Icons.menu,
-          //     color: Colors.black,
-          //   ),
-          // ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              // the search button which gone scale up and down on click and open the search page
-
-              Row(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              iconTheme: IconThemeData(color: Color(0xFF59C1BD)),
+              // actions: <Widget>[
+              //   Padding(
+              //     padding: const EdgeInsets.only(top:8.0, bottom: 8,right:8 ),
+              //     child: DropdownButton<Language>(
+              //       underline: const SizedBox(),
+              //       icon: const Icon(
+              //         Icons.language,
+              //         color: Color(0xFF59C1BD),
+              //       ),
+              //       onChanged: (Language? language) async {
+              //         if (language != null) {
+              //           // Locale _locale = await setLocale(language.languageCode);
+              //           // MyApp.setLocale(context, _locale);
+              //         }
+              //       },
+              //       items: Language.languageList()
+              //           .map<DropdownMenuItem<Language>>(
+              //             (e) => DropdownMenuItem<Language>(
+              //           value: e,
+              //           child: Row(
+              //             mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //             children: <Widget>[
+              //               Text(
+              //                 e.flag,
+              //                 style: const TextStyle(fontSize: 30),
+              //               ),
+              //               Text(e.name)
+              //             ],
+              //           ),
+              //         ),
+              //       )
+              //           .toList(),
+              //     ),
+              //   ),
+              // ],
+              title: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  hasInternet
-                      ? Container(
-                          height: 10,
-                          width: 10,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.green),
-                        )
-                      : Row(
-                          children: [
-                            BlinkText('No Internet',
-                                style: TextStyle(
-                                  fontSize: 8,
+                  // the search button which gone scale up and down on click and open the search page
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      hasInternet
+                          ? Container(
+                              height: 10,
+                              width: 10,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.green),
+                            )
+                          : Row(
+                              children: [
+                                BlinkText('No Internet',
+                                    style: TextStyle(
+                                      fontSize: 8,
+                                    ),
+                                    beginColor: Colors.red.shade800,
+                                    endColor: Colors.transparent,
+                                    times: 10,
+                                    duration: Duration(seconds: 1)),
+                                Container(
+                                  child: Icon(Icons.warning_rounded,
+                                      color: Colors.red.shade700),
                                 ),
-                                beginColor: Colors.red.shade800,
-                                endColor: Colors.transparent,
-                                times: 10,
-                                duration: Duration(seconds: 1)),
-                            Container(
-                              child: Icon(Icons.warning_rounded,
-                                  color: Colors.red.shade700),
+                              ],
                             ),
-                          ],
+                      SizedBox(
+                        width: 9,
+                      ),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
+                        icon: FaIcon(
+                          FontAwesomeIcons.magnifyingGlass,
+                          size: 18,
                         ),
-                  SizedBox(
-                    width: 9,
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    constraints: BoxConstraints(),
-                    icon: FaIcon(
-                      FontAwesomeIcons.magnifyingGlass,
-                      size: 18,
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/search');
+                        },
+                      ),
+                    ],
+                  )
+                ],
+               ),
+              ),
+            drawer: Drawer(
+              child: ListView(
+                // Important: Remove any padding from the ListView.
+                padding: EdgeInsets.zero,
+                children: [
+                  DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).iconTheme.color,
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/search');
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 48,
+                          child: CircleAvatar(
+                            radius: 46,
+                            backgroundImage: AssetImage('assets/images/logo.png'),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'samaritan',
+                          style: Theme.of(context).textTheme.headline3,
+                        ),
+                        Text('version 1.0.0',
+                            style: Theme.of(context).textTheme.headline3),
+                      ],
+                    ),
+                  ),
+                  ListTile(
+                    style: ListTileStyle.drawer,
+                    title: const Text('popular medicine'),
+                    onTap: () {
+                      Navigator.popAndPushNamed(context, '/popularMedicine');
+                    },
+                  ),
+                  ListTile(
+                    style: ListTileStyle.drawer,
+                    title: const Text('desclaimer'),
+                    onTap: () {
+                      Navigator.popAndPushNamed(context, '/desclaimer');
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Privacy Policy'),
+                    onTap: () {
+                      Navigator.popAndPushNamed(context, '/privacyPolicy');
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Contact Us'),
+                    onTap: () {
+                      Navigator.popAndPushNamed(context, '/contactUs');
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('about us'),
+                    onTap: () {
+                      Navigator.popAndPushNamed(context, '/about');
                     },
                   ),
                 ],
-              )
-            ],
-          ),
-        ),
-        drawer: Drawer(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: [
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).iconTheme.color,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 48,
-                      child: CircleAvatar(
-                        radius: 46,
-                        backgroundImage: AssetImage('assets/images/logo.png'),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'samaritan',
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
-                    Text('version 1.0.0',
-                        style: Theme.of(context).textTheme.headline3),
-                  ],
-                ),
               ),
-              ListTile(
-                style: ListTileStyle.drawer,
-                title: const Text('popular medicine'),
-                onTap: () {
-                  Navigator.popAndPushNamed(context, '/popularMedicine');
-                },
-              ),
-              ListTile(
-                style: ListTileStyle.drawer,
-                title: const Text('desclaimer'),
-                onTap: () {
-                  Navigator.popAndPushNamed(context, '/desclaimer');
-                },
-              ),
-              // ListTile(
-              //   style: ListTileStyle.drawer,
-              //   title: const Text('about'),
-              //   onTap: () {
-              //     Navigator.popAndPushNamed(context, '/about');
-              //   },
-              // ),
-              // ListTile(
-              //   title: const Text('user manual'),
-              //   onTap: () {
-              //     Navigator.popAndPushNamed(context, '/userNamual');
-              //   },
-              // ),
-              ListTile(
-                title: const Text('Privacy Policy'),
-                onTap: () {
-                  Navigator.popAndPushNamed(context, '/privacyPolicy');
-                },
-              ),
-              ListTile(
-                title: const Text('Contact Us'),
-                onTap: () {
-                  Navigator.popAndPushNamed(context, '/contactUs');
-                },
-              ),
-              ListTile(
-                title: const Text('about us'),
-                onTap: () {
-                  Navigator.popAndPushNamed(context, '/about');
-                },
-              ),
-            ],
-          ),
-        ),
+            ),
+
 
         //the whole content of the homepage
-        body: Container(
-          margin: const EdgeInsets.all(15),
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              // the button we use to navigate to scan page
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    containerColor = Color(0xFF59C1BD);
-                  });
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return CameraScan(
-                      exitButton: true,
-                    );
-                  }));
-                },
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    // onEnd: () {},
-                    padding: const EdgeInsets.all(17),
-                    decoration: BoxDecoration(
-                        color: Color(0xFF59C1BD)),
-                    // color: containerColor,
-                    // duration: const Duration(milliseconds: 100),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
-                          ),
-                          // ignore: prefer_const_constructors
-                          SizedBox(
-                            width: 18,
-                          ),
-                          Text('Scan and Identify The Medicine',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1
-                                  ?.copyWith(
-                                      color: Colors.white70, fontSize: 15))
-                        ]),
-                  ),
-                ),
-              ),
-              // const SizedBox(
-              //   height: 25,
-              // ),
-              //Popular medicine section
-              Column(
+            body: Container(
+              margin: const EdgeInsets.all(15),
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  // the button we use to navigate to scan page
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      HeadingRow(
-                        heading: 'Popular Medicines',
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/popularMedicine');
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            containerColor = Color(0xFF59C1BD);
+                          });
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
+                            return CameraScan(
+                              exitButton: true,
+                            );
+                          }));
                         },
-                        child: Column(
-                          children: [
-                            Text(
-                              'view all',
-                              style: TextStyle(
-                                  color: styleClass
-                                      .Style.medicineDescriptionColorSecondary),
-                            ),
-                          ],
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            // onEnd: () {},
+                            padding: const EdgeInsets.only(
+                                top: 15, bottom: 15, left: 35, right: 35),
+                            decoration: BoxDecoration(color: Color(0xFF59C1BD)),
+                            // color: containerColor,
+                            // duration: const Duration(milliseconds: 100),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.camera_alt,
+                                    color: Colors.white,
+                                  ),
+                                  // ignore: prefer_const_constructors
+                                  SizedBox(
+                                    width: 18,
+                                  ),
+                                  Text('Scan ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1
+                                          ?.copyWith(
+                                              color: Colors.white70, fontSize: 15))
+                                ]),
+                          ),
                         ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            containerColor = Color(0xFF59C1BD);
+                          });
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
+                            return SpeechScreen();
+                          }));
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            // onEnd: () {},
+                            padding: const EdgeInsets.only(
+                                top: 15, bottom: 15, left: 35, right: 25),
+                            decoration: BoxDecoration(color: Color(0xFF59C1BD)),
+                            // color: Colors.yellow
+
+                            // color: containerColor,
+                            // duration: const Duration(milliseconds: 100),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.mic,
+                                    color: Colors.white,
+                                  ),
+                                  // ignore: prefer_const_constructors
+                                  SizedBox(
+                                    width: 18,
+                                  ),
+                                  Text('Speak ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1
+                                          ?.copyWith(
+                                              color: Colors.white70, fontSize: 15))
+                                ]),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // const SizedBox(
+                  //   height: 25,
+                  // ),
+                  //Popular medicine section
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          HeadingRow(
+                            heading: 'Popular Medicines',
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/popularMedicine');
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  'view all',
+                                  style: TextStyle(
+                                      color: styleClass
+                                          .Style.medicineDescriptionColorSecondary),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      FittedBox(
+                        child: SizedBox(
+                            height: 240,
+                            width: MediaQuery.of(context).size.width,
+                            // child: GridBuilder()
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Material(
+                                    elevation: 0,
+                                    child: GridContainer(
+                                      containerWidth: 80,
+                                      //the med name
+                                      title: titles,
+                                      //the description
+                                      subtitle: titles2,
+                                      imageTitle: 'assets/images/medicine.png',
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
                       )
                     ],
                   ),
-                  FittedBox(
-                    child: SizedBox(
-                        height: 290,
-                        width: MediaQuery.of(context).size.width,
-                        // child: GridBuilder()
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Material(
-                                elevation: 12,
-                                child: GridContainer(
-                                  containerWidth: 80,
-                                  //the med name
-                                  title: titles,
-                                  //the description
-                                  subtitle: titles2,
-                                  imageTitle: 'assets/images/medicine.png',
-                                ),
-                              ),
-                            ),
-                            // Expanded(
-                            //   child: GridContainer(
-                            //     containerWidth: 80,
-                            //     title: titles2,
-                            //     subtitle: 'Fits well',
-                            //     imageTitle: 'assets/images/medicine.png',
-                            //   ),
-                            // )
-                          ],
-                        )),
-                  )
-                ],
-              ),
-              Divider(),
-              //catagories section
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      HeadingRow(
-                        heading: 'Catagories',
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
+                  // Divider(),
+                  //catagories section
                   Column(
                     children: [
                       Row(
                         children: [
-                          //individual catagories 2 in a single row
-                          CatagoriesGrid(
-                            name: 'Depresents',
-                            numberOfMainGroup: 4,
-                            medicineType: 'Major',
-                            //we might use some kind of animation on these buttons
-                            medicineIcon:
-                                Image.asset('assets/images/Backyard.png'),
-                            containerColorForCatagories: Colors.green.shade100,
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * .05,
-                          ),
-                          CatagoriesGrid(
-                            name: 'Hallucinogens',
-                            medicineType: 'Major',
-                            numberOfMainGroup: 6,
-                            medicineIcon:
-                                Image.asset('assets/images/Drawing room.png'),
-                            containerColorForCatagories: Colors.red.shade50,
+                          HeadingRow(
+                            heading: 'Catagories',
                           ),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 12,
                       ),
-                      Row(
+                      Column(
                         children: [
-                          CatagoriesGrid(
-                            name: 'Stimulants',
-                            medicineType: 'Main',
-                            numberOfMainGroup: 3,
-                            medicineIcon:
-                                Image.asset('assets/images/Stimulants.png'),
-                            containerColorForCatagories: Colors.red.shade100,
+                          Row(
+                            children: [
+                              //individual catagories 2 in a single row
+                              CatagoriesGrid(
+                                name: 'Depresents',
+                                numberOfMainGroup: 4,
+                                medicineType: 'Major',
+                                //we might use some kind of animation on these buttons
+                                medicineIcon:
+                                    Image.asset('assets/images/Backyard.png'),
+                                containerColorForCatagories: Colors.green.shade100,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * .05,
+                              ),
+                              CatagoriesGrid(
+                                name: 'Hallucinogens',
+                                medicineType: 'Major',
+                                numberOfMainGroup: 6,
+                                medicineIcon:
+                                    Image.asset('assets/images/Drawing room.png'),
+                                containerColorForCatagories: Colors.red.shade50,
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * .05,
+                          const SizedBox(
+                            height: 12,
                           ),
-                          CatagoriesGrid(
-                            name: 'Opioids',
-                            medicineType: 'Major',
-                            numberOfMainGroup: 7,
-                            medicineIcon:
-                                Image.asset('assets/images/Living room.png'),
-                            containerColorForCatagories: Colors.blue.shade100,
-                          ),
+                          Row(
+                            children: [
+                              CatagoriesGrid(
+                                name: 'Stimulants',
+                                medicineType: 'Main',
+                                numberOfMainGroup: 3,
+                                medicineIcon:
+                                    Image.asset('assets/images/Stimulants.png'),
+                                containerColorForCatagories: Colors.red.shade100,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * .05,
+                              ),
+                              CatagoriesGrid(
+                                name: 'Opioids',
+                                medicineType: 'Major',
+                                numberOfMainGroup: 7,
+                                medicineIcon:
+                                    Image.asset('assets/images/Living room.png'),
+                                containerColorForCatagories: Colors.blue.shade100,
+                              ),
+                            ],
+                          )
                         ],
                       )
                     ],
                   )
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(vertical: 12.0),
+                  //   child: Divider(),
+                  // ),
+                  // HeadingRow(
+                  //   heading: 'Alearts for Today',
+                  //   ref: '/popularMedicine',
+                  // ),
+                  // AlertForToday()
                 ],
-              )
-              // const Padding(
-              //   padding: EdgeInsets.symmetric(vertical: 12.0),
-              //   child: Divider(),
-              // ),
-              // HeadingRow(
-              //   heading: 'Alearts for Today',
-              //   ref: '/popularMedicine',
-              // ),
-              // AlertForToday()
-            ],
-          ),
+              ),
         ),
       ));
 }

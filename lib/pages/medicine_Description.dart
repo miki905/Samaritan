@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_samaritan/pages/home.dart';
 import 'dart:io';
@@ -33,6 +34,19 @@ class MedicineDescription extends StatefulWidget {
 
 class _MedicineDescriptionState extends State<MedicineDescription>
     with SingleTickerProviderStateMixin {
+  FlutterTts flutterTts = FlutterTts();
+
+  void textToSpeech( String? med) async {
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.setVolume(0.5);
+    await flutterTts.setSpeechRate(0.5);
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(med!);
+  }
+  void stop() async {
+    await flutterTts.stop();
+  }
+
   Post? posts;
   bool isLoading = false;
 
@@ -130,6 +144,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Overlay(
         initialEntries: [
@@ -232,7 +247,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                               .center,
                                                       children: [
                                                         Text(
-                                                          'The medicine has been identified',
+                                                          'The medicine has been identified Tap and hold',
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.green,
@@ -241,10 +256,43 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                       .bold,
                                                               fontSize: 12),
                                                         ),
-                                                        Icon(
-                                                          Icons.check_circle,
-                                                          color: Colors.green,
-                                                        )
+                                                        SizedBox(width: 10,),
+                                                        GestureDetector(
+
+                                                          onLongPress: () async{
+                                                            textToSpeech(
+                                                                posts?.results[
+                                                                index]!
+                                                                    .description[
+                                                                index]!??
+                                                                    widget
+                                                                        .medicine
+                                                                        ?.description.toString()
+
+                                                            );
+                                                          },
+                                                         onLongPressEnd: (details){
+                                                           stop();
+                                                         },
+
+                                                          child: CircleAvatar(
+                                                            // backgroundColor: Color(0xFF59C1BD),
+                                                            radius: 20,
+                                                            child: Icon( Icons.volume_up, color: Colors.white,size: 20),
+                                                          ),
+                                                        ),
+                                                        // IconButton(
+                                                        //
+                                                        //
+                                                        //
+                                                        //    onPressed: () {
+                                                        //
+                                                        //
+                                                        //    },
+                                                        //     icon: Icon( Icons.volume_up),
+                                                        //     color: Colors.green,
+                                                        //     iconSize: 50,
+                                                        // )
                                                       ],
                                                     ),
                                                   ),

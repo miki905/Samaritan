@@ -7,6 +7,7 @@ import 'package:project_samaritan/pages/med_news_page.dart';
 import 'package:project_samaritan/pages/saved.dart';
 import 'package:project_samaritan/pages/home.dart';
 import 'package:project_samaritan/pages/scan_page.dart';
+import 'package:project_samaritan/pages/speech/speech_screen.dart';
 import 'package:provider/provider.dart';
 import 'theme/styles.dart' as style;
 

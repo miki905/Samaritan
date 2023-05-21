@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project_samaritan/bloc/add_reminder_bloc.dart';
 import 'package:project_samaritan/global_bloc.dart';
 import 'package:project_samaritan/samaritan_app.dart';
@@ -55,8 +56,21 @@ class MyApp extends StatelessWidget {
       value: globalBloc,
       child: Sizer(builder: (context, orientation, deviceType) {
         return MaterialApp(
+
           theme: Style.themeData,
           debugShowCheckedModeBanner: false,
+
+          localizationsDelegates: [
+            // AppLocalizations.delegate, // Add this line
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [
+            Locale('en', ''), // English
+            Locale('es', ''), // Spanish
+          ],
+          // locale: Locale('es', ''),
           routes: {
             '/scan': (context) => CameraScan(),
             '/home': (context) => SamaritanApp(),
