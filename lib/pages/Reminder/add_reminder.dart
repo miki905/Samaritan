@@ -12,7 +12,7 @@ import 'package:project_samaritan/models/medication.dart';
 import 'package:project_samaritan/models/medicine_types.dart';
 import 'package:project_samaritan/pages/Reminder/success_screen.dart';
 import 'package:project_samaritan/samaritan_app.dart';
-import 'package:project_samaritan/theme/styles.dart' as styles;
+import 'package:project_samaritan/theme/styles.dart' as styleClass;
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:project_samaritan/pages/Reminder/reminder_home.dart';
@@ -93,7 +93,7 @@ class _AddReminderState extends State<AddReminder> {
                 controller: nameController,
                 textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(border: UnderlineInputBorder()),
-                style: TextStyle(color: Color(0xFF59C1BD)),
+                style: TextStyle(color: styleClass.Style.medicineDescriptionColorMain),
               ),
               PanelTitle(
                 title: 'Dosage in Mg',

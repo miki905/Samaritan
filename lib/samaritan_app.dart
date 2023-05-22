@@ -9,7 +9,8 @@ import 'package:project_samaritan/pages/home.dart';
 import 'package:project_samaritan/pages/scan_page.dart';
 import 'package:project_samaritan/pages/speech/speech_screen.dart';
 import 'package:provider/provider.dart';
-import 'theme/styles.dart' as style;
+import 'package:project_samaritan/theme/styles.dart' as styleClass;
+
 
 class SamaritanApp extends StatefulWidget {
   const SamaritanApp({Key? key}) : super(key: key);
@@ -69,12 +70,12 @@ class _SamaritanAppState extends State<SamaritanApp> {
                 rippleColor: Colors.grey[300]!,
                 hoverColor: Colors.grey[100]!,
                 gap: 8,
-                activeColor: Color(0xFF59C1BD),
+                activeColor: styleClass.Style.medicineDescriptionColorMain,
                 iconSize: 24,
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 duration: const Duration(milliseconds: 400),
                 tabBackgroundColor: Colors.grey[100]!,
-                color:Color(0xFF59C1BD),
+                color:styleClass.Style.medicineDescriptionColorMain,
                 tabs: const [
                   GButton(
                     icon: Icons.home,

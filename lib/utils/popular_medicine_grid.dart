@@ -104,7 +104,7 @@ class _GridContainerState extends State<GridContainer> {
                       padding: EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: const Color(0xFF59C1BD),
+                          color: styleClass.Style.medicineDescriptionColorMain,
                         // color: Colors.amberAccent
                       ),
 

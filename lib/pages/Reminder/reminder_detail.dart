@@ -6,6 +6,8 @@ import 'package:project_samaritan/models/medication.dart';
 import 'package:project_samaritan/pages/Reminder/add_reminder.dart';
 import 'package:project_samaritan/pages/medicine_Description.dart';
 import 'package:provider/provider.dart';
+import 'package:project_samaritan/theme/styles.dart' as styleClass;
+
 import 'package:sizer/sizer.dart';
 
 class ReminderDetail extends StatefulWidget {
@@ -92,7 +94,7 @@ class _ReminderDetailState extends State<ReminderDetail> {
           )),
           title: Text(
             "Delete This Reminder ?",
-            style: TextStyle(color: Color(0xFF59C1BD)),
+            style: TextStyle(color: styleClass.Style.medicineDescriptionColorMain),
           ),
           actions: [
             TextButton(
@@ -128,25 +130,25 @@ class MainSection extends StatelessWidget {
       return Hero(
         tag: medication!.medicineName! + medication!.medicineType!,
         child: SvgPicture.asset('assets/icons/bottle.svg',
-            height: 50, color: Color(0xFF59C1BD)),
+            height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
     }else if(medication!.medicineType == 'pill'){
       return Hero(
         tag: medication!.medicineName! + medication!.medicineType!,
         child: SvgPicture.asset('assets/icons/pill.svg',
-            height: 50, color: Color(0xFF59C1BD)),
+            height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
     }else if(medication!.medicineType == 'syringe'){
       return Hero(
         tag: medication!.medicineName! + medication!.medicineType!,
         child: SvgPicture.asset('assets/icons/syringe.svg',
-            height: 50, color: Color(0xFF59C1BD)),
+            height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
     }else if(medication!.medicineType == 'tablet'){
       return Hero(
         tag: medication!.medicineName! + medication!.medicineType!,
         child: SvgPicture.asset('assets/icons/tablet.svg',
-            height: 50, color: Color(0xFF59C1BD)),
+            height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
     }
 
@@ -288,7 +290,7 @@ class ExtendedInfoTab extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               fieldInfo,
-              style: TextStyle(color: Color(0xFF59C1BD), fontSize: 16
+              style: TextStyle(color: styleClass.Style.medicineDescriptionColorMain, fontSize: 16
                   // fontFamily: popin
                   ),
             ),

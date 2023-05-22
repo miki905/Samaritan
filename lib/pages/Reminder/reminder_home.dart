@@ -8,6 +8,8 @@ import 'package:project_samaritan/pages/Reminder/reminder_detail.dart';
 import 'package:project_samaritan/theme/styles.dart';
 import 'package:project_samaritan/pages/Reminder/add_reminder.dart';
 import 'package:provider/provider.dart';
+import 'package:project_samaritan/theme/styles.dart' as styleClass;
+
 
 import 'package:sizer/sizer.dart';
 
@@ -177,25 +179,25 @@ class MedicineCard extends StatelessWidget {
       return Hero(
           tag: medication.medicineName! + medication.medicineType!,
           child: SvgPicture.asset('assets/icons/bottle.svg',
-              height: 50, color: Color(0xFF59C1BD)),
+              height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
     }else if(medication.medicineType == 'pill'){
       return Hero(
         tag: medication.medicineName! + medication.medicineType!,
         child: SvgPicture.asset('assets/icons/pill.svg',
-            height: 50, color: Color(0xFF59C1BD)),
+            height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
     }else if(medication.medicineType == 'syringe'){
       return Hero(
         tag: medication.medicineName! + medication.medicineType!,
         child: SvgPicture.asset('assets/icons/syringe.svg',
-            height: 50, color: Color(0xFF59C1BD)),
+            height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
     }else if(medication.medicineType == 'tablet'){
       return Hero(
         tag: medication.medicineName! + medication.medicineType!,
         child: SvgPicture.asset('assets/icons/tablet.svg',
-            height: 50, color: Color(0xFF59C1BD)),
+            height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
     }
 
@@ -264,7 +266,7 @@ class MedicineCard extends StatelessWidget {
               overflow: TextOverflow.fade,
               textAlign: TextAlign.start,
               style: TextStyle(
-                  color: Color(0xFF59C1BD),
+                  color: styleClass.Style.medicineDescriptionColorMain,
                   fontSize: 12,
                   fontWeight: FontWeight.w800,
                   letterSpacing: 1.0
