@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:path/path.dart';
+import 'package:project_samaritan/pages/beta/beta_landing.dart';
 import 'package:project_samaritan/pages/news/featured_news.dart';
 import 'package:project_samaritan/pages/scan_page.dart';
 import 'package:project_samaritan/pages/speech/speech_screen.dart';
@@ -68,11 +69,13 @@ class _HomeState extends State<Home>
     super.dispose();
     _controller.dispose();
   }
+  bool betaValue = false;
 
   @override
   Widget build(BuildContext context) => OverlaySupport.global(
+
           child: Scaffold(
-        resizeToAvoidBottomInset: false,
+            resizeToAvoidBottomInset: false,
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
@@ -203,10 +206,34 @@ class _HomeState extends State<Home>
                   ),
                   ListTile(
                     style: ListTileStyle.drawer,
-                    title: const Text('desclaimer'),
+                    title: const Text('Disclaimer'),
                     onTap: () {
                       Navigator.popAndPushNamed(context, '/desclaimer');
                     },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text('Beta Version'),
+                      SizedBox(width: 70),
+                      Switch(
+                          value: betaValue,
+                          onChanged: (onChanged){
+                            setState(() {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => BetaLandingPage()));
+
+
+                              betaValue = onChanged;
+                            });
+                          },
+                        activeColor: styleClass.Style.medicineDescriptionColorMain,
+                        inactiveTrackColor: styleClass.Style.medicineDescriptionColorSecondary,
+                        thumbColor: MaterialStateProperty.all(betaValue
+                              ?styleClass.Style.medicineDescriptionColorMain
+                              :styleClass.Style.medicineDescriptionColorSecondary,
+                        ),
+                      )
+                    ],
                   ),
                   ListTile(
                     title: const Text('Privacy Policy'),
@@ -221,7 +248,7 @@ class _HomeState extends State<Home>
                     },
                   ),
                   ListTile(
-                    title: const Text('about us'),
+                    title: const Text('About us'),
                     onTap: () {
                       Navigator.popAndPushNamed(context, '/about');
                     },
@@ -260,7 +287,7 @@ class _HomeState extends State<Home>
                               // onEnd: () {},
                               padding: const EdgeInsets.only(
                                   top: 15, bottom: 15, left: 35, right: 35),
-                              decoration: BoxDecoration(color: styleClass.Style.medicineDescriptionColorMain),
+                              decoration: BoxDecoration(color: styleClass.Style.homeScanButtonColor),
                               // color: containerColor,
                               // duration: const Duration(milliseconds: 100),
                               child: Row(
@@ -300,7 +327,7 @@ class _HomeState extends State<Home>
                               // onEnd: () {},
                               padding: const EdgeInsets.only(
                                   top: 15, bottom: 15, left: 35, right: 25),
-                              decoration: BoxDecoration(color: styleClass.Style.medicineDescriptionColorPrimary),
+                              decoration: BoxDecoration(color: styleClass.Style.homeScanButtonColor),
                               // color: Colors.yellow
 
                               // color: containerColor,
@@ -362,7 +389,7 @@ class _HomeState extends State<Home>
                         ),
                         FittedBox(
                           child: SizedBox(
-                              height: 240,
+                              height: 250,
                               width: MediaQuery.of(context).size.width,
                               // child: GridBuilder()
                               child: Row(
@@ -371,7 +398,7 @@ class _HomeState extends State<Home>
                                     child: Material(
                                       elevation: 0,
                                       child: GridContainer(
-                                        containerWidth: 80,
+                                        containerWidth: 90,
                                         //the med name
                                         title: titles,
                                         //the description
