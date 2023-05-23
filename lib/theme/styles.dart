@@ -11,9 +11,8 @@ class Style {
 
   static var themeData = ThemeData(
       textTheme: const TextTheme(
-          bodyText1: TextStyle(
-              color: Color(0xFF59C1BD),
-              fontWeight: FontWeight.bold),
+          bodyText1:
+              TextStyle(color: Color(0xFF59C1BD), fontWeight: FontWeight.bold),
           headline1: TextStyle(
               fontWeight: FontWeight.bold, fontSize: 30, color: Colors.black),
           headline2: TextStyle(
@@ -27,16 +26,10 @@ class Style {
               fontWeight: FontWeight.bold, fontSize: 30, color: Colors.white)),
       iconTheme: const IconThemeData(color: Color(0xFF59C1BD)),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedIconTheme:
-              IconThemeData(color: Color(0xFF59C1BD))),
+          selectedIconTheme: IconThemeData(color: Color(0xFF59C1BD))),
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-              primary: Color(0xFF59C1BD))),
+          style: ElevatedButton.styleFrom(primary: Color(0xFF59C1BD))),
       timePickerTheme: TimePickerThemeData(
         backgroundColor: Colors.white,
-
-      )
-
-
-  );
+      ));
 }

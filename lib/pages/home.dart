@@ -74,8 +74,7 @@ class _HomeState extends State<Home>
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          iconTheme: IconThemeData(
-              color: Color(0xFF59C1BD)),
+          iconTheme: IconThemeData(color: Color(0xFF59C1BD)),
 
           //title of the home page
           //this button will have some kind of animation
@@ -246,8 +245,7 @@ class _HomeState extends State<Home>
                   child: Container(
                     // onEnd: () {},
                     padding: const EdgeInsets.all(17),
-                    decoration: BoxDecoration(
-                        color: Color(0xFF59C1BD)),
+                    decoration: BoxDecoration(color: Color(0xFF59C1BD)),
                     // color: containerColor,
                     // duration: const Duration(milliseconds: 100),
                     child: Row(

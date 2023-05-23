@@ -33,7 +33,8 @@ Future<void> main() async {
   void initState() {
     // TODO: implement initState
     newReminderBloc = NewReminderBloc();
-    globalBloc = GlobalBloc();}
+    globalBloc = GlobalBloc();
+  }
 
   await Hive.initFlutter();
   Hive.registerAdapter(TransactionAdapter());
