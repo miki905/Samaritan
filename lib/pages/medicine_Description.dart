@@ -36,13 +36,14 @@ class _MedicineDescriptionState extends State<MedicineDescription>
     with SingleTickerProviderStateMixin {
   FlutterTts flutterTts = FlutterTts();
 
-  void textToSpeech( String? med) async {
+  void textToSpeech(String? med) async {
     await flutterTts.setLanguage("en-US");
     await flutterTts.setVolume(0.5);
     await flutterTts.setSpeechRate(0.5);
     await flutterTts.setPitch(1);
     await flutterTts.speak(med!);
   }
+
   void stop() async {
     await flutterTts.stop();
   }
@@ -144,7 +145,6 @@ class _MedicineDescriptionState extends State<MedicineDescription>
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Overlay(
         initialEntries: [
@@ -256,29 +256,33 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                       .bold,
                                                               fontSize: 12),
                                                         ),
-                                                        SizedBox(width: 10,),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
                                                         GestureDetector(
-
-                                                          onLongPress: () async{
-                                                            textToSpeech(
-                                                                posts?.results[
-                                                                index]!
-                                                                    .description[
-                                                                index]!??
-                                                                    widget
-                                                                        .medicine
-                                                                        ?.description.toString()
-
-                                                            );
+                                                          onLongPress:
+                                                              () async {
+                                                            textToSpeech(posts
+                                                                        ?.results[
+                                                                            index]!
+                                                                        .description[
+                                                                    index]! ??
+                                                                widget.medicine
+                                                                    ?.description
+                                                                    .toString());
                                                           },
-                                                         onLongPressEnd: (details){
-                                                           stop();
-                                                         },
-
+                                                          onLongPressEnd:
+                                                              (details) {
+                                                            stop();
+                                                          },
                                                           child: CircleAvatar(
                                                             // backgroundColor: Color(0xFF59C1BD),
                                                             radius: 20,
-                                                            child: Icon( Icons.volume_up, color: Colors.white,size: 20),
+                                                            child: Icon(
+                                                                Icons.volume_up,
+                                                                color: Colors
+                                                                    .white,
+                                                                size: 20),
                                                           ),
                                                         ),
                                                         // IconButton(

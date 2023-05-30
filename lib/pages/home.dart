@@ -5,7 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:path/path.dart';
+import 'package:project_samaritan/models/theme_model.dart';
 import 'package:project_samaritan/pages/beta/beta_landing.dart';
+import 'package:project_samaritan/pages/beta/dark_mode.dart';
+import 'package:project_samaritan/pages/beta/pharmacy_dot.dart';
 import 'package:project_samaritan/pages/news/featured_news.dart';
 import 'package:project_samaritan/pages/scan_page.dart';
 import 'package:project_samaritan/pages/speech/speech_screen.dart';
@@ -13,6 +16,7 @@ import 'package:project_samaritan/services/language.dart';
 import 'package:project_samaritan/utils/catagories_grid.dart';
 import 'package:project_samaritan/utils/popular_medicine_grid.dart';
 import 'package:project_samaritan/utils/heading_row.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:project_samaritan/theme/styles.dart' as styleClass;
 import 'package:project_samaritan/storage/med_storage.dart';
@@ -28,6 +32,7 @@ class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
 }
+ThemeModel _themeManager = ThemeModel();
 
 class _HomeState extends State<Home>
     with SingleTickerProviderStateMixin, RouteAware {
@@ -56,7 +61,11 @@ class _HomeState extends State<Home>
       });
     });
   }
-
+  void themeToogle(){
+    final settings = Provider.of<ThemeSettings>(this.context, listen: false);
+    settings.toogleTheme();
+    print("====================object Theme =====================");
+  }
   getMedName() {
     Random random = Random();
     randomNumber = random.nextInt(popular_medication.length);
@@ -191,10 +200,16 @@ class _HomeState extends State<Home>
                     ),
                     Text(
                       'samaritan',
-                      style: Theme.of(context).textTheme.headline3,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.white
+                      ),
                     ),
                     Text('version 1.0.0',
-                        style: Theme.of(context).textTheme.headline3),
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.white,)
+                    )
                   ],
                 ),
               ),
@@ -218,17 +233,22 @@ class _HomeState extends State<Home>
                   Text('Beta Version'),
                   SizedBox(width: 70),
                   Switch(
-                    value: betaValue,
+
+                    value: _themeManager.themeMode == ThemeMode.dark,
                     onChanged: (onChanged) {
                       setState(() {
-                        Navigator.push(
+                        if (onChanged) {
+                          themeToogle();
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => BetaLandingPage()));
-
-                        betaValue = onChanged;
+                              builder: (context) => BetaLandingPage(),
+                            ),
+                          );
+                        }
                       });
                     },
+
                     activeColor: styleClass.Style.medicineDescriptionColorMain,
                     inactiveTrackColor:
                         styleClass.Style.medicineDescriptionColorSecondary,
@@ -244,6 +264,7 @@ class _HomeState extends State<Home>
                 title: const Text('Privacy Policy'),
                 onTap: () {
                   Navigator.popAndPushNamed(context, '/privacyPolicy');
+                  // themeToogle();
                 },
               ),
               ListTile(
@@ -415,6 +436,51 @@ class _HomeState extends State<Home>
                                     subtitle: titles2,
                                     imageTitle: 'assets/images/medicine.png',
                                   ),
+                                ),
+                              ),
+                            ],
+                          )),
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 18.0),
+                          child: HeadingRow(
+                            heading: 'Frequented Pharmacy',
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/popularMedicine');
+                          },
+                          child: Column(
+                            children: [
+                              Text(
+                                'view all',
+                                style: TextStyle(
+                                    color: styleClass.Style
+                                        .medicineDescriptionColorSecondary),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    FittedBox(
+                      child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          // child: GridBuilder()
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Material(
+                                  elevation: 0,
+                                  child: PharmacyDot(),
                                 ),
                               ),
                             ],

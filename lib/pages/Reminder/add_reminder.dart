@@ -82,6 +82,7 @@ class _AddReminderState extends State<AddReminder> {
         child: Padding(
           padding: EdgeInsets.all(6),
           child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               PanelTitle(
@@ -155,16 +156,25 @@ class _AddReminderState extends State<AddReminder> {
                       );
                     }),
               ),
-              PanelTitle(
-                title: 'Interval Selection',
-                isRequired: true,
+              // PanelTitle(
+              //   title: 'Interval Selection',
+              //   isRequired: true,
+              // ),
+              SizedBox(
+                height: 20,
               ),
               IntervalSelection(),
+              SizedBox(
+                height: 30,
+              ),
               PanelTitle(
                 title: 'Starting Time',
                 isRequired: true,
               ),
               SelectTime(),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: Row(
@@ -423,28 +433,34 @@ class _SelectTimeState extends State<SelectTime> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 8.0),
-        child: TextButton(
-          style: TextButton.styleFrom(
-              backgroundColor: Color(0xFF59C1BD), shape: StadiumBorder()),
-          onPressed: () {
-            _selectTime();
-          },
-          child: Center(
-            child: Text(
-                _clicked == false
-                    ? "Select Time"
-                    : "${convertTime(_time.hour.toString())}:${convertTime(_time.minute.toString())}",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white)),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 300,
+          height: 50,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                  backgroundColor: Color(0xFF59C1BD), shape: StadiumBorder()),
+              onPressed: () {
+                _selectTime();
+              },
+              child: Center(
+                child: Text(
+                    _clicked == false
+                        ? "Select Time"
+                        : "${convertTime(_time.hour.toString())}:${convertTime(_time.minute.toString())}",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white)),
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
@@ -472,7 +488,7 @@ class _IntervalSelectionState extends State<IntervalSelection> {
         children: [
           Text('Remind me every',
               style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.black)),
           DropdownButton(
@@ -509,7 +525,7 @@ class _IntervalSelectionState extends State<IntervalSelection> {
           ),
           Text(_selected == 1 ? 'Hour' : 'Hours',
               style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.black)),
         ],
@@ -591,7 +607,7 @@ class PanelTitle extends StatelessWidget {
         TextSpan(
             text: title,
             style: TextStyle(
-                fontSize: 20,
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: Colors.black)),
         TextSpan(

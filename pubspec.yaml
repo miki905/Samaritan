@@ -68,6 +68,7 @@ dependencies:
   flutter_tts: ^3.6.2
   flutter_carousel_slider: ^1.1.0
   carousel_slider: ^4.1.1
+  switcher_button: ^0.0.4
 
 
 

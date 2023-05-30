@@ -46,8 +46,8 @@ class FeaturedNews extends StatelessWidget {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),),
-                    SizedBox(height: 8.0,),
-                    Text(" Ampicillin is an antibiotic used to",
+                    SizedBox(height: 6.0,),
+                    Text("Ampicillin is an antibiotic",
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: Colors.white60,

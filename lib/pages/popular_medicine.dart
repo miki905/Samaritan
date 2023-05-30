@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_samaritan/utils/popular_medicine_grid.dart';
+import 'package:project_samaritan/utils/popular_medicine_list.dart';
 import 'package:project_samaritan/theme/styles.dart' as styleClass;
 import 'package:project_samaritan/storage/med_storage.dart';
 

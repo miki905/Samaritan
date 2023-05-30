@@ -81,7 +81,7 @@ class TopCounter extends StatelessWidget {
           alignment: Alignment.topLeft,
           padding: EdgeInsets.only(bottom: 10),
           child: Text(
-            "Worry Less \n Live Healthier.",
+            "Worry Less \nLive Healthier.",
             textAlign: TextAlign.start,
             style: TextStyle(fontSize: 40),
           ),
@@ -145,7 +145,7 @@ class BottomContainer extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.red,
-                    fontSize: 44
+                    fontSize: 18
                 ),
               ),
             );

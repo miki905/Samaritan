@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project_samaritan/bloc/add_reminder_bloc.dart';
 import 'package:project_samaritan/global_bloc.dart';
+import 'package:project_samaritan/models/theme_model.dart';
+import 'package:project_samaritan/pages/beta/dark_mode.dart';
 import 'package:project_samaritan/samaritan_app.dart';
 import 'package:camera/camera.dart';
 import 'package:project_samaritan/models/transaction.dart';
@@ -37,16 +39,44 @@ void main() async {
 
   final prefs = await SharedPreferences.getInstance();
   final showHome = prefs.getBool('showHome') ?? false;
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  final is_Dark = sharedPreferences.getBool('is_dark') ?? false;
 
   runApp(AppStateContainer(
-    child: MyApp(showHome: showHome),
+    child: MyApp(showHome: showHome, is_Dark : is_Dark),
   ));
 }
-
-class MyApp extends StatelessWidget {
+// ThemeModel _themeManager = ThemeModel();
+class MyApp extends StatefulWidget {
   final bool showHome;
+  final bool is_Dark;
+  const MyApp({required this.showHome, required this.is_Dark });
 
-  const MyApp({required this.showHome});
+  @override
+  State<MyApp> createState() => _MyAppState( is_Dark: is_Dark);
+}
+
+
+
+class _MyAppState extends State<MyApp> {
+  final bool is_Dark;
+
+  _MyAppState({required this.is_Dark});
+
+
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   _themeManager.addListener(themeListener);
+  //   super.initState();
+  // }
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   _themeManager.removeListener(themeListener);
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -55,33 +85,36 @@ class MyApp extends StatelessWidget {
     return Provider<GlobalBloc>.value(
       value: globalBloc,
       child: Sizer(builder: (context, orientation, deviceType) {
-        return MaterialApp(
-          theme: Style.themeData,
-          debugShowCheckedModeBanner: false,
-
-          localizationsDelegates: [
-            // AppLocalizations.delegate, // Add this line
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: [
-            Locale('en', ''), // English
-            Locale('es', ''), // Spanish
-          ],
-          // locale: Locale('es', ''),
-          routes: {
-            '/scan': (context) => CameraScan(),
-            '/home': (context) => SamaritanApp(),
-            '/search': (context) => SearchPage(),
-            '/popularMedicine': (context) => PopularMedicinePage(),
-            '/about': (context) => AboutPage(),
-            '/contactUs': (context) => ContactPage(),
-            '/privacyPolicy': (context) => PrivacyPolicyPgae(),
-            '/desclaimer': (context) => DesclaimerPage(),
-            '/userManual': (context) => UserManualPage(),
+          return ChangeNotifierProvider(
+            create: (context) => ThemeSettings(is_Dark),
+          builder: (context,snapshot) {
+            // final settings = context.read<ThemeSetings>();
+            final settings = Provider.of<ThemeSettings>(context);
+            return MaterialApp(
+              theme: settings.currentTheme,
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: [
+                // AppLocalizations.delegate, // Add this line
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              // locale: Locale('es', ''),
+              routes: {
+                '/scan': (context) => CameraScan(),
+                '/home': (context) => SamaritanApp(),
+                '/search': (context) => SearchPage(),
+                '/popularMedicine': (context) => PopularMedicinePage(),
+                '/about': (context) => AboutPage(),
+                '/contactUs': (context) => ContactPage(),
+                '/privacyPolicy': (context) => PrivacyPolicyPgae(),
+                '/desclaimer': (context) => DesclaimerPage(),
+                '/userManual': (context) => UserManualPage(),
+              },
+              home: widget.showHome ? SamaritanApp() : StartPage(),
+            );
           },
-          home: showHome ? SamaritanApp() : StartPage(),
+
         );
       }),
     );
