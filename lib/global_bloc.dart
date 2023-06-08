@@ -12,12 +12,15 @@ class GlobalBloc {
   BehaviorSubject<List<Medication>>? _medicationList$;
   BehaviorSubject<List<Medication>>? get medicationList$ => _medicationList$;
   TopHeadlines? topHeadlines;
+
   var is_loading = false;
 
   GlobalBloc() {
     _medicationList$ = BehaviorSubject<List<Medication>>.seeded([]);
     makeMedicineList();
   }
+
+  get countrycode => {countrycode.us, countrycode.india, countrycode.england};
 
   Future removeMedicineList(Medication tobeRemoved) async {
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -93,8 +96,9 @@ class GlobalBloc {
 
   Future<TopHeadlines> getnews(String countryCode) async {
     is_loading = true;
+
     Response response = await get(Uri.parse(
-        "https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=e09a4a6eee8a4f6684d1d6427225b1f4"));
+        "https://newsapi.org/v2/top-headlines?country=${countryCode}&category=health&apiKey=e09a4a6eee8a4f6684d1d6427225b1f4"));
 
     if (response.statusCode == 200) {
       is_loading = false;
