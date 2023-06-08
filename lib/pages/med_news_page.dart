@@ -32,100 +32,338 @@ class _NewsPageState extends State<NewsPage> {
   Widget build(BuildContext context) {
     // GlobalBloc globalBloc = GlobalBloc();
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(
-            Icons.arrow_back,
-            color: styleClass.Style.medicineDescriptionColorMain,
-          ),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Container(
-          margin: EdgeInsets.only(left: 35),
-          child: Text(
-            'NEWS',
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+    return DefaultTabController(
+        length: 5,
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: Icon(
+                Icons.arrow_back,
                 color: styleClass.Style.medicineDescriptionColorMain,
-                fontSize: 20),
-          ),
-        ),
-      ),
-      body: FutureBuilder<TopHeadlines>(
-          future: GlobalBloc().getnews('us'),
-          builder: (context, snapshot) {
-            print(snapshot.data);
-            if (snapshot.hasData) {
-              print('=-=-=-=-=-=-- debug');
-
-              // print(snapshot.data)
-
-              print(snapshot.data!.totalResults);
-              // return Text('it has data');
-
-              return Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: snapshot.data!.articles.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Wrap(
-                                children: [
-                                  Card(
-                                    elevation: 50,
-                                    shadowColor: Colors.black,
-                                    color: Colors.greenAccent[100],
-                                    child: ListTile(
-                                      title: Text(
-                                          snapshot.data!.articles[index].title),
-                                      subtitle: Text(snapshot
-                                                  .data!
-                                                  .articles[index]
-                                                  .description ==
-                                              null
-                                          ? "no description provided from the source"
-                                          : snapshot.data!.articles[index]
-                                              .description!),
-                                    ),
-                                  )
-                                ],
-                              )
-                              //  Container(
-                              //   decoration: BoxDecoration(boxShadow: [
-                              //     BoxShadow(
-                              //       color: Colors.black,
-                              //       offset: Offset(0.0, 1.0), //(x,y)
-                              //       blurRadius: 1.0,
-                              //     ),
-                              //   ]),
-                              //   child: GridContainer(
-                              //     containerWidth: 200,
-                              //     title: snapshot.data!.articles[index].title,
-                              //     subtitle: snapshot.data!.articles[index]
-                              //                 .description ==
-                              //             null
-                              //         ? "no description provided from the source"
-                              //         : snapshot
-                              //             .data!.articles[index].description!,
-                              //     imageTitle: "",
-                              //   ),
-                              // ),
-                              );
-                        }),
+              ),
+            ),
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            title: Container(
+              margin: EdgeInsets.only(left: 35),
+              child: Text(
+                'NEWS',
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontSize: 20),
+              ),
+            ),
+            bottom: TabBar(
+                isScrollable: true,
+                indicatorColor: Colors.black,
+                labelColor: Theme.of(context).colorScheme.secondary,
+                tabs: [
+                  Tab(
+                    text: "England",
+                  ),
+                  Tab(
+                    text: "US",
+                  ),
+                  Tab(
+                    text: "India",
+                  ),
+                  Tab(
+                    text: "Nigeria",
+                  ),
+                  Tab(
+                    text: "Egypt",
                   )
-                ],
-              );
-            } else if (snapshot.hasError) {
-              print('some error happening ${snapshot.error}');
-              return Text('${snapshot.error}');
-            }
+                ]),
+          ),
+          body: TabBarView(children: [
+            FutureBuilder<TopHeadlines>(
+                future: GlobalBloc().getnews('gb'),
+                builder: (context, snapshot) {
+                  print(snapshot.data);
+                  if (snapshot.hasData) {
+                    print('=-=-=-=-=-=-- debug');
 
-            return CircularProgressIndicator();
-          }),
-    );
+                    // print(snapshot.data)
+
+                    print(snapshot.data!.totalResults);
+                    // return Text('it has data');
+
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: snapshot.data!.articles.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Wrap(
+                                      children: [
+                                        Card(
+                                          elevation: 50,
+                                          shadowColor: Colors.black,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                          child: ListTile(
+                                            title: Text(snapshot
+                                                .data!.articles[index].title),
+                                            subtitle: Text(snapshot
+                                                        .data!
+                                                        .articles[index]
+                                                        .description ==
+                                                    null
+                                                ? "no description provided from the source"
+                                                : snapshot.data!.articles[index]
+                                                    .description!),
+                                          ),
+                                        )
+                                      ],
+                                    ));
+                              }),
+                        )
+                      ],
+                    );
+                  } else if (snapshot.hasError) {
+                    print('some error happening ${snapshot.error}');
+                    return Text('${snapshot.error}');
+                  }
+
+                  return SizedBox(
+                      width: 10,
+                      height: 10,
+                      child: Center(child: CircularProgressIndicator()));
+                  ;
+                }),
+
+            //us
+            FutureBuilder<TopHeadlines>(
+                future: GlobalBloc().getnews('us'),
+                builder: (context, snapshot) {
+                  print(snapshot.data);
+                  if (snapshot.hasData) {
+                    print('=-=-=-=-=-=-- debug');
+
+                    // print(snapshot.data)
+
+                    print(snapshot.data!.totalResults);
+                    // return Text('it has data');
+
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: snapshot.data!.articles.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Wrap(
+                                      children: [
+                                        Card(
+                                          elevation: 50,
+                                          shadowColor: Colors.black,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                          child: ListTile(
+                                            title: Text(snapshot
+                                                .data!.articles[index].title),
+                                            subtitle: Text(snapshot
+                                                        .data!
+                                                        .articles[index]
+                                                        .description ==
+                                                    null
+                                                ? "no description provided from the source"
+                                                : snapshot.data!.articles[index]
+                                                    .description!),
+                                          ),
+                                        )
+                                      ],
+                                    ));
+                              }),
+                        )
+                      ],
+                    );
+                  } else if (snapshot.hasError) {
+                    print('some error happening ${snapshot.error}');
+                    return Text('${snapshot.error}');
+                  }
+
+                  return SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator());
+                  ;
+                }),
+            // indian
+
+            FutureBuilder<TopHeadlines>(
+                future: GlobalBloc().getnews('in'),
+                builder: (context, snapshot) {
+                  print(snapshot.data);
+                  if (snapshot.hasData) {
+                    print('=-=-=-=-=-=-- debug');
+
+                    // print(snapshot.data)
+
+                    print(snapshot.data!.totalResults);
+                    // return Text('it has data');
+
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: snapshot.data!.articles.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Wrap(
+                                      children: [
+                                        Card(
+                                          elevation: 50,
+                                          shadowColor: Colors.black,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                          child: ListTile(
+                                            title: Text(snapshot
+                                                .data!.articles[index].title),
+                                            subtitle: Text(snapshot
+                                                        .data!
+                                                        .articles[index]
+                                                        .description ==
+                                                    null
+                                                ? "no description provided from the source"
+                                                : snapshot.data!.articles[index]
+                                                    .description!),
+                                          ),
+                                        )
+                                      ],
+                                    ));
+                              }),
+                        )
+                      ],
+                    );
+                  } else if (snapshot.hasError) {
+                    print('some error happening ${snapshot.error}');
+                    return Text('${snapshot.error}');
+                  }
+
+                  return SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator());
+                }),
+            FutureBuilder<TopHeadlines>(
+                future: GlobalBloc().getnews('ng'),
+                builder: (context, snapshot) {
+                  print(snapshot.data);
+                  if (snapshot.hasData) {
+                    print('=-=-=-=-=-=-- debug');
+
+                    // print(snapshot.data)
+
+                    print(snapshot.data!.totalResults);
+                    // return Text('it has data');
+
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: snapshot.data!.articles.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Wrap(
+                                      children: [
+                                        Card(
+                                          elevation: 50,
+                                          shadowColor: Colors.black,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                          child: ListTile(
+                                            title: Text(snapshot
+                                                .data!.articles[index].title),
+                                            subtitle: Text(snapshot
+                                                        .data!
+                                                        .articles[index]
+                                                        .description ==
+                                                    null
+                                                ? "no description provided from the source"
+                                                : snapshot.data!.articles[index]
+                                                    .description!),
+                                          ),
+                                        )
+                                      ],
+                                    ));
+                              }),
+                        )
+                      ],
+                    );
+                  } else if (snapshot.hasError) {
+                    print('some error happening ${snapshot.error}');
+                    return Text('${snapshot.error}');
+                  }
+
+                  return CircularProgressIndicator();
+                }),
+            FutureBuilder<TopHeadlines>(
+                future: GlobalBloc().getnews('ma'),
+                builder: (context, snapshot) {
+                  print(snapshot.data);
+                  if (snapshot.hasData) {
+                    print('=-=-=-=-=-=-- debug');
+
+                    // print(snapshot.data)
+
+                    print(snapshot.data!.totalResults);
+                    // return Text('it has data');
+
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: snapshot.data!.articles.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Wrap(
+                                      children: [
+                                        Card(
+                                          elevation: 50,
+                                          shadowColor: Colors.black,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                          child: ListTile(
+                                            title: Text(snapshot
+                                                .data!.articles[index].title),
+                                            subtitle: Text(snapshot
+                                                        .data!
+                                                        .articles[index]
+                                                        .description ==
+                                                    null
+                                                ? "no description provided from the source"
+                                                : snapshot.data!.articles[index]
+                                                    .description!),
+                                          ),
+                                        )
+                                      ],
+                                    ));
+                              }),
+                        )
+                      ],
+                    );
+                  } else if (snapshot.hasError) {
+                    print('some error happening ${snapshot.error}');
+                    return Text('${snapshot.error}');
+                  }
+
+                  return Container(
+                      width: 1, child: CircularProgressIndicator());
+                }),
+          ]),
+        ));
   }
 }
