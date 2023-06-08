@@ -69,6 +69,8 @@ dependencies:
   flutter_carousel_slider: ^1.1.0
   carousel_slider: ^4.1.1
   switcher_button: ^0.0.4
+  flutter_map: ^4.0.0
+  latlong: ^0.6.1
 
 
 

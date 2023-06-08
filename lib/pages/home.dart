@@ -9,9 +9,11 @@ import 'package:project_samaritan/models/theme_model.dart';
 import 'package:project_samaritan/pages/beta/beta_landing.dart';
 import 'package:project_samaritan/pages/beta/dark_mode.dart';
 import 'package:project_samaritan/pages/beta/pharmacy_dot.dart';
+import 'package:project_samaritan/pages/map/map_page.dart';
 import 'package:project_samaritan/pages/news/featured_news.dart';
 import 'package:project_samaritan/pages/scan_page.dart';
 import 'package:project_samaritan/pages/speech/speech_screen.dart';
+import 'package:project_samaritan/pages/traditional/treatment_info.dart';
 import 'package:project_samaritan/services/language.dart';
 import 'package:project_samaritan/utils/catagories_grid.dart';
 import 'package:project_samaritan/utils/popular_medicine_grid.dart';
@@ -244,12 +246,7 @@ class _HomeState extends State<Home>
                         if (onChanged) {
                           themeToogle();
                           _themeSettings.toggleTheme();
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => BetaLandingPage(),
-                            //   ),
-                            // );
+
 
                         }
                       });
@@ -264,14 +261,16 @@ class _HomeState extends State<Home>
               ListTile(
                 title: const Text('Privacy Policy'),
                 onTap: () {
-                  Navigator.popAndPushNamed(context, '/privacyPolicy');
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
+                  // Navigator.popAndPushNamed(context, '/privacyPolicy');
                   // themeToogle();
                 },
               ),
               ListTile(
                 title: const Text('Contact Us'),
                 onTap: () {
-                  Navigator.popAndPushNamed(context, '/contactUs');
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PlantInfoPage(plantId: 'ginger-plant',)));
+                  // Navigator.popAndPushNamed(context, '/contactUs');
                 },
               ),
               ListTile(
