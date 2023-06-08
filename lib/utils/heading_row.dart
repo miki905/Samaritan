@@ -12,7 +12,7 @@ class HeadingRow extends StatelessWidget {
     return Text(
       heading,
       style: Theme.of(context).textTheme.headline2!.copyWith(
-          fontSize: 20, color: styleClass.Style.medicineDescriptionColorMain),
+          fontSize: 20, color: Theme.of(context).colorScheme.secondary,),
     );
   }
 }

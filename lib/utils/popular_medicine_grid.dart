@@ -71,122 +71,126 @@ class _GridContainerState extends State<GridContainer> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        SizedBox(
-          height: 200,
-          child: PageView.builder(
-            onPageChanged: (index){
-              pageNo = index;
-              setState(() {
+    return Container(
+      color: Theme.of(context).colorScheme.background,
+      child: Column(
 
-              });
-            },
-            controller: pageController,
-            itemBuilder: (_, index) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0 ),
-                child: AnimatedBuilder(
-                  animation: pageController,
-                  builder: (ctx, child) {
-                    return child!;
-                  },
-                  child: GestureDetector(
-                    onTap: () {
-                      // getMedName();
-                      Navigator.of(context).push(PageTransition(
-                          child: MedicineDescription(
-                            medName: popular_medication[index],
-                          ),
-                          type: PageTransitionType.bottomToTop));
+        children: [
+          SizedBox(
+            height: 200,
+            child: PageView.builder(
+              onPageChanged: (index){
+                pageNo = index;
+                setState(() {
+
+                });
+              },
+              controller: pageController,
+              itemBuilder: (_, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0 ),
+                  child: AnimatedBuilder(
+                    animation: pageController,
+                    builder: (ctx, child) {
+                      return child!;
                     },
-                    child: Container(
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: styleClass.Style.medicineDescriptionColorMain,
-                        // color: Colors.amberAccent
-                      ),
+                    child: GestureDetector(
+                      onTap: () {
+                        // getMedName();
+                        Navigator.of(context).push(PageTransition(
+                            child: MedicineDescription(
+                              medName: popular_medication[index],
+                            ),
+                            type: PageTransitionType.bottomToTop));
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Theme.of(context).colorScheme.secondary,
+                          // color: Colors.amberAccent
+                        ),
 
-                      child: Column(
+                        child: Column(
 
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          verticalDirection: VerticalDirection.up,
-                          children: [
-                            //same discriptive words and medicine image
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            verticalDirection: VerticalDirection.up,
+                            children: [
+                              //same discriptive words and medicine image
 
-                            //the name of the medicine
-                            FittedBox(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 8.0, bottom: 20),
+                              //the name of the medicine
+                              FittedBox(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 8.0, bottom: 20),
+                                  child: Row(
+                                    children: [
+                                      RichText(
+                                        text: TextSpan(
+                                        text: popular_medication[index],
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: 22,
+                                                color: Colors.white),
+                                      )),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(6.0),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    RichText(
-                                      text: TextSpan(
-                                      text: popular_medication[index],
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: 22,
-                                              color: Colors.white),
-                                    )),
+                                    //this is a dummy text which will be replaced letter
+                                    Expanded(
+                                      child: SizedBox(
+                                        width: MediaQuery.of(context).size.width * .65,
+                                        child: RichText(
+                                            text: TextSpan(
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18),
+                                                children: [
+                                              //we will put here some minor discription of the medicine
+                                              TextSpan(text: popular_medication_discription[index]),
+                                            ])),
+                                      ),
+                                    ),
+                                    // SizedBox(
+                                    //     height: MediaQuery.of(context).size.height * .09,
+                                    //     child: Image(
+                                    //         //this is a dummy text which will be replaced letter
+
+                                    //         image: AssetImage(widget.imageTitle)))
                                   ],
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  //this is a dummy text which will be replaced letter
-                                  Expanded(
-                                    child: SizedBox(
-                                      width: MediaQuery.of(context).size.width * .65,
-                                      child: RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 18),
-                                              children: [
-                                            //we will put here some minor discription of the medicine
-                                            TextSpan(text: popular_medication_discription[index]),
-                                          ])),
-                                    ),
-                                  ),
-                                  // SizedBox(
-                                  //     height: MediaQuery.of(context).size.height * .09,
-                                  //     child: Image(
-                                  //         //this is a dummy text which will be replaced letter
 
-                                  //         image: AssetImage(widget.imageTitle)))
-                                ],
-                              ),
-                            ),
-
-                          ])
+                            ])
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
-            itemCount: popular_medication.length,
+                );
+              },
+              itemCount: popular_medication.length,
+            ),
           ),
-        ),
-        SizedBox(height: 10,),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(
-              popular_medication.length, (index) =>
-              Container(
-                margin: EdgeInsets.all(3),
-                child: Icon(Icons.circle,
-                  size: 12,
-                  color: pageNo == index ? Color(0xFF59C1BD) : Colors.black12, ),)),)
+          SizedBox(height: 10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+                popular_medication.length, (index) =>
+                Container(
+                  margin: EdgeInsets.all(3),
+                  child: Icon(Icons.circle,
+                    size: 12,
+                    color: pageNo == index ? Theme.of(context).colorScheme.secondary : Colors.black12, ),)),)
 
-      ],
+        ],
+      ),
     );
   }
 }

@@ -51,6 +51,7 @@ class _PharmacyDotState extends State<PharmacyDot> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Theme.of(context).colorScheme.background,
         height:130,
       // color: Colors.red,
       child: ListView.builder(
@@ -74,7 +75,8 @@ class _PharmacyDotState extends State<PharmacyDot> {
                   'Poly',
                   style: TextStyle(
                       fontSize: 15,
-                      fontWeight: FontWeight.w500
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).colorScheme.tertiary
                   ),
                 )
               ],

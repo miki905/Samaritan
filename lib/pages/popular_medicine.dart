@@ -34,7 +34,7 @@ class _PopularMedicinePageState extends State<PopularMedicinePage>
           onPressed: () => Navigator.pop(context),
           icon: Icon(
             Icons.arrow_back,
-            color: styleClass.Style.medicineDescriptionColorMain,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
         elevation: 0,
@@ -44,7 +44,7 @@ class _PopularMedicinePageState extends State<PopularMedicinePage>
           child: Text(
             'Popular medicines',
             style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                color: styleClass.Style.medicineDescriptionColorMain,
+                color: Theme.of(context).colorScheme.secondary,
                 fontSize: 20),
           ),
         ),

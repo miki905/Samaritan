@@ -16,13 +16,14 @@ class _SpeechScreenState extends State<SpeechScreen> {
 
 
   var text =
-      "Hold the button and start speaking \n speak the medication name clearly";
+      "Hold the button and start speaking\nspeak the medication name clearly";
   var medication ;
   var isListening = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -31,7 +32,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
             endRadius: 75,
             animate: isListening,
             duration: Duration(milliseconds: 2000),
-            glowColor: Color(0xFF59C1BD),
+            glowColor: Theme.of(context).colorScheme.secondary,
             repeat: true,
             repeatPauseDuration: Duration(milliseconds: 100),
             showTwoGlows: true,
@@ -60,9 +61,9 @@ class _SpeechScreenState extends State<SpeechScreen> {
                 speechToText.stop();
               },
               child: CircleAvatar(
-                backgroundColor: Color(0xFF59C1BD),
+                backgroundColor: Theme.of(context).colorScheme.secondary,
                 radius: 35,
-                child: Icon(isListening ? Icons.mic : Icons.mic_none, color: Colors.white,),
+                child: Icon(isListening ? Icons.mic : Icons.mic_none, color: Theme.of(context).colorScheme.tertiary,),
               ),
             ),
           ),
@@ -75,26 +76,26 @@ class _SpeechScreenState extends State<SpeechScreen> {
                    type: PageTransitionType.bottomToTop));
              },
               child: CircleAvatar(
-                backgroundColor: Color(0xFF59C1BD),
+                backgroundColor: Theme.of(context).colorScheme.secondary,
                 radius: 35,
-                child: Icon(Icons.done, color: Colors.white,),
+                child: Icon(Icons.done, color: Theme.of(context).colorScheme.tertiary,),
               ),
             ),
         ],
       ),
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+          color: Theme.of(context).colorScheme.secondary, //change your color here
         ),
         // iconTheme: ,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
         title: Text(
           "speak to search",
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            color: Colors.black,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
       ),
@@ -108,10 +109,11 @@ class _SpeechScreenState extends State<SpeechScreen> {
           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           margin: EdgeInsets.only(bottom: 150),
           child: Text(
+
             text,
             style: TextStyle(
-              fontSize: 24,
-              color: isListening ? Colors.black87: Colors.black54,
+              fontSize: 20,
+              color: isListening ? Theme.of(context).colorScheme.secondary: Theme.of(context).colorScheme.tertiary,
               fontWeight: FontWeight.w600
             ),
           ),

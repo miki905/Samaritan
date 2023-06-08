@@ -259,7 +259,7 @@ class _AddReminderState extends State<AddReminder> {
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
-                                  color: Colors.white)),
+                                  color: Theme.of(context).colorScheme.tertiary)),
                         ),
                       ),
                     ),
@@ -323,7 +323,7 @@ class _AddReminderState extends State<AddReminder> {
   void displayError(String error) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Color(0xFF59C1BD),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         content: Text(error),
         duration: Duration(milliseconds: 2000),
       ),
@@ -368,7 +368,7 @@ class _AddReminderState extends State<AddReminder> {
       'repeatDailyAtTime channel id',
       'repeatDailyAtTime channel name',
       importance: Importance.max,
-      ledColor: Color(0xFF59C1BD),
+      ledColor: Theme.of(context).colorScheme.secondary,
       ledOffMs: 1000,
       ledOnMs: 1000,
       enableLights: true,
@@ -443,7 +443,7 @@ class _SelectTimeState extends State<SelectTime> {
             padding: const EdgeInsets.only(top: 8.0),
             child: TextButton(
               style: TextButton.styleFrom(
-                  backgroundColor: Color(0xFF59C1BD), shape: StadiumBorder()),
+                  backgroundColor: Theme.of(context).colorScheme.secondary, shape: StadiumBorder()),
               onPressed: () {
                 _selectTime();
               },
@@ -490,7 +490,7 @@ class _IntervalSelectionState extends State<IntervalSelection> {
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black)),
+                  color: Theme.of(context).colorScheme.tertiary)),
           DropdownButton(
             iconEnabledColor: Color.fromRGBO(81, 208, 208, 40),
             hint: _selected == 0
@@ -498,7 +498,7 @@ class _IntervalSelectionState extends State<IntervalSelection> {
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xFF59C1BD)))
+                        color: Theme.of(context).colorScheme.tertiary))
                 : null,
             elevation: 4,
             value: _selected == 0 ? null : _selected,
@@ -510,7 +510,7 @@ class _IntervalSelectionState extends State<IntervalSelection> {
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF59C1BD))),
+                          color: Theme.of(context).colorScheme.tertiary)),
                 );
               },
             ).toList(),
@@ -527,7 +527,7 @@ class _IntervalSelectionState extends State<IntervalSelection> {
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black)),
+                  color: Theme.of(context).colorScheme.tertiary)),
         ],
       ),
     );
@@ -563,13 +563,13 @@ class MedicineType extends StatelessWidget {
             height: 70,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
-              color: isSelectted ? Color(0xFF59C1BD) : Colors.white,
+              color: isSelectted ? Theme.of(context).colorScheme.secondary : Colors.white,
             ),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(iconValue,
                   height: 44,
-                  color: isSelectted ? Colors.white : Color(0xFF59C1BD)),
+                  color: isSelectted ? Colors.white : Theme.of(context).colorScheme.secondary  ),
             ),
           ),
           Padding(
@@ -578,13 +578,13 @@ class MedicineType extends StatelessWidget {
               height: 30,
               width: 64,
               decoration: BoxDecoration(
-                color: isSelectted ? Color(0xFF59C1BD) : Colors.transparent,
+                color: isSelectted ? Theme.of(context).colorScheme.secondary : Colors.transparent,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Center(
                   child: Text(name,
                       style: TextStyle(
-                          color: isSelectted ? Colors.white : Color(0xFF59C1BD),
+                          color: isSelectted ? Colors.white : Theme.of(context).colorScheme.secondary,
                           fontSize: 16))),
             ),
           ),
@@ -609,7 +609,7 @@ class PanelTitle extends StatelessWidget {
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: Colors.black)),
+                color: Theme.of(context).colorScheme.tertiary)),
         TextSpan(
             text: " ",
             style: TextStyle(
@@ -622,7 +622,7 @@ class PanelTitle extends StatelessWidget {
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w600,
-              color: Color.fromRGBO(81, 208, 208, 40),
+              color: Theme.of(context).colorScheme.secondary,
             )),
       ])),
     );

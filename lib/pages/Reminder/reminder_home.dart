@@ -34,9 +34,15 @@ class _ReminderHomeState extends State<ReminderHome> {
   Widget build(BuildContext context) {
     // final GlobalBloc globalBloc = Provider.of<GlobalBloc>(context);
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.background,
         title: Text("Reminder"),
+        titleTextStyle: TextStyle(
+          color: Theme.of(context).colorScheme.tertiary,
+          fontSize: 25,
+          fontWeight: FontWeight.bold
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -53,12 +59,12 @@ class _ReminderHomeState extends State<ReminderHome> {
           height: 60,
           width: 60,
           child: Card(
-            color: Color.fromRGBO(81, 208, 208, 100),
+            color: Theme.of(context).colorScheme.secondary,
             shape:
                 BeveledRectangleBorder(borderRadius: BorderRadius.circular(6)),
             child: Icon(
               Icons.add_outlined,
-              color: Colors.black,
+              color: Theme.of(context).colorScheme.tertiary,
               size: 20,
             ),
           ),
@@ -91,7 +97,7 @@ class TopCounter extends StatelessWidget {
           padding: EdgeInsets.only(bottom: 10),
           child: Text(
             "Welcome to daily dose.",
-            style: TextStyle(fontSize: 20, color: Colors.black45),
+            style: TextStyle(fontSize: 20, color: Theme.of(context).colorScheme.tertiary),
           ),
         ),
         // SizedBox(
@@ -168,40 +174,44 @@ class BottomContainer extends StatelessWidget {
   }
 }
 
-class MedicineCard extends StatelessWidget {
+class MedicineCard extends StatefulWidget {
   const MedicineCard({Key? key, required this.medication}) : super(key: key);
   final Medication medication;
-  //get the current detail of the seved items
 
-  //medicine type icon
+  @override
+  State<MedicineCard> createState() => _MedicineCardState();
+}
+
+class _MedicineCardState extends State<MedicineCard> {
+  //get the current detail of the seved items
   Hero makeIcon(double size){
-    if(medication.medicineType == 'bottle'){
+    if(widget.medication.medicineType == 'bottle'){
       return Hero(
-          tag: medication.medicineName! + medication.medicineType!,
+          tag: widget.medication.medicineName! + widget.medication.medicineType!,
           child: SvgPicture.asset('assets/icons/bottle.svg',
-              height: 50, color: styleClass.Style.medicineDescriptionColorMain),
+              height: 50, color: Theme.of(context).colorScheme.secondary),
       );
-    }else if(medication.medicineType == 'pill'){
+    }else if(widget.medication.medicineType == 'pill'){
       return Hero(
-        tag: medication.medicineName! + medication.medicineType!,
+        tag: widget.medication.medicineName! + widget.medication.medicineType!,
         child: SvgPicture.asset('assets/icons/pill.svg',
-            height: 50, color: styleClass.Style.medicineDescriptionColorMain),
+            height: 50, color: Theme.of(context).colorScheme.secondary),
       );
-    }else if(medication.medicineType == 'syringe'){
+    }else if(widget.medication.medicineType == 'syringe'){
       return Hero(
-        tag: medication.medicineName! + medication.medicineType!,
+        tag: widget.medication.medicineName! + widget.medication.medicineType!,
         child: SvgPicture.asset('assets/icons/syringe.svg',
-            height: 50, color: styleClass.Style.medicineDescriptionColorMain),
+            height: 50, color: Theme.of(context).colorScheme.secondary),
       );
-    }else if(medication.medicineType == 'tablet'){
+    }else if(widget.medication.medicineType == 'tablet'){
       return Hero(
-        tag: medication.medicineName! + medication.medicineType!,
+        tag: widget.medication.medicineName! + widget.medication.medicineType!,
         child: SvgPicture.asset('assets/icons/tablet.svg',
-            height: 50, color: styleClass.Style.medicineDescriptionColorMain),
+            height: 50, color: Theme.of(context).colorScheme.secondary),
       );
     }
 
-    return Hero(tag: medication.medicineName! + medication.medicineType!, child: Icon(Icons.error, size: size));
+    return Hero(tag: widget.medication.medicineName! + widget.medication.medicineType!, child: Icon(Icons.error, size: size, color: Theme.of(context).colorScheme.secondary,));
   }
 
   @override
@@ -221,7 +231,7 @@ class MedicineCard extends StatelessWidget {
               return Opacity(
                 opacity: animation.value,
               child: ReminderDetail(
-                        medication: medication,
+                        medication: widget.medication,
                     ),
                   );
                 }
@@ -244,13 +254,13 @@ class MedicineCard extends StatelessWidget {
             makeIcon(50),
             Spacer(),
             Hero(
-              tag: medication.medicineName!,
+              tag: widget.medication.medicineName!,
               child: Text(
-                medication.medicineName!,
+                widget.medication.medicineName!,
                 overflow: TextOverflow.fade,
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                    color: Colors.black,
+                    color: Theme.of(context).colorScheme.background,
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
                     letterSpacing: 1.0
@@ -259,14 +269,14 @@ class MedicineCard extends StatelessWidget {
               ),
             ),
             Text(
-              medication.interval == 1?
-              'Every ${medication.interval} hour':
-              'Every ${medication.interval} hours',
+              widget.medication.interval == 1?
+              'Every ${widget.medication.interval} hour':
+              'Every ${widget.medication.interval} hours',
 
               overflow: TextOverflow.fade,
               textAlign: TextAlign.start,
               style: TextStyle(
-                  color: styleClass.Style.medicineDescriptionColorMain,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontSize: 12,
                   fontWeight: FontWeight.w800,
                   letterSpacing: 1.0

@@ -146,6 +146,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Theme.of(context).colorScheme.background,
       body: Overlay(
         initialEntries: [
           ///overlay entry one
@@ -219,8 +220,9 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20)),
                       child: Container(
+
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.background,
                         child: Overlay(
                           ///overlaly entry three
                           initialEntries: [
@@ -346,9 +348,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
-                                                                      color: styleClass
-                                                                          .Style
-                                                                          .medicineDescriptionColorPrimary,
+                                                                      color: Theme.of(context).colorScheme.secondary,
                                                                       fontSize:
                                                                           25,
                                                                     ),
@@ -366,9 +366,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                             ?.medId),
                                                                     style: GoogleFonts
                                                                         .raleway(
-                                                                      color: styleClass
-                                                                          .Style
-                                                                          .medicineDescriptionColorSecondary,
+                                                                      color: Theme.of(context).colorScheme.tertiary,
                                                                       fontSize:
                                                                           18,
                                                                     ))
@@ -381,9 +379,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color: styleClass
-                                                                    .Style
-                                                                    .medicineDescriptionColorPrimary,
+                                                                color: Theme.of(context).colorScheme.secondary,
                                                                 fontSize: 25,
                                                               ),
                                                             ),
@@ -399,9 +395,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                 style:
                                                                     GoogleFonts
                                                                         .raleway(
-                                                                  color: styleClass
-                                                                      .Style
-                                                                      .medicineDescriptionColorSecondary,
+                                                                  color: Theme.of(context).colorScheme.tertiary,
                                                                   fontSize: 18,
                                                                 )),
                                                             TextSpan(
@@ -412,9 +406,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color: styleClass
-                                                                    .Style
-                                                                    .medicineDescriptionColorPrimary,
+                                                                color: Theme.of(context).colorScheme.secondary,
                                                                 fontSize: 25,
                                                               ),
                                                             ),
@@ -430,9 +422,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                 style:
                                                                     GoogleFonts
                                                                         .raleway(
-                                                                  color: styleClass
-                                                                      .Style
-                                                                      .medicineDescriptionColorSecondary,
+                                                                  color: Theme.of(context).colorScheme.tertiary,
                                                                   fontSize: 18,
                                                                 )),
                                                             TextSpan(
@@ -443,9 +433,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color: styleClass
-                                                                    .Style
-                                                                    .medicineDescriptionColorPrimary,
+                                                                color: Theme.of(context).colorScheme.secondary,
                                                                 fontSize: 25,
                                                               ),
                                                             ),
@@ -461,9 +449,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                 style:
                                                                     GoogleFonts
                                                                         .raleway(
-                                                                  color: styleClass
-                                                                      .Style
-                                                                      .medicineDescriptionColorSecondary,
+                                                                  color: Theme.of(context).colorScheme.tertiary,
                                                                   fontSize: 18,
                                                                 )),
                                                           ])),
@@ -561,10 +547,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                           return Center(
                                                             child:
                                                                 CircularProgressIndicator(
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .iconTheme
-                                                                  .color,
+                                                              color: Theme.of(context).colorScheme.tertiary,
                                                             ),
                                                           );
                                                         })
@@ -576,7 +559,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                     ),
                                   ),
                                   widget.flag != 'saved' && isLoading == false
-                                      ? const Divider()
+                                      ? Divider()
                                       : Container(),
                                   widget.flag != 'saved' && isLoading == false
                                       ? Container(
@@ -589,7 +572,8 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                               style: ElevatedButton.styleFrom(
                                                 minimumSize:
                                                     const Size.fromHeight(
-                                                        50), // NEW
+                                                        50),
+                                                backgroundColor: Theme.of(context).colorScheme.secondary// NEW
                                               ),
                                               onPressed: () async {
                                                 _saveButtonHandler(context);
@@ -597,16 +581,18 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                               child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
-                                                  children: const <Widget>[
+                                                  children:  <Widget>[
                                                     Icon(Icons.bookmark,
-                                                        color: Colors.white),
+                                                        color: Theme.of(context).colorScheme.tertiary),
                                                     SizedBox(
                                                       width: 8,
                                                     ),
                                                     Text(
                                                       'save',
                                                       style: TextStyle(
-                                                          fontSize: 24),
+                                                          fontSize: 24,
+                                                        color: Theme.of(context).colorScheme.tertiary
+                                                      ),
                                                     )
                                                   ]),
                                             ),

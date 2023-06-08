@@ -25,11 +25,11 @@ class _ReminderDetailState extends State<ReminderDetail> {
     final GlobalBloc _globalBloc = Provider.of<GlobalBloc>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.red),
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.secondary),
         title: Center(child: const Text("Details")),
-        titleTextStyle: TextStyle(color: Colors.black, fontSize: 24),
+        titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.tertiary, fontSize: 24),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -208,7 +208,7 @@ class MainInfoTab extends StatelessWidget {
             Text(
               fieldTitle,
               style: TextStyle(
-                  color: Colors.black45,
+                  color: Theme.of(context).colorScheme.tertiary,
                   fontSize: 14,
                   fontWeight: FontWeight.w800,
                   letterSpacing: 1.0
@@ -221,7 +221,7 @@ class MainInfoTab extends StatelessWidget {
             Text(
               fieldInfo,
               style: TextStyle(
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontSize: 20,
                   fontWeight: FontWeight.w800,
                   letterSpacing: 1.0
@@ -281,7 +281,7 @@ class ExtendedInfoTab extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Text(
               fieldTitle,
-              style: TextStyle(color: Colors.black, fontSize: 18
+              style: TextStyle(color: Theme.of(context).colorScheme.tertiary, fontSize: 18
                   // fontFamily: popin
                   ),
             ),
@@ -290,7 +290,7 @@ class ExtendedInfoTab extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               fieldInfo,
-              style: TextStyle(color: styleClass.Style.medicineDescriptionColorMain, fontSize: 16
+              style: TextStyle(color: Theme.of(context).colorScheme.secondary, fontSize: 16
                   // fontFamily: popin
                   ),
             ),

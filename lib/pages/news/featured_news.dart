@@ -18,7 +18,7 @@ class FeaturedNews extends StatelessWidget {
         padding: EdgeInsets.all(12),
         height: 110,
         decoration: BoxDecoration(
-          color: styleClass.Style.medicineDescriptionColorPrimary,
+          color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(26.0),
         ),
         child: Row(

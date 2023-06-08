@@ -38,6 +38,8 @@ class _HomeState extends State<Home>
     with SingleTickerProviderStateMixin, RouteAware {
   late AnimationController _controller;
   late Animation<Color?> _animation;
+  ThemeSettings _themeSettings = ThemeSettings();
+
 
   Color containerColor = Colors.deepPurple.shade100;
 
@@ -63,8 +65,8 @@ class _HomeState extends State<Home>
   }
   void themeToogle(){
     final settings = Provider.of<ThemeSettings>(this.context, listen: false);
-    settings.toogleTheme();
-    print("====================object Theme =====================");
+    settings.toggleTheme();
+    print("====================object of dark Theme =====================");
   }
   getMedName() {
     Random random = Random();
@@ -83,13 +85,15 @@ class _HomeState extends State<Home>
 
   @override
   Widget build(BuildContext context) => OverlaySupport.global(
-          child: Scaffold(
+
+  child: Scaffold(
+    backgroundColor: Theme.of(context).colorScheme.background,
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
           iconTheme: IconThemeData(
-              color: styleClass.Style.medicineDescriptionColorMain),
+              color: Theme.of(context).colorScheme.secondary),
           // actions: <Widget>[
           //   Padding(
           //     padding: const EdgeInsets.only(top:8.0, bottom: 8,right:8 ),
@@ -181,14 +185,14 @@ class _HomeState extends State<Home>
             children: [
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).iconTheme.color,
+                  color: Theme.of(context).colorScheme.background,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircleAvatar(
-                      backgroundColor: Colors.white,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                       radius: 48,
                       child: CircleAvatar(
                         radius: 46,
@@ -202,13 +206,13 @@ class _HomeState extends State<Home>
                       'samaritan',
                       style: TextStyle(
                         fontSize: 13,
-                        color: Colors.white
+                        color: Theme.of(context).colorScheme.tertiary
                       ),
                     ),
                     Text('version 1.0.0',
                         style: TextStyle(
                           fontSize: 13,
-                          color: Colors.white,)
+                          color: Theme.of(context).colorScheme.tertiary,)
                     )
                   ],
                 ),
@@ -233,18 +237,20 @@ class _HomeState extends State<Home>
                   Text('Beta Version'),
                   SizedBox(width: 70),
                   Switch(
-
+                    // value: _themeSettings.isDark,
                     value: _themeManager.themeMode == ThemeMode.dark,
                     onChanged: (onChanged) {
                       setState(() {
                         if (onChanged) {
                           themeToogle();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BetaLandingPage(),
-                            ),
-                          );
+                          _themeSettings.toggleTheme();
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => BetaLandingPage(),
+                            //   ),
+                            // );
+
                         }
                       });
                     },
@@ -252,11 +258,6 @@ class _HomeState extends State<Home>
                     activeColor: styleClass.Style.medicineDescriptionColorMain,
                     inactiveTrackColor:
                         styleClass.Style.medicineDescriptionColorSecondary,
-                    thumbColor: MaterialStateProperty.all(
-                      betaValue
-                          ? styleClass.Style.medicineDescriptionColorMain
-                          : styleClass.Style.medicineDescriptionColorSecondary,
-                    ),
                   )
                 ],
               ),
@@ -314,7 +315,9 @@ class _HomeState extends State<Home>
                           padding: const EdgeInsets.only(
                               top: 15, bottom: 15, left: 35, right: 35),
                           decoration: BoxDecoration(
-                              color: styleClass.Style.homeScanButtonColor),
+                            color: Theme.of(context).colorScheme.secondary,
+                              // color: styleClass.Style.homeScanButtonColor
+                          ),
                           // color: containerColor,
                           // duration: const Duration(milliseconds: 100),
                           child: Row(
@@ -357,7 +360,7 @@ class _HomeState extends State<Home>
                           padding: const EdgeInsets.only(
                               top: 15, bottom: 15, left: 35, right: 25),
                           decoration: BoxDecoration(
-                              color: styleClass.Style.homeScanButtonColor),
+                            color: Theme.of(context).colorScheme.secondary,),
                           // color: Colors.yellow
 
                           // color: containerColor,
@@ -410,8 +413,7 @@ class _HomeState extends State<Home>
                               Text(
                                 'view all',
                                 style: TextStyle(
-                                    color: styleClass.Style
-                                        .medicineDescriptionColorSecondary),
+                                  color: Theme.of(context).colorScheme.secondary,),
                               ),
                             ],
                           ),
@@ -463,8 +465,7 @@ class _HomeState extends State<Home>
                               Text(
                                 'view all',
                                 style: TextStyle(
-                                    color: styleClass.Style
-                                        .medicineDescriptionColorSecondary),
+                                  color: Theme.of(context).colorScheme.secondary,),
                               ),
                             ],
                           ),

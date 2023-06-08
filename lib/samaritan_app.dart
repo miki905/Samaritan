@@ -55,7 +55,7 @@ class _SamaritanAppState extends State<SamaritanApp> {
     return Scaffold(
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background,
             boxShadow: [
               BoxShadow(
                 blurRadius: 20,
@@ -70,12 +70,12 @@ class _SamaritanAppState extends State<SamaritanApp> {
                 rippleColor: Colors.grey[300]!,
                 hoverColor: Colors.grey[100]!,
                 gap: 8,
-                activeColor: styleClass.Style.medicineDescriptionColorMain,
+                activeColor: Theme.of(context).colorScheme.secondary,
                 iconSize: 24,
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 duration: const Duration(milliseconds: 400),
                 tabBackgroundColor: Colors.grey[100]!,
-                color:styleClass.Style.medicineDescriptionColorMain,
+                color:Theme.of(context).colorScheme.secondary,
                 tabs: const [
                   GButton(
                     icon: Icons.home,

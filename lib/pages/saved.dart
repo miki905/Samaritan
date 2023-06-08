@@ -34,6 +34,7 @@ class _AnotherSavedState extends State<SavedPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -41,7 +42,7 @@ class _AnotherSavedState extends State<SavedPage>
           child: Text(
             'Saved medicines',
             style:
-                Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 20),
+                Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 20, color: Theme.of(context).colorScheme.tertiary),
           ),
         ),
       ),
@@ -122,7 +123,7 @@ class _AnotherSavedState extends State<SavedPage>
           },
           child: Container(
             decoration: BoxDecoration(
-              color: Color.fromRGBO(238, 238, 238, 1),
+              color:Theme.of(context).colorScheme.secondary,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black,
@@ -140,13 +141,13 @@ class _AnotherSavedState extends State<SavedPage>
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: styleClass
-                              .Style.medicineDescriptionColorPrimary)),
+                          color: Theme.of(context).colorScheme.background)),
                   Text(
                     medicine.description.substring(0, 300) + '...',
                     style: TextStyle(
                         color:
-                            styleClass.Style.medicineDescriptionColorSecondary),
+                        Theme.of(context).colorScheme.tertiary
+                    ),
                   )
                 ]),
           ),

@@ -60,7 +60,7 @@ class _GridContainerState extends State<GridContainer> {
               type: PageTransitionType.bottomToTop));
         },
         child: Container(
-          color: const Color.fromRGBO(238, 238, 238, 1),
+          color: Theme.of(context).colorScheme.secondary,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,8 +82,7 @@ class _GridContainerState extends State<GridContainer> {
                               .headline1!
                               .copyWith(
                                   fontSize: 22,
-                                  color: styleClass
-                                      .Style.medicineDescriptionColorPrimary),
+                                  color: Theme.of(context).colorScheme.background),
                         )),
                       ],
                     ),
@@ -101,8 +100,7 @@ class _GridContainerState extends State<GridContainer> {
                             child: RichText(
                                 text: TextSpan(
                                     style: TextStyle(
-                                        color: styleClass.Style
-                                            .medicineDescriptionColorSecondary,
+                                        color: Theme.of(context).colorScheme.tertiary,
                                         fontSize: 20),
                                     children: [
                                   //we will put here some minor discription of the medicine

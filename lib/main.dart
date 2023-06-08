@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project_samaritan/bloc/add_reminder_bloc.dart';
 import 'package:project_samaritan/global_bloc.dart';
-import 'package:project_samaritan/models/theme_model.dart';
 import 'package:project_samaritan/pages/beta/dark_mode.dart';
 import 'package:project_samaritan/samaritan_app.dart';
 import 'package:camera/camera.dart';
@@ -63,21 +62,6 @@ class _MyAppState extends State<MyApp> {
 
   _MyAppState({required this.is_Dark});
 
-
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   _themeManager.addListener(themeListener);
-  //   super.initState();
-  // }
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   _themeManager.removeListener(themeListener);
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     GlobalBloc globalBloc = GlobalBloc();
@@ -86,7 +70,7 @@ class _MyAppState extends State<MyApp> {
       value: globalBloc,
       child: Sizer(builder: (context, orientation, deviceType) {
           return ChangeNotifierProvider(
-            create: (context) => ThemeSettings(is_Dark),
+            create: (context) => ThemeSettings(),
           builder: (context,snapshot) {
             // final settings = context.read<ThemeSetings>();
             final settings = Provider.of<ThemeSettings>(context);

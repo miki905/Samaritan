@@ -10,7 +10,8 @@ class AboutPage extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Hero(
               tag: 'appLogo',
@@ -34,6 +35,7 @@ class AboutPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.tertiary
               ),
             ),
             SizedBox(height: 8.0),
@@ -41,7 +43,7 @@ class AboutPage extends StatelessWidget {
               'Version 1.0.0',
               style: TextStyle(
                 fontSize: 18.0,
-                color: Colors.grey[600],
+                color: Theme.of(context).colorScheme.tertiary,
               ),
             ),
             SizedBox(height: 16.0),
@@ -76,10 +78,15 @@ class AboutPage extends StatelessWidget {
             ),
             SizedBox(height: 24.0),
             ElevatedButton(
+              style: ButtonStyle(
+
+              ),
               onPressed: () {
                 // TODO: Implement logic for navigating to Feedback page
               },
-              child: Text('Provide Feedback'),
+              child: Text('Provide Feedback'
+
+              ),
             ),
           ],
         ),

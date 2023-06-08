@@ -74,6 +74,7 @@ class ContactPageState extends State<ContactPage> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.background,
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             leading: IconButton(
@@ -82,14 +83,14 @@ class ContactPageState extends State<ContactPage> {
                 Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back),
-              color: styleClass.Style.medicineDescriptionColorMain,
+              color: Theme.of(context).colorScheme.secondary,
             ),
             title: Container(
                 margin: EdgeInsets.only(left: 55),
                 child: Text(
                   "Contact us",
                   style: TextStyle(
-                      color: styleClass.Style.medicineDescriptionColorMain),
+                      color: Theme.of(context).colorScheme.secondary),
                 )),
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -245,7 +246,7 @@ class ContactPageState extends State<ContactPage> {
                     // backgroundColor:
                     style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            styleClass.Style.medicineDescriptionColorMain),
+                        Theme.of(context).colorScheme.secondary),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         showDialog(
