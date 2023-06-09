@@ -37,12 +37,17 @@ class _AnotherSavedState extends State<SavedPage>
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         title: Center(
           child: Text(
             'Saved medicines',
-            style:
-                Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 20, color: Theme.of(context).colorScheme.tertiary),
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                fontSize: 20, color: Theme.of(context).colorScheme.tertiary),
+          ),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30.0),
           ),
         ),
       ),
@@ -123,7 +128,7 @@ class _AnotherSavedState extends State<SavedPage>
           },
           child: Container(
             decoration: BoxDecoration(
-              color:Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.secondary,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black,
@@ -145,9 +150,7 @@ class _AnotherSavedState extends State<SavedPage>
                   Text(
                     medicine.description.substring(0, 300) + '...',
                     style: TextStyle(
-                        color:
-                        Theme.of(context).colorScheme.tertiary
-                    ),
+                        color: Theme.of(context).colorScheme.tertiary),
                   )
                 ]),
           ),

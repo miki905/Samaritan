@@ -10,7 +10,6 @@ import 'package:project_samaritan/pages/Reminder/add_reminder.dart';
 import 'package:provider/provider.dart';
 import 'package:project_samaritan/theme/styles.dart' as styleClass;
 
-
 import 'package:sizer/sizer.dart';
 
 import '../../main.dart';
@@ -37,12 +36,16 @@ class _ReminderHomeState extends State<ReminderHome> {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
-        title: Text("Reminder"),
-        titleTextStyle: TextStyle(
-          color: Theme.of(context).colorScheme.tertiary,
-          fontSize: 25,
-          fontWeight: FontWeight.bold
+        title: Center(child: Text("Reminder")),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30.0),
+          ),
         ),
+        titleTextStyle: TextStyle(
+            color: Theme.of(context).colorScheme.secondary,
+            fontSize: 25,
+            fontWeight: FontWeight.bold),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -97,7 +100,8 @@ class TopCounter extends StatelessWidget {
           padding: EdgeInsets.only(bottom: 10),
           child: Text(
             "Welcome to daily dose.",
-            style: TextStyle(fontSize: 20, color: Theme.of(context).colorScheme.tertiary),
+            style: TextStyle(
+                fontSize: 20, color: Theme.of(context).colorScheme.tertiary),
           ),
         ),
         // SizedBox(
@@ -136,30 +140,26 @@ class BottomContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final GlobalBloc globalBloc = Provider.of<GlobalBloc>(context);
 
     return StreamBuilder<List<Medication>>(
         stream: globalBloc.medicationList$!,
         builder: (context, snapshot) {
-
-          if(!snapshot.hasData){
-             return Container();
-          }else if(snapshot.data!.isEmpty){
+          if (!snapshot.hasData) {
+            return Container();
+          } else if (snapshot.data!.isEmpty) {
             return Center(
-              child: Text("No Medications",
+              child: Text(
+                "No Medications",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 18
-                ),
+                style: TextStyle(color: Colors.red, fontSize: 18),
               ),
             );
-          }else{
+          } else {
             return GridView.builder(
               padding: EdgeInsets.only(top: 5),
               gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return MedicineCard(
@@ -168,8 +168,6 @@ class BottomContainer extends StatelessWidget {
               },
             );
           }
-
-
         });
   }
 }
@@ -184,26 +182,26 @@ class MedicineCard extends StatefulWidget {
 
 class _MedicineCardState extends State<MedicineCard> {
   //get the current detail of the seved items
-  Hero makeIcon(double size){
-    if(widget.medication.medicineType == 'bottle'){
+  Hero makeIcon(double size) {
+    if (widget.medication.medicineType == 'bottle') {
       return Hero(
-          tag: widget.medication.medicineName! + widget.medication.medicineType!,
-          child: SvgPicture.asset('assets/icons/bottle.svg',
-              height: 50, color: Theme.of(context).colorScheme.secondary),
+        tag: widget.medication.medicineName! + widget.medication.medicineType!,
+        child: SvgPicture.asset('assets/icons/bottle.svg',
+            height: 50, color: Theme.of(context).colorScheme.secondary),
       );
-    }else if(widget.medication.medicineType == 'pill'){
+    } else if (widget.medication.medicineType == 'pill') {
       return Hero(
         tag: widget.medication.medicineName! + widget.medication.medicineType!,
         child: SvgPicture.asset('assets/icons/pill.svg',
             height: 50, color: Theme.of(context).colorScheme.secondary),
       );
-    }else if(widget.medication.medicineType == 'syringe'){
+    } else if (widget.medication.medicineType == 'syringe') {
       return Hero(
         tag: widget.medication.medicineName! + widget.medication.medicineType!,
         child: SvgPicture.asset('assets/icons/syringe.svg',
             height: 50, color: Theme.of(context).colorScheme.secondary),
       );
-    }else if(widget.medication.medicineType == 'tablet'){
+    } else if (widget.medication.medicineType == 'tablet') {
       return Hero(
         tag: widget.medication.medicineName! + widget.medication.medicineType!,
         child: SvgPicture.asset('assets/icons/tablet.svg',
@@ -211,7 +209,13 @@ class _MedicineCardState extends State<MedicineCard> {
       );
     }
 
-    return Hero(tag: widget.medication.medicineName! + widget.medication.medicineType!, child: Icon(Icons.error, size: size, color: Theme.of(context).colorScheme.secondary,));
+    return Hero(
+        tag: widget.medication.medicineName! + widget.medication.medicineType!,
+        child: Icon(
+          Icons.error,
+          size: size,
+          color: Theme.of(context).colorScheme.secondary,
+        ));
   }
 
   @override
@@ -224,18 +228,20 @@ class _MedicineCardState extends State<MedicineCard> {
         // Navigator.push(
         //     context, MaterialPageRoute(builder: (context) => ReminderDetail()));
 
-        Navigator.of(context).push(PageRouteBuilder<void>(
-          pageBuilder: (BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation){
-            return AnimatedBuilder(animation: animation, builder: (context, Widget? child ){
-              return Opacity(
-                opacity: animation.value,
-              child: ReminderDetail(
+        Navigator.of(context).push(
+          PageRouteBuilder<void>(
+            pageBuilder: (BuildContext context, Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+              return AnimatedBuilder(
+                  animation: animation,
+                  builder: (context, Widget? child) {
+                    return Opacity(
+                      opacity: animation.value,
+                      child: ReminderDetail(
                         medication: widget.medication,
-                    ),
-                  );
-                }
-              );
+                      ),
+                    );
+                  });
             },
             transitionDuration: Duration(milliseconds: 500),
           ),
@@ -269,10 +275,9 @@ class _MedicineCardState extends State<MedicineCard> {
               ),
             ),
             Text(
-              widget.medication.interval == 1?
-              'Every ${widget.medication.interval} hour':
-              'Every ${widget.medication.interval} hours',
-
+              widget.medication.interval == 1
+                  ? 'Every ${widget.medication.interval} hour'
+                  : 'Every ${widget.medication.interval} hours',
               overflow: TextOverflow.fade,
               textAlign: TextAlign.start,
               style: TextStyle(

@@ -133,7 +133,6 @@ class _NewsPageState extends State<NewsPage> {
                       width: 10,
                       height: 10,
                       child: Center(child: CircularProgressIndicator()));
-                  ;
                 }),
 
             //us
@@ -190,10 +189,9 @@ class _NewsPageState extends State<NewsPage> {
                   }
 
                   return SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator());
-                  ;
+                      width: 10,
+                      height: 10,
+                      child: Center(child: CircularProgressIndicator()));
                 }),
             // indian
 
@@ -250,9 +248,9 @@ class _NewsPageState extends State<NewsPage> {
                   }
 
                   return SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator());
+                      width: 10,
+                      height: 10,
+                      child: Center(child: CircularProgressIndicator()));
                 }),
             FutureBuilder<TopHeadlines>(
                 future: GlobalBloc().getnews('ng'),
@@ -306,10 +304,13 @@ class _NewsPageState extends State<NewsPage> {
                     return Text('${snapshot.error}');
                   }
 
-                  return CircularProgressIndicator();
+                  return SizedBox(
+                      width: 10,
+                      height: 10,
+                      child: Center(child: CircularProgressIndicator()));
                 }),
             FutureBuilder<TopHeadlines>(
-                future: GlobalBloc().getnews('ma'),
+                future: GlobalBloc().getnews('il'),
                 builder: (context, snapshot) {
                   print(snapshot.data);
                   if (snapshot.hasData) {
@@ -360,8 +361,10 @@ class _NewsPageState extends State<NewsPage> {
                     return Text('${snapshot.error}');
                   }
 
-                  return Container(
-                      width: 1, child: CircularProgressIndicator());
+                  return SizedBox(
+                      width: 10,
+                      height: 10,
+                      child: Center(child: CircularProgressIndicator()));
                 }),
           ]),
         ));
