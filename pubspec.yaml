@@ -69,6 +69,8 @@ dependencies:
   flutter_carousel_slider: ^1.1.0
   carousel_slider: ^4.1.1
   switcher_button: ^0.0.4
+  flutter_map: ^4.0.0
+  latlong: ^0.6.1
 
 
 
@@ -142,6 +144,11 @@ flutter:
     - assets/icons/syringe.svg
     - assets/icons/tablet.svg
     - assets/icons/submit-success.svg
+    - assets/images/echinops_kebericho.jpg
+    - assets/images/Aloe_Vera.jpg
+    - assets/images/garlic.jpg
+    - assets/images/ginger_plant.jpg
+    - assets/images/ocimum_lamiifolium.jpg
 
 
 

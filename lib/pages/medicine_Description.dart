@@ -384,14 +384,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                               ),
                                                             ),
                                                             TextSpan(
-                                                                text: (posts
-                                                                            ?.results[
-                                                                                index]
-                                                                            .description[
-                                                                        index] ??
-                                                                    widget
-                                                                        .medicine
-                                                                        ?.description),
+                                                                text: (posts?.results[index].description[index] ?? widget.medicine?.description),
                                                                 style:
                                                                     GoogleFonts
                                                                         .raleway(
@@ -403,9 +396,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                   "\nDosage And Administration \n",
                                                               style: GoogleFonts
                                                                   .raleway(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
+                                                                fontWeight: FontWeight.bold,
                                                                 color: Theme.of(context).colorScheme.secondary,
                                                                 fontSize: 25,
                                                               ),
@@ -465,10 +456,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                             return Center(
                                                               child:
                                                                   CircularProgressIndicator(
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .iconTheme
-                                                                    .color,
+                                                                color: Theme.of(context).iconTheme.color,
                                                               ),
                                                             );
                                                           }
@@ -479,29 +467,19 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                   'make sure you spelled the name correctly',
                                                                   style: GoogleFonts.raleway(
                                                                       textStyle: TextStyle(
-                                                                          fontSize:
-                                                                              10,
-                                                                          color: Colors
-                                                                              .red
-                                                                              .shade700))),
+                                                                          fontSize: 10,
+                                                                          color: Colors.red.shade700))),
                                                               Text(
                                                                 'And connected to the internet',
                                                                 style: GoogleFonts.raleway(
-                                                                    fontSize:
-                                                                        10,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
+                                                                    fontSize: 10,
+                                                                    fontWeight: FontWeight.bold,
                                                                     textStyle: TextStyle(
-                                                                        color: Colors
-                                                                            .red
-                                                                            .shade700)),
+                                                                        color: Colors.red.shade700)),
                                                               ),
                                                               Icon(
-                                                                Icons
-                                                                    .warning_rounded,
-                                                                color:
-                                                                    Colors.red,
+                                                                Icons.warning_rounded,
+                                                                color: Colors.red,
                                                               )
                                                             ],
                                                           );
@@ -510,10 +488,8 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                         future: _setInterval(),
                                                         builder: (context,
                                                             intervalSnapshot) {
-                                                          if (intervalSnapshot
-                                                              .hasData) {
-                                                            if (posts?.results
-                                                                    .isEmpty ??
+                                                          if (intervalSnapshot.hasData) {
+                                                            if (posts?.results.isEmpty ??
                                                                 true) {
                                                               return Column(
                                                                 children: [
@@ -526,13 +502,9 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                                   Text(
                                                                     'And connected to the internet',
                                                                     style: GoogleFonts.raleway(
-                                                                        fontSize:
-                                                                            10,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                        textStyle:
-                                                                            TextStyle(color: Colors.red.shade700)),
+                                                                        fontSize: 10,
+                                                                        fontWeight: FontWeight.bold,
+                                                                        textStyle: TextStyle(color: Colors.red.shade700)),
                                                                   ),
                                                                   Icon(
                                                                     Icons

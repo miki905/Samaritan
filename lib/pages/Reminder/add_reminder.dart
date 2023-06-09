@@ -66,12 +66,12 @@ class _AddReminderState extends State<AddReminder> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         // toolbarHeight: 7,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
         iconTheme:
-            IconThemeData(color: Color.fromRGBO(81, 208, 208, 100), size: 20),
+            IconThemeData(color: Theme.of(context).colorScheme.secondary, size: 20),
         titleTextStyle: TextStyle(
-            color: Colors.black,
+            color: Theme.of(context).colorScheme.tertiary,
             fontWeight: FontWeight.w800,
             fontStyle: FontStyle.normal,
             fontSize: 26),
