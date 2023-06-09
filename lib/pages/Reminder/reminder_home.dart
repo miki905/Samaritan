@@ -189,7 +189,7 @@ class _MedicineCardState extends State<MedicineCard> {
       return Hero(
           tag: widget.medication.medicineName! + widget.medication.medicineType!,
           child: SvgPicture.asset('assets/icons/bottle.svg',
-              height: 50, color: Theme.of(context).colorScheme.secondary),
+              height: 50, color: Theme.of(context).colorScheme.tertiary),
       );
     }else if(widget.medication.medicineType == 'pill'){
       return Hero(
@@ -211,7 +211,7 @@ class _MedicineCardState extends State<MedicineCard> {
       );
     }
 
-    return Hero(tag: widget.medication.medicineName! + widget.medication.medicineType!, child: Icon(Icons.error, size: size, color: Theme.of(context).colorScheme.secondary,));
+    return Hero(tag: widget.medication.medicineName! + widget.medication.medicineType!, child: Icon(Icons.error, size: size, color: Theme.of(context).colorScheme.background,));
   }
 
   @override
@@ -245,7 +245,7 @@ class _MedicineCardState extends State<MedicineCard> {
         padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(20)),
+            color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,

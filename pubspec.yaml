@@ -144,6 +144,11 @@ flutter:
     - assets/icons/syringe.svg
     - assets/icons/tablet.svg
     - assets/icons/submit-success.svg
+    - assets/images/echinops_kebericho.jpg
+    - assets/images/Aloe_Vera.jpg
+    - assets/images/garlic.jpg
+    - assets/images/ginger_plant.jpg
+    - assets/images/ocimum_lamiifolium.jpg
 
 
 

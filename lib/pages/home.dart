@@ -13,6 +13,7 @@ import 'package:project_samaritan/pages/map/map_page.dart';
 import 'package:project_samaritan/pages/news/featured_news.dart';
 import 'package:project_samaritan/pages/scan_page.dart';
 import 'package:project_samaritan/pages/speech/speech_screen.dart';
+import 'package:project_samaritan/pages/traditional/traditional_home.dart';
 import 'package:project_samaritan/pages/traditional/treatment_info.dart';
 import 'package:project_samaritan/services/language.dart';
 import 'package:project_samaritan/utils/catagories_grid.dart';
@@ -187,7 +188,7 @@ class _HomeState extends State<Home>
             children: [
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.background,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -221,16 +222,25 @@ class _HomeState extends State<Home>
               ),
               ListTile(
                 style: ListTileStyle.drawer,
-                title: const Text('popular medicine'),
+                title: const Text('Popular Medicine'),
                 onTap: () {
                   Navigator.popAndPushNamed(context, '/popularMedicine');
                 },
               ),
               ListTile(
-                style: ListTileStyle.drawer,
-                title: const Text('Disclaimer'),
+                title: const Text('Traditional Treatment '),
                 onTap: () {
-                  Navigator.popAndPushNamed(context, '/desclaimer');
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => TraditionalHome()));
+                  // Navigator.popAndPushNamed(context, '/privacyPolicy');
+                  // themeToogle();
+                },
+              ),
+              ListTile(
+                title: const Text('Frequented Pharmacy'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
+                  // Navigator.popAndPushNamed(context, '/privacyPolicy');
+                  // themeToogle();
                 },
               ),
               Row(
@@ -254,23 +264,29 @@ class _HomeState extends State<Home>
 
                     activeColor: styleClass.Style.medicineDescriptionColorMain,
                     inactiveTrackColor:
-                        styleClass.Style.medicineDescriptionColorSecondary,
+                    styleClass.Style.medicineDescriptionColorSecondary,
                   )
                 ],
               ),
               ListTile(
+                style: ListTileStyle.drawer,
+                title: const Text('Disclaimer'),
+                onTap: () {
+                  Navigator.popAndPushNamed(context, '/desclaimer');
+                },
+              ),
+
+              ListTile(
                 title: const Text('Privacy Policy'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
-                  // Navigator.popAndPushNamed(context, '/privacyPolicy');
+                  Navigator.popAndPushNamed(context, '/privacyPolicy');
                   // themeToogle();
                 },
               ),
               ListTile(
                 title: const Text('Contact Us'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => PlantInfoPage(plantId: 'ginger-plant',)));
-                  // Navigator.popAndPushNamed(context, '/contactUs');
+                  Navigator.popAndPushNamed(context, '/contactUs');
                 },
               ),
               ListTile(
