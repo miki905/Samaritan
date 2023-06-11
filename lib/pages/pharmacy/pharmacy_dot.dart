@@ -52,7 +52,7 @@ class _PharmacyDotState extends State<PharmacyDot> {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).colorScheme.background,
-        height:130,
+        height:110,
       // color: Colors.red,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -64,13 +64,13 @@ class _PharmacyDotState extends State<PharmacyDot> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top:28.0),
+                  padding: const EdgeInsets.only(top:18.0),
                   child: CircleAvatar(
                     radius: 30,
-                    backgroundImage: Image.asset("assets/images/logo 1.png").image,
+                    backgroundImage: Image.asset("assets/images/logo.png").image,
                   ),
                 ),
-                SizedBox(height: 8,),
+                SizedBox(height: 4,),
                 Text(
                   'Poly',
                   style: TextStyle(
@@ -78,7 +78,8 @@ class _PharmacyDotState extends State<PharmacyDot> {
                       fontWeight: FontWeight.w500,
                       color: Theme.of(context).colorScheme.tertiary
                   ),
-                )
+                ),
+                SizedBox(height: 4,),
               ],
             ),
           );

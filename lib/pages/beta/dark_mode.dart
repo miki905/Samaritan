@@ -30,7 +30,8 @@ class ThemeSettings extends ChangeNotifier {
         background: Color(0xFF002626),
         primary: Color(0xFF0E4749), // Set your custom primary color
         secondary: Color(0xFFE55812),
-        tertiary: Colors.white
+        tertiary: Colors.white,
+        surface: Color(0xFF0E4749),
           // Set your custom secondary color
         // ... customize other colors as needed
       ),
@@ -45,7 +46,8 @@ class ThemeSettings extends ChangeNotifier {
         background: Colors.white,
         primary: Color.fromRGBO(55, 32, 104, 1.0), // Set your custom primary color
         secondary: Color(0xFF59C1BD),
-        tertiary: Colors.black
+        tertiary: Colors.black,
+        surface: Colors.white12
         // Set your custom secondary color
         // ... customize other colors as needed
       ),

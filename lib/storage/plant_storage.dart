@@ -16,6 +16,22 @@ class PlantInfo {
 
 class Storage {
   static final Map<String, PlantInfo> plantInfo = {
+    'ruta_graveolens':PlantInfo(
+      scientificName: 'Ruta graveolens',
+      localNames: [
+        'Ruta graveolens',
+        'Tenadam',
+        'Tenaadam',
+        'Adun',
+        'Andun',
+        'Tena\'adam',
+      ],
+      description:
+      'Ruta graveolens is a perennial shrub known for its strong fragrance and distinctive bitter taste. It is widely cultivated for its medicinal properties and ornamental value. The plant has bluish-green leaves and produces small yellow flowers in clusters. In Ethiopian traditional medicine, various parts of Ruta graveolens are used to treat digestive issues, menstrual disorders, and respiratory conditions. It is also used in religious and cultural ceremonies. Additionally, Ruta graveolens has culinary uses and is sometimes used as a natural insect repellent. The plant requires well-drained soil and prefers full sun to partial shade. It is a popular choice in garden landscapes for its aromatic foliage and attractive appearance.',
+      uses:
+      'Ruta graveolens has various traditional uses in Ethiopia. The leaves, stems, and seeds of the plant are used in herbal remedies to alleviate digestive problems such as indigestion, bloating, and stomach cramps. The plant is also believed to have antimicrobial properties and is used to treat infections and wounds. In addition, Ruta graveolens is used to regulate menstrual cycles and relieve menstrual pain. It is also used to ease respiratory conditions such as cough and bronchitis. Furthermore, the plant has cultural and religious significance and is used in rituals and ceremonies. Its aromatic foliage is used for its pleasant scent, and the plant is sometimes used as a natural insect repellent.',
+      imagePath: 'assets/images/ruta_graveolens.jpg',
+    ),
     'ocimum_lamiifolium': PlantInfo(
       scientificName: 'Ocimum lamiifolium',
       localNames: [
@@ -34,11 +50,10 @@ class Storage {
     'ginger_plant': PlantInfo(
       scientificName: 'Ginger Plant',
       localNames: [
-        'Name 1',
-        'Name 2',
-        'Name 3',
-        'Name 4',
-        'Name 5',
+        'Ingudai',
+        'Jemir',
+        'Zengibra',
+        'Ajeer',
       ],
       description:
       'Ginger Plant, scientifically known as Zingiber officinale, is a flowering plant that belongs to the Zingiberaceae family. It is a herbaceous perennial native to Southeast Asia, particularly India and China. The plant is characterized by its thick, knotted underground rhizomes, which are commonly used as a spice and for their medicinal properties. Ginger has a pungent and spicy flavor with a hint of sweetness. It is widely used in various cuisines and has a long history of traditional use in Ayurvedic and Chinese medicine. Ginger has anti-inflammatory, antioxidant, and digestive properties. It is a versatile plant with multiple uses.',
@@ -49,11 +64,9 @@ class Storage {
     'garlic': PlantInfo(
       scientificName: 'Garlic',
       localNames: [
-        'Name 1',
-        'Name 2',
-        'Name 3',
-        'Name 4',
-        'Name 5',
+        'Nech Shinkurt',
+        'Shinkurt',
+        'Lefet',
       ],
       description:
       'Garlic, scientifically known as Allium sativum, is a bulbous plant in the Allium genus. It is closely related to onions, shallots, and leeks. Garlic has been cultivated for thousands of years and is widely used as a flavoring agent in various cuisines around the world. It is known for its pungent aroma and distinct taste. Garlic is also recognized for its potential health benefits. It contains sulfur compounds that are believed to have antioxidant and antimicrobial properties. Garlic is used in traditional medicine for its potential to boost the immune system, lower blood pressure, and improve cardiovascular health.',
@@ -64,11 +77,10 @@ class Storage {
     'aloe_vera': PlantInfo(
       scientificName: 'Aloe Vera',
       localNames: [
-        'Name 1',
-        'Name 2',
-        'Name 3',
-        'Name 4',
-        'Name 5',
+        'Amara Tid',
+        'Tid Kebed',
+        'Kebede Alena',
+        'Amara Sere',
       ],
       description:
       'Aloe vera is a succulent plant species that belongs to the genus Aloe. It is native to the Arabian Peninsula but is now cultivated worldwide for its various uses. Aloe vera is characterized by its thick, fleshy leaves that contain a gel-like substance. This gel is known for its soothing and healing properties, making aloe vera a popular ingredient in skincare and medicinal products. The plant is also easy to grow and is often kept as a houseplant. Aloe vera gel can be directly extracted from the leaves and applied topically to soothe sunburns, skin irritations, and minor cuts.',
@@ -79,11 +91,10 @@ class Storage {
     'echinops_kebericho': PlantInfo(
       scientificName: 'Echinops kebericho',
       localNames: [
-        'Name 1',
-        'Name 2',
-        'Name 3',
-        'Name 4',
-        'Name 5',
+        'Kebericho',
+        'Arada Kebericho',
+        'Anjugo',
+        'Sanchurcho',
       ],
       description:
       'Echinops kebericho is a plant species native to Ethiopia. It is commonly known as Kebericho and belongs to the Asteraceae family. This perennial herb is characterized by its thistle-like appearance and blue or purple flower heads. Kebericho has a long history of use in Ethiopian traditional medicine for its medicinal properties. The roots, leaves, and seeds of the plant are utilized to treat various ailments, including digestive disorders, respiratory conditions, and skin infections. Kebericho is also used in cultural and religious ceremonies. It is a hardy plant that thrives in sunny locations and well-drained soil.',
@@ -91,5 +102,34 @@ class Storage {
       'Echinops kebericho has several traditional uses in Ethiopian folk medicine. The roots of the plant are often used to treat stomachaches, indigestion, and intestinal worms. The leaves are brewed into teas and used as a remedy for respiratory issues such as coughs, asthma, and bronchitis. The seeds are sometimes crushed and applied topically to treat skin infections and wounds. Kebericho is also believed to have antimicrobial and anti-inflammatory properties. In addition to its medicinal uses, the plant is used in spiritual and religious ceremonies. Its unique appearance and vibrant flowers make it a desirable choice for landscaping and ornamental purposes.',
       imagePath: 'assets/images/echinops_kebericho.jpg',
     ),
+    'african_redwood': PlantInfo(
+      scientificName: 'Khaya senegalensis',
+      localNames: [
+        'Makeda',
+        'Dabima',
+        'Mellow',
+        'Khaya',
+      ],
+      description:
+      'African Redwood is a large deciduous tree native to Ethiopia. It is scientifically known as Name 1 and belongs to the Family 1. The tree is known for its majestic size and beautiful reddish-brown bark. African Redwood is highly valued for its timber, which is used in construction, furniture making, and crafting musical instruments.',
+      uses:
+      'The wood of African Redwood is renowned for its durability and attractive grain patterns. It is used in the construction of houses, bridges, and boats. The timber is also sought after for its aesthetic qualities and is used to create high-quality furniture and decorative items. In addition to its commercial uses, African Redwood plays a vital role in the ecosystem by providing shade, shelter, and habitat for various species of birds and animals. The tree is also valued for its cultural and spiritual significance, and its leaves and bark are sometimes used in traditional remedies and ceremonies.',
+      imagePath: 'assets/images/african_redwood.jpg',
+    ),
+    'black_cumin': PlantInfo(
+      scientificName: 'Nigella sativa',
+      localNames: [
+        'Nigella',
+        'Sinisisa',
+        'Habash Zana',
+        'Kala Jira',
+      ],
+      description:
+      'Black Cumin is an annual flowering plant native to Ethiopia. It is scientifically known as Name 1 and belongs to the Family 1. Black Cumin is characterized by its delicate flowers and small, black seeds that have a distinct flavor and aroma. The plant has a long history of culinary and medicinal uses.',
+      uses:
+      'Black Cumin seeds are highly valued for their culinary and medicinal properties. They are used as a spice in Ethiopian cuisine, adding a unique and aromatic flavor to dishes. The seeds are often roasted or ground into a powder before use. Medicinally, Black Cumin is believed to have various health benefits. It is used to improve digestion, boost the immune system, and relieve respiratory issues. The oil extracted from the seeds is also used topically to nourish the skin and hair. In Ethiopian traditional medicine, Black Cumin is used as a natural remedy for digestive disorders, allergies, and inflammatory conditions.',
+      imagePath: 'assets/images/black_cumin.jpg',
+    ),
+
   };
 }

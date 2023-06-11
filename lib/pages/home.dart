@@ -8,9 +8,10 @@ import 'package:path/path.dart';
 import 'package:project_samaritan/models/theme_model.dart';
 import 'package:project_samaritan/pages/beta/beta_landing.dart';
 import 'package:project_samaritan/pages/beta/dark_mode.dart';
-import 'package:project_samaritan/pages/beta/pharmacy_dot.dart';
+import 'package:project_samaritan/pages/pharmacy/pharmacy_dot.dart';
 import 'package:project_samaritan/pages/map/map_page.dart';
 import 'package:project_samaritan/pages/news/featured_news.dart';
+import 'package:project_samaritan/pages/pharmacy/pharmacy_list.dart';
 import 'package:project_samaritan/pages/scan_page.dart';
 import 'package:project_samaritan/pages/speech/speech_screen.dart';
 import 'package:project_samaritan/pages/traditional/traditional_home.dart';
@@ -231,6 +232,14 @@ class _HomeState extends State<Home>
                 title: const Text('Traditional Treatment '),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => TraditionalHome()));
+                  // Navigator.popAndPushNamed(context, '/privacyPolicy');
+                  // themeToogle();
+                },
+              ),
+              ListTile(
+                title: const Text('Pharmacies Nearby'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PharmacyList()));
                   // Navigator.popAndPushNamed(context, '/privacyPolicy');
                   // themeToogle();
                 },
@@ -460,50 +469,50 @@ class _HomeState extends State<Home>
                     )
                   ],
                 ),
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 18.0),
-                          child: HeadingRow(
-                            heading: 'Frequented Pharmacy',
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/popularMedicine');
-                          },
-                          child: Column(
-                            children: [
-                              Text(
-                                'view all',
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.secondary,),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    FittedBox(
-                      child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          // child: GridBuilder()
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Material(
-                                  elevation: 0,
-                                  child: PharmacyDot(),
-                                ),
-                              ),
-                            ],
-                          )),
-                    )
-                  ],
-                ),
+                // Column(
+                //   children: [
+                //     Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //       children: [
+                //         Padding(
+                //           padding: const EdgeInsets.only(left: 18.0),
+                //           child: HeadingRow(
+                //             heading: 'Frequented Pharmacy',
+                //           ),
+                //         ),
+                //         TextButton(
+                //           onPressed: () {
+                //             Navigator.pushNamed(context, '/popularMedicine');
+                //           },
+                //           child: Column(
+                //             children: [
+                //               Text(
+                //                 'view all',
+                //                 style: TextStyle(
+                //                   color: Theme.of(context).colorScheme.secondary,),
+                //               ),
+                //             ],
+                //           ),
+                //         )
+                //       ],
+                //     ),
+                //     FittedBox(
+                //       child: SizedBox(
+                //           width: MediaQuery.of(context).size.width,
+                //           // child: GridBuilder()
+                //           child: Row(
+                //             children: [
+                //               Expanded(
+                //                 child: Material(
+                //                   elevation: 0,
+                //                   child: PharmacyDot(),
+                //                 ),
+                //               ),
+                //             ],
+                //           )),
+                //     )
+                //   ],
+                // ),
                 // Divider(),
                 //catagories section
                 Column(
