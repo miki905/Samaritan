@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_samaritan/global_bloc.dart';
 import 'package:project_samaritan/models/medication.dart';
 import 'package:project_samaritan/pages/Reminder/reminder_detail.dart';
+import 'package:project_samaritan/pages/Reminder/reminder_innerdetail.dart';
 import 'package:project_samaritan/theme/styles.dart';
 import 'package:project_samaritan/pages/Reminder/add_reminder.dart';
 import 'package:provider/provider.dart';
@@ -35,16 +36,17 @@ class _ReminderHomeState extends State<ReminderHome> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        toolbarHeight: 80,
         backgroundColor: Theme.of(context).colorScheme.background,
         title: Center(child: Text("Reminder")),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30.0),
+            bottom: Radius.circular(45.0),
           ),
         ),
         titleTextStyle: TextStyle(
             color: Theme.of(context).colorScheme.secondary,
-            fontSize: 25,
+            fontSize: 35,
             fontWeight: FontWeight.bold),
       ),
       body: Padding(
@@ -86,22 +88,61 @@ class TopCounter extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Container(
-          alignment: Alignment.topLeft,
-          padding: EdgeInsets.only(bottom: 10),
-          child: Text(
-            "Worry Less \nLive Healthier.",
-            textAlign: TextAlign.start,
-            style: TextStyle(fontSize: 40),
-          ),
-        ),
-        Container(
-          alignment: Alignment.topLeft,
-          padding: EdgeInsets.only(bottom: 10),
-          child: Text(
-            "Welcome to daily dose.",
-            style: TextStyle(
-                fontSize: 20, color: Theme.of(context).colorScheme.tertiary),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Inner_reminder()),
+            );
+          },
+          child: Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(bottom: 20),
+            padding: EdgeInsets.all(12),
+            height: 110,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(26.0),
+            ),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  radius: 48,
+                  child: CircleAvatar(
+                    radius: 36,
+                    backgroundImage: AssetImage('assets/images/logo.png'),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Flexible(
+                    flex: 5,
+                    child: Column(
+                      children: [
+                        Text(
+                          "take control of your health",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 6.0,
+                        ),
+                        // Text(
+                        //   "Ampicillin is an antibiotic",
+                        //   overflow: TextOverflow.ellipsis,
+                        //   style: TextStyle(
+                        //     color: Colors.white60,
+                        //   ),
+                        // )
+                      ],
+                    ))
+              ],
+            ),
           ),
         ),
         // SizedBox(
@@ -185,15 +226,9 @@ class _MedicineCardState extends State<MedicineCard> {
   Hero makeIcon(double size) {
     if (widget.medication.medicineType == 'bottle') {
       return Hero(
-<<<<<<< HEAD
         tag: widget.medication.medicineName! + widget.medication.medicineType!,
         child: SvgPicture.asset('assets/icons/bottle.svg',
             height: 50, color: Theme.of(context).colorScheme.secondary),
-=======
-          tag: widget.medication.medicineName! + widget.medication.medicineType!,
-          child: SvgPicture.asset('assets/icons/bottle.svg',
-              height: 50, color: Theme.of(context).colorScheme.tertiary),
->>>>>>> dc844e682ec54fd1931d5d6b0058a1db7b087383
       );
     } else if (widget.medication.medicineType == 'pill') {
       return Hero(
@@ -215,7 +250,6 @@ class _MedicineCardState extends State<MedicineCard> {
       );
     }
 
-<<<<<<< HEAD
     return Hero(
         tag: widget.medication.medicineName! + widget.medication.medicineType!,
         child: Icon(
@@ -223,9 +257,6 @@ class _MedicineCardState extends State<MedicineCard> {
           size: size,
           color: Theme.of(context).colorScheme.secondary,
         ));
-=======
-    return Hero(tag: widget.medication.medicineName! + widget.medication.medicineType!, child: Icon(Icons.error, size: size, color: Theme.of(context).colorScheme.background,));
->>>>>>> dc844e682ec54fd1931d5d6b0058a1db7b087383
   }
 
   @override
@@ -261,7 +292,8 @@ class _MedicineCardState extends State<MedicineCard> {
         padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.circular(20)),
+            color: Theme.of(context).colorScheme.secondary,
+            borderRadius: BorderRadius.circular(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,

@@ -54,6 +54,11 @@ class _NewsPageState extends State<NewsPage> {
                     fontSize: 20),
               ),
             ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(45.0),
+              ),
+            ),
             bottom: TabBar(
                 isScrollable: true,
                 indicatorColor: Colors.black,
