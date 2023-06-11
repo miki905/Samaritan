@@ -343,11 +343,11 @@ class _AddReminderState extends State<AddReminder> {
     var initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
-    var initializationSettingsIDS = DarwinInitializationSettings();
+    // var initializationSettingsIDS = DarwinInitializationSettings();
 
     var initializationSettings = InitializationSettings(
-        android: initializationSettingsAndroid, iOS: initializationSettingsIDS);
-
+        android: initializationSettingsAndroid, );
+    // iOS: initializationSettingsIDS
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
@@ -375,11 +375,11 @@ class _AddReminderState extends State<AddReminder> {
       enableVibration: true,
       icon: '@mipmap/ic_launcher'
     );
-    var iOSPlatformChannelSpecifics = DarwinNotificationDetails();
+    // var iOSPlatformChannelSpecifics = DarwinNotificationDetails();
 
     var platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
-      iOS: iOSPlatformChannelSpecifics,
+      // iOS: iOSPlatformChannelSpecifics,
     );
 
     for(int i = 0; i < (24/medication.interval!).floor();i++){

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:project_samaritan/bloc/add_reminder_bloc.dart';
 import 'package:project_samaritan/global_bloc.dart';
 import 'package:project_samaritan/pages/beta/dark_mode.dart';
@@ -28,6 +29,7 @@ List<CameraDescription> cameras = [];
 NewReminderBloc? newReminderBloc;
 
 void main() async {
+  await initHiveForFlutter();
   WidgetsFlutterBinding.ensureInitialized();
 
   cameras = await availableCameras();
