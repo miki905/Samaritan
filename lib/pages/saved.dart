@@ -36,13 +36,14 @@ class _AnotherSavedState extends State<SavedPage>
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        toolbarHeight: 90,
         elevation: 0,
         backgroundColor: Theme.of(context).colorScheme.secondary,
         title: Center(
           child: Text(
             'Saved medicines',
             style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                fontSize: 20, color: Theme.of(context).colorScheme.tertiary),
+                fontSize: 30, color: Theme.of(context).colorScheme.tertiary),
           ),
         ),
         shape: RoundedRectangleBorder(

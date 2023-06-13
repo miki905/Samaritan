@@ -68,8 +68,8 @@ class _AddReminderState extends State<AddReminder> {
         // toolbarHeight: 7,
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
-        iconTheme:
-            IconThemeData(color: Theme.of(context).colorScheme.secondary, size: 20),
+        iconTheme: IconThemeData(
+            color: Theme.of(context).colorScheme.secondary, size: 20),
         titleTextStyle: TextStyle(
             color: Theme.of(context).colorScheme.tertiary,
             fontWeight: FontWeight.w800,
@@ -94,7 +94,8 @@ class _AddReminderState extends State<AddReminder> {
                 controller: nameController,
                 textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(border: UnderlineInputBorder()),
-                style: TextStyle(color: styleClass.Style.medicineDescriptionColorMain),
+                style: TextStyle(
+                    color: styleClass.Style.medicineDescriptionColorMain),
               ),
               PanelTitle(
                 title: 'Dosage in Mg',
@@ -259,7 +260,8 @@ class _AddReminderState extends State<AddReminder> {
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
-                                  color: Theme.of(context).colorScheme.tertiary)),
+                                  color:
+                                      Theme.of(context).colorScheme.tertiary)),
                         ),
                       ),
                     ),
@@ -346,7 +348,8 @@ class _AddReminderState extends State<AddReminder> {
     // var initializationSettingsIDS = DarwinInitializationSettings();
 
     var initializationSettings = InitializationSettings(
-        android: initializationSettingsAndroid, );
+      android: initializationSettingsAndroid,
+    );
     // iOS: initializationSettingsIDS
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
@@ -365,16 +368,14 @@ class _AddReminderState extends State<AddReminder> {
     var minute = int.parse(medication.startTime![2] + medication.startTime![3]);
 
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'repeatDailyAtTime channel id',
-      'repeatDailyAtTime channel name',
-      importance: Importance.max,
-      ledColor: Theme.of(context).colorScheme.secondary,
-      ledOffMs: 1000,
-      ledOnMs: 1000,
-      enableLights: true,
-      enableVibration: true,
-      icon: '@mipmap/ic_launcher'
-    );
+        'repeatDailyAtTime channel id', 'repeatDailyAtTime channel name',
+        importance: Importance.max,
+        ledColor: Theme.of(context).colorScheme.secondary,
+        ledOffMs: 1000,
+        ledOnMs: 1000,
+        enableLights: true,
+        enableVibration: true,
+        icon: '@mipmap/ic_launcher');
     // var iOSPlatformChannelSpecifics = DarwinNotificationDetails();
 
     var platformChannelSpecifics = NotificationDetails(
@@ -382,21 +383,20 @@ class _AddReminderState extends State<AddReminder> {
       // iOS: iOSPlatformChannelSpecifics,
     );
 
-    for(int i = 0; i < (24/medication.interval!).floor();i++){
-      if(hour + (medication.interval! * i)>23){
+    for (int i = 0; i < (24 / medication.interval!).floor(); i++) {
+      if (hour + (medication.interval! * i) > 23) {
         hour = hour + (medication.interval! * i) - 24;
-      }else{
+      } else {
         hour = hour + (medication.interval! * i);
       }
       flutterLocalNotificationsPlugin.showDailyAtTime(
           int.parse(medication.notificationIDs![i]),
           'Reminder: ${medication.medicineName}',
-          medication.medicineType.toString() != MedicineTypes.none.toString() ?
-          'It is time to take Your ${medication.medicineType?.toLowerCase()}, according to schedule':
-          'It is time to take your medicine, according to schedule',
+          medication.medicineType.toString() != MedicineTypes.none.toString()
+              ? 'It is time to take Your ${medication.medicineType?.toLowerCase()}, according to schedule'
+              : 'It is time to take your medicine, according to schedule',
           Time(hour, minute, 0),
-          platformChannelSpecifics
-      );
+          platformChannelSpecifics);
       hour = ogValue;
     }
   }
@@ -443,7 +443,8 @@ class _SelectTimeState extends State<SelectTime> {
             padding: const EdgeInsets.only(top: 8.0),
             child: TextButton(
               style: TextButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.secondary, shape: StadiumBorder()),
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  shape: StadiumBorder()),
               onPressed: () {
                 _selectTime();
               },
@@ -563,13 +564,17 @@ class MedicineType extends StatelessWidget {
             height: 70,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
-              color: isSelectted ? Theme.of(context).colorScheme.secondary : Colors.white,
+              color: isSelectted
+                  ? Theme.of(context).colorScheme.secondary
+                  : Colors.white,
             ),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
               child: SvgPicture.asset(iconValue,
                   height: 44,
-                  color: isSelectted ? Colors.white : Theme.of(context).colorScheme.secondary  ),
+                  color: isSelectted
+                      ? Colors.white
+                      : Theme.of(context).colorScheme.secondary),
             ),
           ),
           Padding(
@@ -578,13 +583,17 @@ class MedicineType extends StatelessWidget {
               height: 30,
               width: 64,
               decoration: BoxDecoration(
-                color: isSelectted ? Theme.of(context).colorScheme.secondary : Colors.transparent,
+                color: isSelectted
+                    ? Theme.of(context).colorScheme.secondary
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Center(
                   child: Text(name,
                       style: TextStyle(
-                          color: isSelectted ? Colors.white : Theme.of(context).colorScheme.secondary,
+                          color: isSelectted
+                              ? Colors.white
+                              : Theme.of(context).colorScheme.secondary,
                           fontSize: 16))),
             ),
           ),

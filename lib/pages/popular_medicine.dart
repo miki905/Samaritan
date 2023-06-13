@@ -44,8 +44,12 @@ class _PopularMedicinePageState extends State<PopularMedicinePage>
           child: Text(
             'Popular medicines',
             style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                color: Theme.of(context).colorScheme.secondary,
-                fontSize: 20),
+                color: Theme.of(context).colorScheme.secondary, fontSize: 20),
+          ),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(45.0),
           ),
         ),
       ),

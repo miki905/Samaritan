@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:path/path.dart';
+import 'package:project_samaritan/global_bloc.dart';
+import 'package:project_samaritan/models/news.dart';
 import 'package:project_samaritan/models/theme_model.dart';
 import 'package:project_samaritan/pages/beta/beta_landing.dart';
 import 'package:project_samaritan/pages/beta/dark_mode.dart';
@@ -44,7 +46,6 @@ class _HomeState extends State<Home>
   late Animation<Color?> _animation;
   ThemeSettings _themeSettings = ThemeSettings();
 
-
   Color containerColor = Colors.deepPurple.shade100;
 
   @override
@@ -67,11 +68,13 @@ class _HomeState extends State<Home>
       });
     });
   }
-  void themeToogle(){
+
+  void themeToogle() {
     final settings = Provider.of<ThemeSettings>(this.context, listen: false);
     settings.toggleTheme();
     print("====================object of dark Theme =====================");
   }
+
   getMedName() {
     Random random = Random();
     randomNumber = random.nextInt(popular_medication.length);
@@ -89,15 +92,14 @@ class _HomeState extends State<Home>
 
   @override
   Widget build(BuildContext context) => OverlaySupport.global(
-
-  child: Scaffold(
-    backgroundColor: Theme.of(context).colorScheme.background,
+          child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          iconTheme: IconThemeData(
-              color: Theme.of(context).colorScheme.secondary),
+          iconTheme:
+              IconThemeData(color: Theme.of(context).colorScheme.secondary),
           // actions: <Widget>[
           //   Padding(
           //     padding: const EdgeInsets.only(top:8.0, bottom: 8,right:8 ),
@@ -209,15 +211,14 @@ class _HomeState extends State<Home>
                     Text(
                       'samaritan',
                       style: TextStyle(
-                        fontSize: 13,
-                        color: Theme.of(context).colorScheme.tertiary
-                      ),
+                          fontSize: 13,
+                          color: Theme.of(context).colorScheme.tertiary),
                     ),
                     Text('version 1.0.0',
                         style: TextStyle(
                           fontSize: 13,
-                          color: Theme.of(context).colorScheme.tertiary,)
-                    )
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ))
                   ],
                 ),
               ),
@@ -231,7 +232,10 @@ class _HomeState extends State<Home>
               ListTile(
                 title: const Text('Traditional Treatment '),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => TraditionalHome()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TraditionalHome()));
                   // Navigator.popAndPushNamed(context, '/privacyPolicy');
                   // themeToogle();
                 },
@@ -239,7 +243,8 @@ class _HomeState extends State<Home>
               ListTile(
                 title: const Text('Pharmacies Nearby'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => PharmacyList()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PharmacyList()));
                   // Navigator.popAndPushNamed(context, '/privacyPolicy');
                   // themeToogle();
                 },
@@ -265,15 +270,13 @@ class _HomeState extends State<Home>
                         if (onChanged) {
                           themeToogle();
                           _themeSettings.toggleTheme();
-
-
                         }
                       });
                     },
 
                     activeColor: styleClass.Style.medicineDescriptionColorMain,
                     inactiveTrackColor:
-                    styleClass.Style.medicineDescriptionColorSecondary,
+                        styleClass.Style.medicineDescriptionColorSecondary,
                   )
                 ],
               ),
@@ -284,7 +287,6 @@ class _HomeState extends State<Home>
                   Navigator.popAndPushNamed(context, '/desclaimer');
                 },
               ),
-
               ListTile(
                 title: const Text('Privacy Policy'),
                 onTap: () {
@@ -340,7 +342,7 @@ class _HomeState extends State<Home>
                               top: 15, bottom: 15, left: 35, right: 35),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.secondary,
-                              // color: styleClass.Style.homeScanButtonColor
+                            // color: styleClass.Style.homeScanButtonColor
                           ),
                           // color: containerColor,
                           // duration: const Duration(milliseconds: 100),
@@ -384,7 +386,8 @@ class _HomeState extends State<Home>
                           padding: const EdgeInsets.only(
                               top: 15, bottom: 15, left: 35, right: 25),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.secondary,),
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
                           // color: Colors.yellow
 
                           // color: containerColor,
@@ -437,7 +440,9 @@ class _HomeState extends State<Home>
                               Text(
                                 'view all',
                                 style: TextStyle(
-                                  color: Theme.of(context).colorScheme.secondary,),
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
                               ),
                             ],
                           ),
@@ -532,14 +537,94 @@ class _HomeState extends State<Home>
                     ),
                     Column(
                       children: [
-                        ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 8,
-                          itemBuilder: (BuildContext context, int index) {
-                            return FeaturedNews();
-                          },
-                        )
+                        FutureBuilder<TopHeadlines>(
+                            future: GlobalBloc().getnews('gb'),
+                            builder: (context, snapshot) {
+                              print(snapshot.data);
+                              if (snapshot.hasData) {
+                                print('=-=-=-=-=-=-- debug');
+
+                                // print(snapshot.data)
+
+                                print(snapshot.data!.totalResults);
+                                // return Text('it has data');
+
+                                return Column(
+                                  children: [
+                                    Container(
+                                      height: 350,
+                                      width: 350,
+                                      child: ListView.builder(
+                                          itemCount:
+                                              snapshot.data!.articles.length,
+                                          itemBuilder: (context, index) {
+                                            return Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Wrap(
+                                                  children: [
+                                                    Card(
+                                                      elevation: 30,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                bottomRight:
+                                                                    Radius
+                                                                        .circular(
+                                                                            15),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        15)),
+                                                        // side: BorderSide(
+                                                        //   width: 5,
+                                                        //   // color: Color
+                                                        //   //     .fromARGB(
+                                                        //   //         255,
+                                                        //   //         9,
+                                                        //   //         9,
+                                                        //   //         9)
+                                                        // )
+                                                      ),
+                                                      shadowColor: Colors.black,
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .secondary,
+                                                      child: ListTile(
+                                                        title: Text(snapshot
+                                                            .data!
+                                                            .articles[index]
+                                                            .title),
+                                                        subtitle: Text(snapshot
+                                                                    .data!
+                                                                    .articles[
+                                                                        index]
+                                                                    .description ==
+                                                                null
+                                                            ? "no description provided from the source"
+                                                            : snapshot
+                                                                .data!
+                                                                .articles[index]
+                                                                .description!),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ));
+                                          }),
+                                    )
+                                  ],
+                                );
+                              } else if (snapshot.hasError) {
+                                print('some error happening ${snapshot.error}');
+                                return Text('${snapshot.error}');
+                              }
+
+                              return SizedBox(
+                                  width: 10,
+                                  height: 10,
+                                  child: Center(
+                                      child: CircularProgressIndicator()));
+                            }),
                       ],
                     )
                     // Column(
@@ -598,7 +683,8 @@ class _HomeState extends State<Home>
                     //   ],
                     // )
                   ],
-                )
+                ),
+
                 // const Padding(
                 //   padding: EdgeInsets.symmetric(vertical: 12.0),
                 //   child: Divider(),

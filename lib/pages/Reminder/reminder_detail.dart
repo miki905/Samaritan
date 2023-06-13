@@ -19,24 +19,39 @@ class ReminderDetail extends StatefulWidget {
 }
 
 class _ReminderDetailState extends State<ReminderDetail> {
-
   @override
   Widget build(BuildContext context) {
     final GlobalBloc _globalBloc = Provider.of<GlobalBloc>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Color(0xFF59C1BD),
         elevation: 0,
-        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.secondary),
-        title: Center(child: const Text("Details")),
-        titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.tertiary, fontSize: 24),
+        toolbarHeight: 60,
+        //backgroundColor: Theme.of(context).colorScheme.background,
+        iconTheme:
+            IconThemeData(color: Theme.of(context).colorScheme.secondary),
+        title: Center(child: const Text("Details    ")),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(45.0),
+          ),
+        ),
+        titleTextStyle: TextStyle(
+            color: Theme.of(context).colorScheme.tertiary,
+            fontSize: 30,
+            fontWeight: FontWeight.bold),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            MainSection(medication: widget.medication,),
-            ExtendedSection(medication: widget.medication,),
+            MainSection(
+              medication: widget.medication,
+            ),
+            ExtendedSection(
+              medication: widget.medication,
+            ),
             SizedBox(
               width: 300,
               height: 60,
@@ -94,7 +109,8 @@ class _ReminderDetailState extends State<ReminderDetail> {
           )),
           title: Text(
             "Delete This Reminder ?",
-            style: TextStyle(color: styleClass.Style.medicineDescriptionColorMain),
+            style:
+                TextStyle(color: styleClass.Style.medicineDescriptionColorMain),
           ),
           actions: [
             TextButton(
@@ -125,26 +141,26 @@ class _ReminderDetailState extends State<ReminderDetail> {
 class MainSection extends StatelessWidget {
   const MainSection({Key? key, required this.medication}) : super(key: key);
   final Medication? medication;
-  Hero makeIcon(double size){
-    if(medication!.medicineType == 'bottle'){
+  Hero makeIcon(double size) {
+    if (medication!.medicineType == 'bottle') {
       return Hero(
         tag: medication!.medicineName! + medication!.medicineType!,
         child: SvgPicture.asset('assets/icons/liquid.svg',
             height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
-    }else if(medication!.medicineType == 'pill'){
+    } else if (medication!.medicineType == 'pill') {
       return Hero(
         tag: medication!.medicineName! + medication!.medicineType!,
         child: SvgPicture.asset('assets/icons/capsule.svg',
             height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
-    }else if(medication!.medicineType == 'syringe'){
+    } else if (medication!.medicineType == 'syringe') {
       return Hero(
         tag: medication!.medicineName! + medication!.medicineType!,
         child: SvgPicture.asset('assets/icons/syringe.svg',
             height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
-    }else if(medication!.medicineType == 'tablet'){
+    } else if (medication!.medicineType == 'tablet') {
       return Hero(
         tag: medication!.medicineName! + medication!.medicineType!,
         child: SvgPicture.asset('assets/icons/tablet.svg',
@@ -152,8 +168,11 @@ class MainSection extends StatelessWidget {
       );
     }
 
-    return Hero(tag: medication!.medicineName! + medication!.medicineType!, child: Icon(Icons.error, size: size));
+    return Hero(
+        tag: medication!.medicineName! + medication!.medicineType!,
+        child: Icon(Icons.error, size: size));
   }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -177,9 +196,9 @@ class MainSection extends StatelessWidget {
             ),
             MainInfoTab(
               fieldTitle: 'Dosage',
-              fieldInfo: medication!.dosage == 0 ?
-              'not Specified ':
-              "${medication!.dosage} mg",
+              fieldInfo: medication!.dosage == 0
+                  ? 'not Specified '
+                  : "${medication!.dosage} mg",
             ),
           ],
         )
@@ -246,17 +265,19 @@ class ExtendedSection extends StatelessWidget {
         children: [
           ExtendedInfoTab(
             fieldTitle: "Medicine Type",
-            fieldInfo:  medication!.medicineType! == 'None'?
-            'not Specified ':
-            "${medication!.medicineType!}",
+            fieldInfo: medication!.medicineType! == 'None'
+                ? 'not Specified '
+                : "${medication!.medicineType!}",
           ),
           ExtendedInfoTab(
             fieldTitle: "Dose Interval",
-            fieldInfo: "Every ${medication!.interval} hours | ${medication!.interval == 24 ?  "one times a day": "${(24 / medication!.interval!).floor()} times a day"}",
+            fieldInfo:
+                "Every ${medication!.interval} hours | ${medication!.interval == 24 ? "one times a day" : "${(24 / medication!.interval!).floor()} times a day"}",
           ),
           ExtendedInfoTab(
             fieldTitle: "Start Time",
-            fieldInfo: "${medication!.startTime![0]}${medication!.startTime![1]}:${medication!.startTime![2]}${medication!.startTime![3]}",
+            fieldInfo:
+                "${medication!.startTime![0]}${medication!.startTime![1]}:${medication!.startTime![2]}${medication!.startTime![3]}",
           ),
         ],
       ),
@@ -281,7 +302,8 @@ class ExtendedInfoTab extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Text(
               fieldTitle,
-              style: TextStyle(color: Theme.of(context).colorScheme.tertiary, fontSize: 18
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.tertiary, fontSize: 18
                   // fontFamily: popin
                   ),
             ),
@@ -290,7 +312,8 @@ class ExtendedInfoTab extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               fieldInfo,
-              style: TextStyle(color: Theme.of(context).colorScheme.secondary, fontSize: 16
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary, fontSize: 16
                   // fontFamily: popin
                   ),
             ),
