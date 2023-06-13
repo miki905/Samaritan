@@ -55,26 +55,6 @@ class _ReminderHomeState extends State<ReminderHome> {
           children: [TopCounter(), Flexible(child: BottomContainer())],
         ),
       ),
-      floatingActionButton: InkResponse(
-        onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddReminder()));
-        },
-        child: SizedBox(
-          height: 60,
-          width: 60,
-          child: Card(
-            color: Colors.grey[300],
-            shape:
-                BeveledRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: Icon(
-              Icons.add_outlined,
-              color: Colors.black87,
-              size: 20,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
@@ -154,18 +134,23 @@ class TopCounter extends StatelessWidget {
             stream: globalBloc.medicationList$!,
             builder: (context, snapshot) {
               return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: Text('active reminder', textAlign: TextAlign.center),
+                    child: Text(
+                      'active reminder',
+                      style:
+                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   Container(
-                    alignment: Alignment.center,
+                    alignment: Alignment.bottomLeft,
                     padding: EdgeInsets.only(bottom: 10),
                     child: Text(
                       !snapshot.hasData
                           ? "0"
                           : snapshot.data!.length.toString(),
-                      style: TextStyle(fontSize: 44),
+                      style: TextStyle(fontSize: 34),
                     ),
                   ),
                   Align(

@@ -6,7 +6,7 @@ import 'package:project_samaritan/pages/medicine_Description.dart';
 class InventoryDetail extends StatelessWidget {
   // final String inventory;
   final Map<String, dynamic> inventory;
-   InventoryDetail(this.inventory);
+  InventoryDetail(this.inventory);
   // get inventory => null;
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,14 @@ class InventoryDetail extends StatelessWidget {
       return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
+          toolbarHeight: 70,
           backgroundColor: Theme.of(context).colorScheme.background,
           title: Text('Pharmacy Information'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(45.0),
+            ),
+          ),
           titleTextStyle: TextStyle(
             color: Theme.of(context).colorScheme.tertiary,
             fontSize: 20,
@@ -34,9 +40,11 @@ class InventoryDetail extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
-        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.secondary),
+        iconTheme:
+            IconThemeData(color: Theme.of(context).colorScheme.secondary),
         title: Text("Inventory Details"),
-        titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.tertiary, fontSize: 24),
+        titleTextStyle: TextStyle(
+            color: Theme.of(context).colorScheme.tertiary, fontSize: 24),
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),

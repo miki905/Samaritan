@@ -56,18 +56,25 @@ class _PharmacyListHomeState extends State<PharmacyListHome> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.background,
-          elevation: 0,
-          title: Text("Pharmacies Nearby"),
-          titleTextStyle: TextStyle(
-            color: Theme.of(context).colorScheme.tertiary,
-            fontSize: 20,
+        toolbarHeight: 70,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        elevation: 0,
+        title: Text("Pharmacies Nearby"),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(45.0),
           ),
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Icon(Icons.arrow_back),
-            color: Theme.of(context).colorScheme.secondary,
-          )),
+        ),
+        titleTextStyle: TextStyle(
+          color: Theme.of(context).colorScheme.tertiary,
+          fontSize: 20,
+        ),
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.arrow_back),
+          color: Theme.of(context).colorScheme.secondary,
+        ),
+      ),
       body: Query(
         options: QueryOptions(document: gql(""" 
       query GetPharmacy {
