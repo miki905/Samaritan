@@ -52,7 +52,10 @@ class _ReminderHomeState extends State<ReminderHome> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          children: [TopCounter(), Flexible(child: BottomContainer())],
+          children: [
+            TopCounter(),
+            Flexible(
+                child: BottomContainer())],
         ),
       ),
     );
@@ -85,7 +88,19 @@ class TopCounter extends StatelessWidget {
               borderRadius: BorderRadius.circular(26.0),
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Text(
+                  "Control your Medication",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                // SizedBox(
+                //   width: 10,
+                // ),
                 CircleAvatar(
                   backgroundColor: Theme.of(context).colorScheme.secondary,
                   radius: 48,
@@ -94,41 +109,10 @@ class TopCounter extends StatelessWidget {
                     backgroundImage: AssetImage('assets/images/logo.png'),
                   ),
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-                Flexible(
-                    flex: 5,
-                    child: Column(
-                      children: [
-                        Text(
-                          "take control of your health",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 6.0,
-                        ),
-                        // Text(
-                        //   "Ampicillin is an antibiotic",
-                        //   overflow: TextOverflow.ellipsis,
-                        //   style: TextStyle(
-                        //     color: Colors.white60,
-                        //   ),
-                        // )
-                      ],
-                    ))
               ],
             ),
           ),
         ),
-        // SizedBox(
-        //   height: 2.h,
-        // ),
-        // show number of saved medicines from shared preference
 
         StreamBuilder<List<Medication>>(
             stream: globalBloc.medicationList$!,
@@ -136,26 +120,30 @@ class TopCounter extends StatelessWidget {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Text(
-                      'active reminder',
-                      style:
-                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Active Reminder',
+                        style:
+                            TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        !snapshot.hasData
+                            ? "0"
+                            : snapshot.data!.length.toString(),
+                        style: TextStyle(fontSize: 34),
+                      ),
+                    ],
                   ),
-                  Container(
-                    alignment: Alignment.bottomLeft,
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Text(
-                      !snapshot.hasData
-                          ? "0"
-                          : snapshot.data!.length.toString(),
-                      style: TextStyle(fontSize: 34),
-                    ),
-                  ),
+
                   Align(
                     alignment: Alignment.centerRight,
                     child: OutlinedButton(
+
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -164,7 +152,10 @@ class TopCounter extends StatelessWidget {
                       },
                       style: ButtonStyle(
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0))),
+                            borderRadius: BorderRadius.circular(10)),
+
+                        ),
+                        // backgroundColor: Color.fromRGBO(65, 105, 225, 1.0),
                       ),
                       child: Text("Add", textAlign: TextAlign.center),
                     ),
@@ -210,9 +201,9 @@ class BottomContainer extends StatelessWidget {
             return GridView.builder(
               padding: EdgeInsets.only(top: 5),
               gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
               itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
+              itemBuilder: (BuildContext context, int index) {
                 return MedicineCard(
                   medication: snapshot.data![index],
                 );
@@ -233,41 +224,7 @@ class MedicineCard extends StatefulWidget {
 
 class _MedicineCardState extends State<MedicineCard> {
   //get the current detail of the seved items
-  Hero makeIcon(double size) {
-    if (widget.medication.medicineType == 'bottle') {
-      return Hero(
-        tag: widget.medication.medicineName! + widget.medication.medicineType!,
-        child: SvgPicture.asset('assets/icons/liquid.svg',
-            height: 50, color: Theme.of(context).colorScheme.secondary),
-      );
-    } else if (widget.medication.medicineType == 'pill') {
-      return Hero(
-        tag: widget.medication.medicineName! + widget.medication.medicineType!,
-        child: SvgPicture.asset('assets/icons/capsule.svg',
-            height: 50, color: Theme.of(context).colorScheme.secondary),
-      );
-    } else if (widget.medication.medicineType == 'syringe') {
-      return Hero(
-        tag: widget.medication.medicineName! + widget.medication.medicineType!,
-        child: SvgPicture.asset('assets/icons/syringe.svg',
-            height: 50, color: Theme.of(context).colorScheme.secondary),
-      );
-    } else if (widget.medication.medicineType == 'tablet') {
-      return Hero(
-        tag: widget.medication.medicineName! + widget.medication.medicineType!,
-        child: SvgPicture.asset('assets/icons/tablet.svg',
-            height: 50, color: Theme.of(context).colorScheme.secondary),
-      );
-    }
 
-    return Hero(
-        tag: widget.medication.medicineName! + widget.medication.medicineType!,
-        child: Icon(
-          Icons.error,
-          size: size,
-          color: Theme.of(context).colorScheme.secondary,
-        ));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -299,18 +256,18 @@ class _MedicineCardState extends State<MedicineCard> {
         );
       },
       child: Container(
-        padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
-        margin: EdgeInsets.all(10),
+        padding: EdgeInsets.only(left: 20, right: 10, top: 10, bottom: 10),
+        margin: EdgeInsets.all(5),
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.circular(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Spacer(),
-            makeIcon(50),
-            Spacer(),
+            // makeIcon(50),
+
             Hero(
               tag: widget.medication.medicineName!,
               child: Text(
@@ -326,10 +283,11 @@ class _MedicineCardState extends State<MedicineCard> {
                     ),
               ),
             ),
+            Spacer(),
             Text(
               widget.medication.interval == 1
-                  ? 'Every ${widget.medication.interval} hour'
-                  : 'Every ${widget.medication.interval} hours',
+                  ? 'Every ${widget.medication.interval} HR'
+                  : 'Every ${widget.medication.interval} HR',
               overflow: TextOverflow.fade,
               textAlign: TextAlign.start,
               style: TextStyle(

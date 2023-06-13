@@ -8,6 +8,7 @@ class DesclaimerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,

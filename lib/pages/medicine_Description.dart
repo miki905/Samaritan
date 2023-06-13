@@ -560,7 +560,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                             MainAxisAlignment.center,
                                                         children:  <Widget>[
                                                           Icon(Icons.bookmark,
-                                                              color: Theme.of(context).colorScheme.tertiary),
+                                                              color: Colors.white),
                                                           SizedBox(
                                                             width: 8,
                                                           ),
@@ -568,7 +568,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                             'save',
                                                             style: TextStyle(
                                                                 fontSize: 24,
-                                                              color: Theme.of(context).colorScheme.tertiary
+                                                                color: Colors.white
                                                             ),
                                                           )
                                                         ]),
@@ -599,8 +599,8 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                       mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                       children:  <Widget>[
-                                                        Icon(Icons.bookmark,
-                                                            color: Theme.of(context).colorScheme.tertiary),
+                                                        Icon(Icons.location_pin,
+                                                            color: Colors.white),
                                                         SizedBox(
                                                           width: 8,
                                                         ),
@@ -608,7 +608,7 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                                           'NearBy',
                                                           style: TextStyle(
                                                               fontSize: 24,
-                                                              color: Theme.of(context).colorScheme.tertiary
+                                                              color: Colors.white
                                                           ),
                                                         )
                                                       ]),

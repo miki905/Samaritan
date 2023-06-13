@@ -84,17 +84,21 @@ class PharmacyResponseList extends StatelessWidget {
                     );
                   },
                   child: Card(
-                    elevation: 8,
+                    elevation: 30,
+                    shape:
+                    RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.only(
+                          bottomRight: Radius.circular(15),
+                          topRight: Radius.circular(15)),
+                    ),
+                    color: Theme.of(context).colorScheme.primary,
                     // shadowColor: Theme.of(context).colorScheme.surface,
                     child: Container(
                       width: double.infinity,
                       margin: EdgeInsets.only(bottom: 10),
                       padding: EdgeInsets.all(8),
                       height: 80,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface,
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
                       child: Row(
                         children: [
                           CircleAvatar(

@@ -43,7 +43,7 @@ class _AnotherSavedState extends State<SavedPage>
           child: Text(
             'Saved medicines',
             style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                fontSize: 30, color: Theme.of(context).colorScheme.tertiary),
+                fontSize: 30, color: Colors.white),
           ),
         ),
         shape: RoundedRectangleBorder(
@@ -129,7 +129,7 @@ class _AnotherSavedState extends State<SavedPage>
           },
           child: Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.primary,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black,

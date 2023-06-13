@@ -250,14 +250,6 @@ class _HomeState extends State<Home>
                   // themeToogle();
                 },
               ),
-              ListTile(
-                title: const Text('Frequented Pharmacy'),
-                onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage(MedName: 'Amoxicillin',)));
-                  // Navigator.popAndPushNamed(context, '/privacyPolicy');
-                  // themeToogle();
-                },
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -561,8 +553,8 @@ class _HomeState extends State<Home>
                               }
 
                               return SizedBox(
-                                  width: 10,
-                                  height: 10,
+                                  width: 50,
+                                  height: 50,
                                   child: Center(
                                       child: CircularProgressIndicator()));
                             }),
