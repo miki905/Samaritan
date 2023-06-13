@@ -8,11 +8,16 @@ class TraditionalHome extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        toolbarHeight: 70,
         backgroundColor: Theme.of(context).colorScheme.background,
-        title: Text('Traditional Treatments '
+        title: Text('Traditional Treatments '),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(35.0),
+          ),
         ),
         titleTextStyle: TextStyle(
-          color:Theme.of(context).colorScheme.tertiary,
+          color: Theme.of(context).colorScheme.tertiary,
           fontSize: 20,
         ),
         iconTheme: IconThemeData(

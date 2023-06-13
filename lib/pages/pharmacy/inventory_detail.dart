@@ -6,7 +6,7 @@ import 'package:project_samaritan/pages/medicine_Description.dart';
 class InventoryDetail extends StatelessWidget {
   // final String inventory;
   final Map<String, dynamic> inventory;
-   InventoryDetail(this.inventory);
+  InventoryDetail(this.inventory);
   // get inventory => null;
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,14 @@ class InventoryDetail extends StatelessWidget {
       return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
+          toolbarHeight: 70,
           backgroundColor: Theme.of(context).colorScheme.background,
           title: Text('Pharmacy Information'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(45.0),
+            ),
+          ),
           titleTextStyle: TextStyle(
             color: Theme.of(context).colorScheme.tertiary,
             fontSize: 20,
@@ -34,9 +40,11 @@ class InventoryDetail extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
-        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.secondary),
+        iconTheme:
+            IconThemeData(color: Theme.of(context).colorScheme.secondary),
         title: Text("Inventory Details"),
-        titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.tertiary, fontSize: 24),
+        titleTextStyle: TextStyle(
+            color: Theme.of(context).colorScheme.tertiary, fontSize: 24),
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
@@ -48,7 +56,7 @@ class InventoryDetail extends StatelessWidget {
               children: [
                 Container(
                   width: 100,
-                  height:100,
+                  height: 100,
                   child: SvgPicture.asset(
                       'assets/icons/${inventory["catagory"]}.svg',
                       height: 100,
@@ -68,8 +76,8 @@ class InventoryDetail extends StatelessWidget {
                               fontSize: 24,
                               fontWeight: FontWeight.w800,
                               letterSpacing: 1.0
-                            // fontFamily: popin
-                          ),
+                              // fontFamily: popin
+                              ),
                         ),
                         SizedBox(
                           height: 8,
@@ -81,8 +89,8 @@ class InventoryDetail extends StatelessWidget {
                               fontSize: 18,
                               fontWeight: FontWeight.w800,
                               letterSpacing: 1.0
-                            // fontFamily: popin
-                          ),
+                              // fontFamily: popin
+                              ),
                         ),
                       ],
                     ),
@@ -99,8 +107,8 @@ class InventoryDetail extends StatelessWidget {
                               fontSize: 24,
                               fontWeight: FontWeight.w800,
                               letterSpacing: 1.0
-                            // fontFamily: popin
-                          ),
+                              // fontFamily: popin
+                              ),
                         ),
                         SizedBox(
                           height: 8,
@@ -112,8 +120,8 @@ class InventoryDetail extends StatelessWidget {
                               fontSize: 18,
                               fontWeight: FontWeight.w800,
                               letterSpacing: 1.0
-                            // fontFamily: popin
-                          ),
+                              // fontFamily: popin
+                              ),
                         ),
                       ],
                     ),
@@ -134,8 +142,8 @@ class InventoryDetail extends StatelessWidget {
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
+                      // fontFamily: popin
+                      ),
                 ),
                 SizedBox(
                   height: 8,
@@ -147,8 +155,8 @@ class InventoryDetail extends StatelessWidget {
                       fontSize: 18,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
+                      // fontFamily: popin
+                      ),
                 ),
               ],
             ),
@@ -165,8 +173,8 @@ class InventoryDetail extends StatelessWidget {
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
+                      // fontFamily: popin
+                      ),
                 ),
                 SizedBox(
                   height: 8,
@@ -178,8 +186,8 @@ class InventoryDetail extends StatelessWidget {
                       fontSize: 18,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
+                      // fontFamily: popin
+                      ),
                 ),
               ],
             ),
@@ -196,8 +204,8 @@ class InventoryDetail extends StatelessWidget {
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
+                      // fontFamily: popin
+                      ),
                 ),
                 SizedBox(
                   height: 8,
@@ -209,8 +217,8 @@ class InventoryDetail extends StatelessWidget {
                       fontSize: 18,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
+                      // fontFamily: popin
+                      ),
                 ),
               ],
             ),
@@ -227,8 +235,8 @@ class InventoryDetail extends StatelessWidget {
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
+                      // fontFamily: popin
+                      ),
                 ),
                 SizedBox(
                   height: 8,
@@ -240,8 +248,8 @@ class InventoryDetail extends StatelessWidget {
                       fontSize: 18,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
+                      // fontFamily: popin
+                      ),
                 ),
               ],
             ),
@@ -258,8 +266,8 @@ class InventoryDetail extends StatelessWidget {
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
+                      // fontFamily: popin
+                      ),
                 ),
                 SizedBox(
                   height: 8,
@@ -271,8 +279,8 @@ class InventoryDetail extends StatelessWidget {
                       fontSize: 18,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
+                      // fontFamily: popin
+                      ),
                 ),
               ],
             ),
@@ -280,34 +288,28 @@ class InventoryDetail extends StatelessWidget {
               height: 108,
             ),
             Container(
-              margin:
-              const EdgeInsets.only(bottom: 18),
+              margin: const EdgeInsets.only(bottom: 18),
               child: ClipRRect(
-                borderRadius:
-                BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      minimumSize:
-                      const Size.fromHeight(
-                          50),
-                      backgroundColor: Theme.of(context).colorScheme.secondary// NEW
-                  ),
-                    onPressed: () {
-                      Navigator.of(context).push(PageTransition(
-                          child: MedicineDescription(
-                            medName: inventory["medicine_name"],
-                          ),
-                          type: PageTransitionType.bottomToTop));
-                    },
+                      minimumSize: const Size.fromHeight(50),
+                      backgroundColor:
+                          Theme.of(context).colorScheme.secondary // NEW
+                      ),
+                  onPressed: () {
+                    Navigator.of(context).push(PageTransition(
+                        child: MedicineDescription(
+                          medName: inventory["medicine_name"],
+                        ),
+                        type: PageTransitionType.bottomToTop));
+                  },
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:  <Widget>[
+                      children: <Widget>[
                         Text(
                           'Description',
-                          style: TextStyle(
-                              fontSize: 24,
-                              color: Colors.white
-                          ),
+                          style: TextStyle(fontSize: 24, color: Colors.white),
                         )
                       ]),
                 ),
@@ -319,14 +321,3 @@ class InventoryDetail extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
