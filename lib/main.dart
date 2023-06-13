@@ -24,6 +24,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 List<CameraDescription> cameras = [];
 NewReminderBloc? newReminderBloc;
@@ -64,8 +65,29 @@ class _MyAppState extends State<MyApp> {
 
   _MyAppState({required this.is_Dark});
 
+
   @override
   Widget build(BuildContext context) {
+    final HttpLink httpLink = HttpLink(
+        "https://flexible-wren-26.hasura.app/v1/graphql/",
+        defaultHeaders: {
+          "x-hasura-admin-secret":
+          "ATTrUy0HHKdRxhQxjBrKSu3AEGW3SdmBZmj7paW5tezpEik5xMTcTnxckOVJI9Fz"
+        });
+    final AuthLink authLink = AuthLink(
+      getToken: () async => 'Bearer <>',
+      // OR
+      // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
+    );
+    final Link link = authLink.concat(httpLink);
+
+    ValueNotifier<GraphQLClient> client = ValueNotifier(
+      GraphQLClient(
+        link: link,
+        // The default store is the InMemoryStore, which does NOT persist to disk
+        cache: GraphQLCache(store: HiveStore()),
+      ),
+    );
     GlobalBloc globalBloc = GlobalBloc();
 
     return Provider<GlobalBloc>.value(
@@ -76,28 +98,31 @@ class _MyAppState extends State<MyApp> {
           builder: (context,snapshot) {
             // final settings = context.read<ThemeSetings>();
             final settings = Provider.of<ThemeSettings>(context);
-            return MaterialApp(
-              theme: settings.currentTheme,
-              debugShowCheckedModeBanner: false,
-              localizationsDelegates: [
-                // AppLocalizations.delegate, // Add this line
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              // locale: Locale('es', ''),
-              routes: {
-                '/scan': (context) => CameraScan(),
-                '/home': (context) => SamaritanApp(),
-                '/search': (context) => SearchPage(),
-                '/popularMedicine': (context) => PopularMedicinePage(),
-                '/about': (context) => AboutPage(),
-                '/contactUs': (context) => ContactPage(),
-                '/privacyPolicy': (context) => PrivacyPolicyPgae(),
-                '/desclaimer': (context) => DesclaimerPage(),
-                '/userManual': (context) => UserManualPage(),
-              },
-              home: widget.showHome ? SamaritanApp() : StartPage(),
+            return GraphQLProvider(
+              client: client,
+              child: MaterialApp(
+                theme: settings.currentTheme,
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: [
+                  // AppLocalizations.delegate, // Add this line
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                // locale: Locale('es', ''),
+                routes: {
+                  '/scan': (context) => CameraScan(),
+                  '/home': (context) => SamaritanApp(),
+                  '/search': (context) => SearchPage(),
+                  '/popularMedicine': (context) => PopularMedicinePage(),
+                  '/about': (context) => AboutPage(),
+                  '/contactUs': (context) => ContactPage(),
+                  '/privacyPolicy': (context) => PrivacyPolicyPgae(),
+                  '/desclaimer': (context) => DesclaimerPage(),
+                  '/userManual': (context) => UserManualPage(),
+                },
+                home: widget.showHome ? SamaritanApp() : StartPage(),
+              ),
             );
           },
 

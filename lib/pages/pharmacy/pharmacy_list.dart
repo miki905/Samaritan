@@ -72,8 +72,12 @@ class _PharmacyListHomeState extends State<PharmacyListHome> {
         options: QueryOptions(document: gql(""" 
       query GetPharmacy {
           users {
-            pharmacy_name
             name
+            pharmacy_name
+            id
+             users_locations {
+              address
+            }
           }
         }
       """)),
@@ -84,7 +88,9 @@ class _PharmacyListHomeState extends State<PharmacyListHome> {
           }
 
           if (result.isLoading) {
-            return CircularProgressIndicator();
+            return Container(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator());
           }
 
           final data = result.data;
@@ -92,27 +98,29 @@ class _PharmacyListHomeState extends State<PharmacyListHome> {
             return Text('No data available');
           }
 
-
           return ListView.builder(
             // physics: NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
-              print("===================================================================");
+              print(
+                  "===================================================================");
               print(result.data!['users'][index]);
-              print("===================================================================");
+              print(
+                  "===================================================================");
 
               return Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: InkWell(
-
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PharmacyDetail(result.data!['users'][index]["pharmacy_name"])),
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              PharmacyDetail(result.data!['users'][index])),
                     );
                   },
                   child: Card(
                     elevation: 8,
-                    // shadowColor: ,
+                    // shadowColor: Theme.of(context).colorScheme.surface,
                     child: Container(
                       width: double.infinity,
                       margin: EdgeInsets.only(bottom: 10),
@@ -125,33 +133,41 @@ class _PharmacyListHomeState extends State<PharmacyListHome> {
                       child: Row(
                         children: [
                           CircleAvatar(
-                            backgroundColor: Theme.of(context).colorScheme.background,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.background,
                             radius: 48,
                             child: CircleAvatar(
                               radius: 36,
-                              backgroundImage: AssetImage('assets/images/logo.png'),
+                              backgroundImage:
+                                  AssetImage('assets/images/logo.png'),
                             ),
                           ),
                           Flexible(
                               flex: 5,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 // crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    result.data?['users'][index]["pharmacy_name"],
+                                    result.data?['users'][index]
+                                        ["pharmacy_name"],
                                     style: TextStyle(
-                                      color: Theme.of(context).colorScheme.tertiary,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .tertiary,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 25,
                                     ),
                                   ),
-
                                   Text(
-                                    result.data!['users'][index]["name"],
+                                    "Poly",
+                                    // result.data!['users'][index]["users_locations"]["address"],
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      color: Theme.of(context).colorScheme.tertiary,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .tertiary,
                                     ),
                                   ),
                                 ],

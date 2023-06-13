@@ -70,9 +70,13 @@ dependencies:
   carousel_slider: ^4.1.1
   switcher_button: ^0.0.4
   flutter_map: ^4.0.0
-#  latlong: ^0.6.1
   graphql: ^5.1.1
   graphql_flutter: ^5.1.0
+#  mapbox_gl: ^0.16.0
+  geolocator: ^7.0.1
+  flutter_map_directions: ^0.0.3
+  flutter_polyline_points: ^1.0.0
+  latlong2: ^0.8.2
 
 
 
@@ -139,11 +143,12 @@ flutter:
     - assets/images/logo.png
     - assets/images/download.jpg
     - assets/images/news.jpg
-    - assets/icons/bottle.svg
-    - assets/icons/pill.svg
+    - assets/icons/liquid.svg
+    - assets/icons/capsule.svg
     - assets/icons/syringe.svg
     - assets/icons/tablet.svg
     - assets/icons/submit-success.svg
+    - assets/icons/location.svg
     - assets/images/echinops_kebericho.jpg
     - assets/images/Aloe_Vera.jpg
     - assets/images/garlic.jpg

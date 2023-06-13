@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_samaritan/pages/news/news_details.dart';
+import 'package:project_samaritan/pages/pharmacy/inventory_detail.dart';
 import 'package:project_samaritan/theme/styles.dart' as styleClass;
 
 
@@ -10,7 +10,7 @@ class FeaturedNews extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> NewsDetails()),);
+        // Navigator.push(context, MaterialPageRoute(builder: (context)=> InventoryDetail()),);
     },
       child: Container(
         width: double.infinity,

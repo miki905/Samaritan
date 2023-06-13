@@ -129,13 +129,13 @@ class MainSection extends StatelessWidget {
     if(medication!.medicineType == 'bottle'){
       return Hero(
         tag: medication!.medicineName! + medication!.medicineType!,
-        child: SvgPicture.asset('assets/icons/bottle.svg',
+        child: SvgPicture.asset('assets/icons/liquid.svg',
             height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
     }else if(medication!.medicineType == 'pill'){
       return Hero(
         tag: medication!.medicineName! + medication!.medicineType!,
-        child: SvgPicture.asset('assets/icons/pill.svg',
+        child: SvgPicture.asset('assets/icons/capsule.svg',
             height: 50, color: styleClass.Style.medicineDescriptionColorMain),
       );
     }else if(medication!.medicineType == 'syringe'){

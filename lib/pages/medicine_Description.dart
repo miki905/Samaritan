@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_samaritan/pages/home.dart';
+import 'package:project_samaritan/pages/pharmacy/pharmacy_responce.dart';
 import 'dart:io';
 import 'dart:ui';
 import 'package:project_samaritan/theme/styles.dart' as styleClass;
@@ -534,42 +535,90 @@ class _MedicineDescriptionState extends State<MedicineDescription>
                                       ? Divider()
                                       : Container(),
                                   widget.flag != 'saved' && isLoading == false
-                                      ? Container(
-                                          margin:
-                                              const EdgeInsets.only(bottom: 18),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                minimumSize:
-                                                    const Size.fromHeight(
-                                                        50),
-                                                backgroundColor: Theme.of(context).colorScheme.secondary// NEW
-                                              ),
-                                              onPressed: () async {
-                                                _saveButtonHandler(context);
-                                              },
-                                              child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children:  <Widget>[
-                                                    Icon(Icons.bookmark,
-                                                        color: Theme.of(context).colorScheme.tertiary),
-                                                    SizedBox(
-                                                      width: 8,
+                                      ?Padding(
+                                        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                                        child: Row(
+                                          mainAxisAlignment : MainAxisAlignment.spaceBetween,
+                                            children: [
+
+                                              Expanded(
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      minimumSize:
+                                                          const Size.fromHeight(
+                                                              50),
+                                                      backgroundColor: Theme.of(context).colorScheme.secondary// NEW
                                                     ),
-                                                    Text(
-                                                      'save',
-                                                      style: TextStyle(
-                                                          fontSize: 24,
-                                                        color: Theme.of(context).colorScheme.tertiary
-                                                      ),
-                                                    )
-                                                  ]),
-                                            ),
+                                                    onPressed: () async {
+                                                      _saveButtonHandler(context);
+                                                    },
+                                                    child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment.center,
+                                                        children:  <Widget>[
+                                                          Icon(Icons.bookmark,
+                                                              color: Theme.of(context).colorScheme.tertiary),
+                                                          SizedBox(
+                                                            width: 8,
+                                                          ),
+                                                          Text(
+                                                            'save',
+                                                            style: TextStyle(
+                                                                fontSize: 24,
+                                                              color: Theme.of(context).colorScheme.tertiary
+                                                            ),
+                                                          )
+                                                        ]),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 20,
+                                              ),
+                                              Expanded(
+                                                child: ClipRRect(
+                                                borderRadius:
+                                                BorderRadius.circular(10),
+                                                child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      minimumSize: const Size.fromHeight(50),
+                                                      backgroundColor: Theme.of(context).colorScheme.secondary// NEW
+                                                  ),
+                                                  onPressed: () async {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) => PharmacyResponseList(MedName: widget.medName
+                                                          )),
+                                                    );
+                                                  },
+                                                  child: Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                      children:  <Widget>[
+                                                        Icon(Icons.bookmark,
+                                                            color: Theme.of(context).colorScheme.tertiary),
+                                                        SizedBox(
+                                                          width: 8,
+                                                        ),
+                                                        Text(
+                                                          'NearBy',
+                                                          style: TextStyle(
+                                                              fontSize: 24,
+                                                              color: Theme.of(context).colorScheme.tertiary
+                                                          ),
+                                                        )
+                                                      ]),
+                                                ),
+                                              ),
+                                              )
+                                            ],
                                           ),
-                                        )
+                                      )
+
                                       : Container()
                                 ],
                               );

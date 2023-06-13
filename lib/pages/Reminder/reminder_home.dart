@@ -185,20 +185,14 @@ class _MedicineCardState extends State<MedicineCard> {
   Hero makeIcon(double size) {
     if (widget.medication.medicineType == 'bottle') {
       return Hero(
-<<<<<<< HEAD
         tag: widget.medication.medicineName! + widget.medication.medicineType!,
-        child: SvgPicture.asset('assets/icons/bottle.svg',
+        child: SvgPicture.asset('assets/icons/liquid.svg',
             height: 50, color: Theme.of(context).colorScheme.secondary),
-=======
-          tag: widget.medication.medicineName! + widget.medication.medicineType!,
-          child: SvgPicture.asset('assets/icons/bottle.svg',
-              height: 50, color: Theme.of(context).colorScheme.tertiary),
->>>>>>> dc844e682ec54fd1931d5d6b0058a1db7b087383
       );
     } else if (widget.medication.medicineType == 'pill') {
       return Hero(
         tag: widget.medication.medicineName! + widget.medication.medicineType!,
-        child: SvgPicture.asset('assets/icons/pill.svg',
+        child: SvgPicture.asset('assets/icons/capsule.svg',
             height: 50, color: Theme.of(context).colorScheme.secondary),
       );
     } else if (widget.medication.medicineType == 'syringe') {
@@ -215,7 +209,6 @@ class _MedicineCardState extends State<MedicineCard> {
       );
     }
 
-<<<<<<< HEAD
     return Hero(
         tag: widget.medication.medicineName! + widget.medication.medicineType!,
         child: Icon(
@@ -223,9 +216,6 @@ class _MedicineCardState extends State<MedicineCard> {
           size: size,
           color: Theme.of(context).colorScheme.secondary,
         ));
-=======
-    return Hero(tag: widget.medication.medicineName! + widget.medication.medicineType!, child: Icon(Icons.error, size: size, color: Theme.of(context).colorScheme.background,));
->>>>>>> dc844e682ec54fd1931d5d6b0058a1db7b087383
   }
 
   @override

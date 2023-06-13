@@ -44,10 +44,12 @@ class ThemeSettings extends ChangeNotifier {
       colorScheme: ColorScheme.light(
         brightness: Brightness.light,
         background: Colors.white,
-        primary: Color.fromRGBO(55, 32, 104, 1.0), // Set your custom primary color
-        secondary: Color(0xFF59C1BD),
+        // primary: Colors.black54,
+        primary: Color.fromRGBO(55, 32, 104, 0.8), // Set your custom primary color
+        // secondary: Color(0xFF59C1BD),
+        secondary: Colors.blueAccent,
         tertiary: Colors.black,
-        surface: Colors.white12
+        surface: Colors.black12
         // Set your custom secondary color
         // ... customize other colors as needed
       ),

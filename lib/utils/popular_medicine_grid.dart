@@ -106,8 +106,8 @@ class _GridContainerState extends State<GridContainer> {
                       child: Container(
                         padding: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Theme.of(context).colorScheme.secondary,
+                            borderRadius: BorderRadius.circular(20),
+                            color: Theme.of(context).colorScheme.primary,
                           // color: Colors.amberAccent
                         ),
 

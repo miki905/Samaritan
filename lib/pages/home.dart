@@ -247,7 +247,7 @@ class _HomeState extends State<Home>
               ListTile(
                 title: const Text('Frequented Pharmacy'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage(MedName: 'Amoxicillin',)));
                   // Navigator.popAndPushNamed(context, '/privacyPolicy');
                   // themeToogle();
                 },

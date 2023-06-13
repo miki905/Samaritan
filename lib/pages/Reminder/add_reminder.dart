@@ -122,7 +122,7 @@ class _AddReminderState extends State<AddReminder> {
                         children: [
                           MedicineType(
                             name: "bottle",
-                            iconValue: 'assets/icons/bottle.svg',
+                            iconValue: 'assets/icons/liquid.svg',
                             isSelectted: snapshot.data == MedicineTypes.bottle
                                 ? true
                                 : false,
@@ -130,7 +130,7 @@ class _AddReminderState extends State<AddReminder> {
                           ),
                           MedicineType(
                             name: "pill",
-                            iconValue: 'assets/icons/pill.svg',
+                            iconValue: 'assets/icons/capsule.svg',
                             isSelectted: snapshot.data == MedicineTypes.pill
                                 ? true
                                 : false,
