@@ -75,6 +75,7 @@ class _PharmacyListHomeState extends State<PharmacyListHome> {
             name
             pharmacy_name
             id
+            phone_number
              users_locations {
               address
             }
@@ -119,22 +120,26 @@ class _PharmacyListHomeState extends State<PharmacyListHome> {
                     );
                   },
                   child: Card(
-                    elevation: 8,
+                    elevation: 30,
+                    shape:
+                    RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.only(
+                          bottomRight: Radius.circular(15),
+                          topRight: Radius.circular(15)),
+                    ),
+                    color: Theme.of(context).colorScheme.primary,
                     // shadowColor: Theme.of(context).colorScheme.surface,
                     child: Container(
                       width: double.infinity,
                       margin: EdgeInsets.only(bottom: 10),
                       padding: EdgeInsets.all(8),
                       height: 80,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface,
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
                       child: Row(
                         children: [
                           CircleAvatar(
                             backgroundColor:
-                                Theme.of(context).colorScheme.background,
+                                Theme.of(context).colorScheme.primary,
                             radius: 48,
                             child: CircleAvatar(
                               radius: 36,
@@ -157,17 +162,7 @@ class _PharmacyListHomeState extends State<PharmacyListHome> {
                                           .colorScheme
                                           .tertiary,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 25,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Poly",
-                                    // result.data!['users'][index]["users_locations"]["address"],
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .tertiary,
+                                      fontSize: 20,
                                     ),
                                   ),
                                 ],

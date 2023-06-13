@@ -43,241 +43,290 @@ class InventoryDetail extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  width: 100,
-                  height:100,
-                  child: SvgPicture.asset(
-                      'assets/icons/${inventory["catagory"]}.svg',
-                      height: 100,
-                      width: 100,
-                      color: Theme.of(context).colorScheme.secondary),
+            Container(
+              height: 80,
+              width: MediaQuery.of(context).size.width,
+              child: Card(
+                elevation: 8,
+                // shadowColor: Theme.of(context).colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Name",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+
+                      Text(
+                        inventory["medicine_name"],
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Name",
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 1.0
-                            // fontFamily: popin
-                          ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          inventory["medicine_name"],
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.tertiary,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 1.0
-                            // fontFamily: popin
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 18,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Dosage",
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 1.0
-                            // fontFamily: popin
-                          ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          inventory["weight"],
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.tertiary,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 1.0
-                            // fontFamily: popin
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              ],
+              ),
             ),
             SizedBox(
-              height: 18,
+              height: 8,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Generic Name",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.0
-                    // fontFamily: popin
+            Container(
+              height: 80,
+              width: MediaQuery.of(context).size.width,
+              child: Card(
+                elevation: 8,
+                // shadowColor: Theme.of(context).colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Dosage",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+
+                      Text(
+                        inventory["weight"],
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  inventory["generic_name"],
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 18,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Brand Name",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  inventory["brand_name"].toString(),
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
-                ),
-              ],
+              ),
             ),
             SizedBox(
-              height: 18,
+              height: 8,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Price",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.0
-                    // fontFamily: popin
+            Container(
+              height: 80,
+              width: MediaQuery.of(context).size.width,
+              child: Card(
+                elevation: 8,
+                // shadowColor: Theme.of(context).colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Generic Name",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+
+
+                      Text(
+                        inventory["generic_name"],
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  inventory["price"].toString(),
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 18,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Expire Date",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  inventory["expire_date"].toString(),
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
-                ),
-              ],
+              ),
             ),
             SizedBox(
-              height: 18,
+              height: 8,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Category",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.0
-                    // fontFamily: popin
+            Container(
+              height: 80,
+              width: MediaQuery.of(context).size.width,
+              child: Card(
+                elevation: 8,
+                // shadowColor: Theme.of(context).colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Brand Name",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        inventory["brand_name"].toString(),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  inventory["catagory"].toString(),
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.0
-                    // fontFamily: popin
-                  ),
-                ),
-              ],
+              ),
             ),
             SizedBox(
-              height: 108,
+              height: 8,
+            ),
+            Container(
+              height: 80,
+              width: MediaQuery.of(context).size.width,
+              child: Card(
+                elevation: 8,
+                // shadowColor: Theme.of(context).colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Price",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+
+                      Text(
+                        inventory["price"].toString(),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Container(
+              height: 80,
+              width: MediaQuery.of(context).size.width,
+              child: Card(
+                elevation: 8,
+                // shadowColor: Theme.of(context).colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Expire Date",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+
+                      Text(
+                        inventory["expire_date"].toString(),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            SizedBox(
+              height: 8,
+            ),
+            Container(
+              height: 80,
+              width: MediaQuery.of(context).size.width,
+              child: Card(
+                elevation: 8,
+                // shadowColor: Theme.of(context).colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Category",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+
+                      Text(
+                        inventory["catagory"].toString(),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 1.0
+                          // fontFamily: popin
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            SizedBox(
+              height: 20,
             ),
             Container(
               margin:

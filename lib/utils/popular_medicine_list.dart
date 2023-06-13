@@ -60,7 +60,7 @@ class _GridContainerState extends State<GridContainer> {
               type: PageTransitionType.bottomToTop));
         },
         child: Container(
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).colorScheme.primary,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,

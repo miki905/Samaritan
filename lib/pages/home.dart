@@ -38,6 +38,7 @@ class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
 }
+
 ThemeModel _themeManager = ThemeModel();
 
 class _HomeState extends State<Home>
@@ -474,52 +475,6 @@ class _HomeState extends State<Home>
                     )
                   ],
                 ),
-                // Column(
-                //   children: [
-                //     Row(
-                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //       children: [
-                //         Padding(
-                //           padding: const EdgeInsets.only(left: 18.0),
-                //           child: HeadingRow(
-                //             heading: 'Frequented Pharmacy',
-                //           ),
-                //         ),
-                //         TextButton(
-                //           onPressed: () {
-                //             Navigator.pushNamed(context, '/popularMedicine');
-                //           },
-                //           child: Column(
-                //             children: [
-                //               Text(
-                //                 'view all',
-                //                 style: TextStyle(
-                //                   color: Theme.of(context).colorScheme.secondary,),
-                //               ),
-                //             ],
-                //           ),
-                //         )
-                //       ],
-                //     ),
-                //     FittedBox(
-                //       child: SizedBox(
-                //           width: MediaQuery.of(context).size.width,
-                //           // child: GridBuilder()
-                //           child: Row(
-                //             children: [
-                //               Expanded(
-                //                 child: Material(
-                //                   elevation: 0,
-                //                   child: PharmacyDot(),
-                //                 ),
-                //               ),
-                //             ],
-                //           )),
-                //     )
-                //   ],
-                // ),
-                // Divider(),
-                //catagories section
                 Column(
                   children: [
                     Row(
@@ -569,27 +524,13 @@ class _HomeState extends State<Home>
                                                           RoundedRectangleBorder(
                                                         borderRadius:
                                                             BorderRadius.only(
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            15),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        15)),
-                                                        // side: BorderSide(
-                                                        //   width: 5,
-                                                        //   // color: Color
-                                                        //   //     .fromARGB(
-                                                        //   //         255,
-                                                        //   //         9,
-                                                        //   //         9,
-                                                        //   //         9)
-                                                        // )
+                                                                bottomRight: Radius.circular(15),
+                                                                topRight: Radius.circular(15)),
                                                       ),
                                                       shadowColor: Colors.black,
                                                       color: Theme.of(context)
                                                           .colorScheme
-                                                          .secondary,
+                                                          .primary,
                                                       child: ListTile(
                                                         title: Text(snapshot
                                                             .data!

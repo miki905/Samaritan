@@ -21,6 +21,7 @@ class CategoryService {
       id
       name
       pharmacy_name
+      
         users_locations {
           id
           latitude

@@ -28,7 +28,7 @@ class ThemeSettings extends ChangeNotifier {
       colorScheme: ColorScheme.dark(
         // brightness: Brightness.dark,
         background: Color(0xFF002626),
-        primary: Color(0xFF0E4749), // Set your custom primary color
+        primary:  Color(0xFF0E4749),// Set your custom primary color
         secondary: Color(0xFFE55812),
         tertiary: Colors.white,
         surface: Color(0xFF0E4749),
@@ -45,11 +45,11 @@ class ThemeSettings extends ChangeNotifier {
         brightness: Brightness.light,
         background: Colors.white,
         // primary: Colors.black54,
-        primary: Color.fromRGBO(55, 32, 104, 0.8), // Set your custom primary color
+        primary: Color.fromRGBO(64, 181, 173, 1.0), // Set your custom primary color
         // secondary: Color(0xFF59C1BD),
-        secondary: Colors.blueAccent,
+        secondary: Color.fromRGBO(65, 105, 225, 1.0),
         tertiary: Colors.black,
-        surface: Colors.black12
+        surface: Colors.black54
         // Set your custom secondary color
         // ... customize other colors as needed
       ),

@@ -36,13 +36,7 @@ class _NewsPageState extends State<NewsPage> {
         length: 5,
         child: Scaffold(
           appBar: AppBar(
-            leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(
-                Icons.arrow_back,
-                color: styleClass.Style.medicineDescriptionColorMain,
-              ),
-            ),
+
             elevation: 0,
             backgroundColor: Colors.transparent,
             title: Container(
@@ -110,10 +104,12 @@ class _NewsPageState extends State<NewsPage> {
                                           shadowColor: Colors.white,
                                           color: Theme.of(context)
                                               .colorScheme
-                                              .secondary,
+                                              .primary,
                                           child: ListTile(
                                             title: Text(snapshot
-                                                .data!.articles[index].title),
+                                                .data!.articles[index].title, style: TextStyle(
+                                              color: Theme.of(context).colorScheme.tertiary,
+                                            ),),
                                             subtitle: Text(snapshot
                                                         .data!
                                                         .articles[index]
@@ -121,7 +117,9 @@ class _NewsPageState extends State<NewsPage> {
                                                     null
                                                 ? "no description provided from the source"
                                                 : snapshot.data!.articles[index]
-                                                    .description!),
+                                                    .description!,style: TextStyle(
+                                              color: Theme.of(context).colorScheme.tertiary,
+                                            )  ),
                                           ),
                                         )
                                       ],
@@ -169,7 +167,7 @@ class _NewsPageState extends State<NewsPage> {
                                           shadowColor: Colors.black,
                                           color: Theme.of(context)
                                               .colorScheme
-                                              .secondary,
+                                              .primary,
                                           child: ListTile(
                                             title: Text(snapshot
                                                 .data!.articles[index].title),
@@ -228,7 +226,7 @@ class _NewsPageState extends State<NewsPage> {
                                           shadowColor: Colors.black,
                                           color: Theme.of(context)
                                               .colorScheme
-                                              .secondary,
+                                              .primary,
                                           child: ListTile(
                                             title: Text(snapshot
                                                 .data!.articles[index].title),
@@ -285,7 +283,7 @@ class _NewsPageState extends State<NewsPage> {
                                           shadowColor: Colors.black,
                                           color: Theme.of(context)
                                               .colorScheme
-                                              .secondary,
+                                              .primary,
                                           child: ListTile(
                                             title: Text(snapshot
                                                 .data!.articles[index].title),
@@ -342,7 +340,7 @@ class _NewsPageState extends State<NewsPage> {
                                           shadowColor: Colors.black,
                                           color: Theme.of(context)
                                               .colorScheme
-                                              .secondary,
+                                              .primary,
                                           child: ListTile(
                                             title: Text(snapshot
                                                 .data!.articles[index].title),
