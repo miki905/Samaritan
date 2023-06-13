@@ -50,8 +50,9 @@ class _NewsPageState extends State<NewsPage> {
               child: Text(
                 'NEWS',
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 20),
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontSize: 20,
+                    ),
               ),
             ),
             shape: RoundedRectangleBorder(
@@ -77,7 +78,7 @@ class _NewsPageState extends State<NewsPage> {
                     text: "Nigeria",
                   ),
                   Tab(
-                    text: "Egypt",
+                    text: "israel",
                   )
                 ]),
           ),
@@ -106,7 +107,7 @@ class _NewsPageState extends State<NewsPage> {
                                       children: [
                                         Card(
                                           elevation: 50,
-                                          shadowColor: Colors.black,
+                                          shadowColor: Colors.white,
                                           color: Theme.of(context)
                                               .colorScheme
                                               .secondary,

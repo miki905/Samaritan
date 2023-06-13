@@ -64,12 +64,12 @@ class _ReminderHomeState extends State<ReminderHome> {
           height: 60,
           width: 60,
           child: Card(
-            color: Theme.of(context).colorScheme.secondary,
+            color: Colors.grey[300],
             shape:
-                BeveledRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                BeveledRectangleBorder(borderRadius: BorderRadius.circular(15)),
             child: Icon(
               Icons.add_outlined,
-              color: Theme.of(context).colorScheme.tertiary,
+              color: Colors.black87,
               size: 20,
             ),
           ),
@@ -153,13 +153,38 @@ class TopCounter extends StatelessWidget {
         StreamBuilder<List<Medication>>(
             stream: globalBloc.medicationList$!,
             builder: (context, snapshot) {
-              return Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.only(bottom: 10),
-                child: Text(
-                  !snapshot.hasData ? "0" : snapshot.data!.length.toString(),
-                  style: TextStyle(fontSize: 44),
-                ),
+              return Row(
+                children: [
+                  Expanded(
+                    child: Text('active reminder', textAlign: TextAlign.center),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      !snapshot.hasData
+                          ? "0"
+                          : snapshot.data!.length.toString(),
+                      style: TextStyle(fontSize: 44),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddReminder()));
+                      },
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0))),
+                      ),
+                      child: Text("Add", textAlign: TextAlign.center),
+                    ),
+                  ),
+                ],
               );
             }),
 
